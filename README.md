@@ -48,11 +48,11 @@ on the given topic._
 __Download a .pdf, .epub, or .mobi file from:__
 
 * https://leanpub.com/juice-shop (official release)
-* https://www.gitbook.com/book/owasp/pwning-owasp-juice-shop_ES
+* ~https://www.gitbook.com/book/owasp/pwning-owasp-juice-shop_ES~
 
 __Read the book online at:__
 
-* https://owasp.gitbooks.io/pwning-owasp-juice-shop_ES/content
+* https://app.gitbook.com/@owasp-org/s/pwning-owasp-juice-shop-es
 
 __Contribute content, suggestions, and fixes on GitHub:__
 
