@@ -1,4 +1,4 @@
-# :godmode: Appendix A - Challenge solutions
+# :godmode: Apendice A - Soluciones del Desafio
 
 All URLs in the challenge solutions assume you are running the
 application locally and on the default port http://localhost:3000.
