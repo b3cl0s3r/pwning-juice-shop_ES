@@ -2,63 +2,55 @@
 
 Escrito por [Björn Kimminich](https://twitter.com/bkimminich)
 
-Traducido al español por Carlos Alendes
+Traducido al español por Carlos Alendes.
 
 ![Front Cover](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/cover.jpg)
 
-This is the official companion guide to the __OWASP Juice Shop__
-application. Being a web application with a vast number of intended
-security vulnerabilities, the OWASP Juice Shop is supposed to be the
-opposite of a _best practice_ or _template application_ for web
-developers: It is an awareness, training, demonstration and exercise
-tool for security risks in modern web applications. The OWASP Juice Shop
-is an open-source project hosted by the non-profit
-[Open Web Application Security Project (OWASP)](https://owasp.org) and
-is developed and maintained by volunteers. The content of this book was
-written for {{book.juiceShopVersion}} of OWASP Juice Shop.
+Esta es la guía oficial de __OWASP Juice Shop__. Partiendo de una aplicación web con una enorme cantidad de fallos de seguridad, OWASP Juice Shop se supone que es lo opuesto a _las buenas prácticas_ o a una _aplicación de plantilla_ para los desarrolladores web: se trata de una herramienta de consciencia, aprendizaje, demostración y entrenamiento para fallos de seguridad en las aplicaciones webs modernas. OWASP Juice
+Shop es un proyecto open-source creado sin fines de lucro por [Open Web Application Security Project (OWASP)](https://owasp.org) y se sigue desarrollando y manteniendo gracias a voluntarios.
+El contenido de este libro fue escrito para {{book.juiceShopVersion}} de OWASP Juice Shop.
 
-The book is divided into three parts:
+Este libro se divide en tres partes:
 
-### Part I - Hacking preparations
+### Parte I - Preparación
 
-Part one helps you to get the application running and to set up optional
-hacking tools.
+La primera parte te ayudará a lograr a poner la aplicación en funcionamiento y, de forma opcional, instalar herramientas de hacking.
 
-### Part II - Challenge hunting
+### Parte II - Cazando retos
 
-Part two gives an overview of the vulnerabilities found in the OWASP
-Juice Shop including hints how to find and exploit them in the
-application.
+La segunda parte da una visión general de las vulnerabilidades que se 
+pueden encontrar en OWASP Juice Shop, incluso pistas de cómo localizarlas
+y explotarlas dentro de la aplicación.
 
-### Part III - Getting involved
 
-Part three shows up various ways to contribute to the OWASP Juice Shop
-open source project.
+### Part III - Involúcrate 
+
+La tercera parte te muestra varias formas de contribuir al proyecto open source
+OWASP Juice Shop.
 
 ----
 
-_Please be aware that this book is not supposed to be a comprehensive
-introduction to Web Application Security in general. For every category
-of vulnerabilities present in the OWASP Juice Shop you will find a brief
-explanation - typically by quoting and referencing to existing content
-on the given topic._
+_Sea consciente de que este libro no pretende ser un libro de introducción a 
+la seguridad de aplicaciones web. Encontrarás una breve explicación para cada
+tipo de vulnerabilidad presente en OWASP Juice Shop - típicamente citando y
+referenciando el contenido ya existente sobre el tema dado._
 
 ----
 
-__Download a .pdf, .epub, or .mobi file from:__
+__Descarga el .pdf, .epub, o .mobi file en:__
 
 * https://leanpub.com/juice-shop (official release)
 * ~https://www.gitbook.com/book/owasp/pwning-owasp-juice-shop_ES~
 
-__Read the book online at:__
+__Lee el libro online en:__
 
 * https://app.gitbook.com/@owasp-org/s/pwning-owasp-juice-shop-es
 
-__Contribute content, suggestions, and fixes on GitHub:__
+__Contribuye, sugiere y/o reporta errores en GitHub:__
 
 * https://github.com/OWASP/pwning-juice-shop_ES
 
-__Official OWASP Juice Shop project homepage:__
+__Página oficial de OWASP Juice Shop:__
 
 * http://owasp-juice.shop
 
@@ -66,5 +58,5 @@ __Official OWASP Juice Shop project homepage:__
 
 [![CC BY-NC-ND 4.0](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/introduction/img/cc_by-nc-nd_4.0.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
-This work is licensed under a
+Esta obra se encuentra bajo una licencia
 [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
