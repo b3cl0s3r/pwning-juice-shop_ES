@@ -1,54 +1,54 @@
 # Summary
 
-### Preface
+### Prólogo
 
-* [Why OWASP Juice Shop exists](introduction/motivation.md)
-* [Architecture overview](introduction/architecture.md)
+* [¿Por qué existe OWASP Juice Shop?](introduction/motivation.md)
+* [Visión general de la arquitectura](introduction/architecture.md)
 
-### Part I - Hacking preparations
+### Parte I - Preparación
 
-* [Hacking preparations](part1/README.md)
-* [Running OWASP Juice Shop](part1/running.md)
-* [Vulnerability categories](part1/categories.md)
-* [Challenge tracking](part1/challenges.md)
-* [Hacking exercise rules](part1/rules.md)
-* [Walking the "happy path"](part1/happy-path.md)
-* [Customization](part1/customization.md)
-* [Hosting a CTF event](part1/ctf.md)
+* [Preparación](part1/README.md)
+* [Ejecutando OWASP Juice Shop](part1/running.md)
+* [Categorías de vulnerabilidades](part1/categories.md)
+* [Seguimiento de los retos](part1/challenges.md)
+* [Reglas para los ejercicios de hacking](part1/rules.md)
+* [Siguiendo el "camino feliz"](part1/happy-path.md)
+* [Personalización](part1/customization.md)
+* [Organizando un evento CTF](part1/ctf.md)
 
-### Part II - Challenge hunting
+### Parte II - Cazando Retos
 
-* [Challenge hunting](part2/README.md)
-* [Finding the Score Board](part2/score-board.md)
-* [Injection](part2/injection.md)
-* [Broken Authentication](part2/broken-authentication.md)
-* [Forgotten Content](part2/forgotten-content.md)
-* [Roll your own Security](part2/roll-your-own-security.md)
-* [Sensitive Data Exposure](part2/sensitive-data-exposure.md)
+* [Cazando Retos](part2/README.md)
+* [Localizando el Tablero de Puntuación](part2/score-board.md)
+* [Inyección](part2/injection.md)
+* [Autenticación Rota](part2/broken-authentication.md)
+* [Contenido Olvidado](part2/forgotten-content.md)
+* [Promueve tu propia seguridad](part2/roll-your-own-security.md)
+* [Exposición de datos sensibles](part2/sensitive-data-exposure.md)
 * [XML External Entities (XXE)](part2/xxe.md)
-* [Improper Input Validation](part2/improper-input-validation.md)
-* [Broken Access Control](part2/broken-access-control.md)
-* [Security Misconfiguration](part2/security-misconfiguration.md)
+* [Validación incorrecta de datos](part2/improper-input-validation.md)
+* [Control de acceso roto](part2/broken-access-control.md)
+* [Mala configuración de seguridad](part2/security-misconfiguration.md)
 * [Cross Site Scripting (XSS)](part2/xss.md)
-* [Insecure Deserialization](part2/insecure-deserialization.md)
-* [Vulnerable Components](part2/vulnerable-components.md)
-* [Security through Obscurity](part2/security-through-obscurity.md)
-* [Race Condition](part2/race-condition.md)
+* [Deserialización insegura](part2/insecure-deserialization.md)
+* [Componentes vulnerables](part2/vulnerable-components.md)
+* [Seguridad a través de la oscuridad](part2/security-through-obscurity.md)
+* [Condición de carrera](part2/race-condition.md)
 
-### Part III - Getting involved
+### Parte III - Involúcrate
 
-* [Getting involved](part3/README.md)
-* [Provide feedback](part3/feedback.md)
-* [Contribute to development](part3/contribution.md)
+* [Involúcrate](part3/README.md)
+* [Danos tu opinión](part3/feedback.md)
+* [Contribuye al desarrollo](part3/contribution.md)
 * [Codebase 101](part3/codebase.md)
-* [Help with translation](part3/translation.md)
-* [Donations](part3/donations.md)
+* [Ayuda a traducir](part3/translation.md)
+* [Donaciones](part3/donations.md)
 
-### Appendix
+### Apéndices
 
-* [Appendix A - Challenge solutions](appendix/solutions.md)
-* [Appendix B - Trainer's guide](appendix/trainers.md)
+* [Apéndice A - Soluciones a los retos](appendix/solutions.md)
+* [Apéndice B - Guía del entrenador](appendix/trainers.md)
 
-### Postface
+### Epílogo
 
-* [About this book](introduction/about.md)
+* [Sobre este libro](introduction/about.md)
