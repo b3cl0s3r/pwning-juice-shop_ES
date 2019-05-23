@@ -1,43 +1,43 @@
-# Architecture overview
+# Visión general de la arquitectura
 
-The OWASP Juice Shop is a pure web application implemented in JavaScript
-and TypeScript (which is compiled into regular JavaScript). In the
-frontend the popular [Angular](https://angular.io/) framework is used to
-create a so-called _Single Page Application_. The user interface layout
-is implementing Google's [Material Design](https://material.io/) using
-[Angular Material](https://material.angular.io/) components. It uses
-[Angular Flex-Layout](https://github.com/angular/flex-layout) to achieve
-responsiveness. All icons found in the UI are originating from the
-[Font Awesome](https://fontawesome.com) library.
+OWASP Juice Shop es una aplicación web puramente implementada
+en JavaScript y TypeScript (que es compilado en JavaScript). En el
+frontend se utiliza el framework popular [Angular](https://angular.io/)
+para crear lo llamado _Single Page Application_ o una aplicación de una 
+sola página. El diseño de la interfaz de usuario está implementado con 
+[Material Design](https://material.io/) de Google utilizando componentes 
+de [Angular Material](https://material.angular.io/). Se emplea 
+[Angular Flex-Layout](https://github.com/angular/flex-layout)
+para lograr un diseño responsivo. Todos los iconos encontrados en la 
+interfaz de usuario provienen de la librería [Font Awesome](https://fontawesome.com).
 
-JavaScript is also used in the backend as the exclusive programming
-language: An [Express](http://expressjs.com) application hosted in a
-[Node.js](https://nodejs.org) server delivers the client-side code to
-the browser. It also provides the necessary backend functionality to the
-client via a RESTful API. As an underlying database a light-weight
-[SQLite](https://www.sqlite.org) was chosen, because of its file-based
-nature. This makes the database easy to create from scratch
-programmatically without the need for a dedicated server.
-[Sequelize](http://docs.sequelizejs.com) and
-[epilogue](https://github.com/dchester/epilogue) are used as an
-abstraction layer from the database. This allows to use dynamically
-created API endpoints for simple interactions (i.e. CRUD operations)
-with database resources while still allowing to execute custom SQL for
-more complex queries.
+Se utiliza también JavaScript en el backend como lenguaje de programación
+exclusivo: Una aplicación [Express](http://expressjs.com) aloja en un 
+servidor [Node.js](https://nodejs.org) que entrega el código del lado 
+del cliente a través de una API RESTful. Como base de datos subyacente,
+[SQLite](https://www.sqlite.org) fue elegida, por su naturaleza basada
+en ficheros. Esto hace que la base de datos sea sencilla de crear desde
+cero de forma programática sin la necesidad de tener un servidor dedicado.
+[Sequelize](http://docs.sequelizejs.com) y
+[epilogue](https://github.com/dchester/epilogue) fueron utilizados como
+una capa de abstracción de la base de datos. Esto permite usar dinámicamente
+los endpoints creados de la API para simple interacciones (p.e. operaciones 
+CRUD) con recursos de la base de datos mientras que todavía permite ejecutar
+SQL propio para consultas más complejas.
 
-As an additional data store a [MarsDB](https://github.com/c58/marsdb) is
-part of the OWASP Juice Shop. It is a JavaScript derivate of the widely
-used [MongoDB](https://www.mongodb.com) NoSQL database and compatible
-with most of its query/modify operations.
+Como un almacenador de datos adicional, [MarsDB](https://github.com/c58/marsdb)
+es parte de OWASP Juice Shop. Es un derivado de JavaScript de la base de
+datos NoSQL ampliamente utilizada [MongoDB](https://www.mongodb.com), que
+es compatible con la mayoría de sus operaciones de consulta/modificación.
 
-The push notifications that are shown when a challenge was successfully
-hacked, are implemented via
-[WebSocket Protocol](https://tools.ietf.org/html/rfc6455). The
-application also offers convenient user registration via
-[OAuth 2.0](https://oauth.net/2/) so users can sign in with their Google
-accounts.
+Las notificaciones que son mostradas cuando un reto ha sido resuelto 
+exitosamente, están implementadas via 
+[WebSocket Protocol](https://tools.ietf.org/html/rfc6455).
+La aplicación también ofrece registración de usuario a través de 
+[OAuth 2.0](https://oauth.net/2/), así los usuarios pueden conectarse
+utilizando su cuenta de Google.
 
-The following diagram shows the high-level communication paths between
-the client, server and data layers:
+El siguiente diagrama muestra la traza de la comunicación de alto 
+nivel entre las capas de cliente, servidor y datos:
 
 ![Architecture overview diagram](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/introduction/img/architecture-diagram.png)
