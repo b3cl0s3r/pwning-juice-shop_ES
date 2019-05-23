@@ -1,122 +1,113 @@
-# Why the Juice Shop exists
+# ¿Por qué existe Juice Shop?
 
-To the unsuspecting user the Juice Shop just looks like a small online
-shop which sells - _surprise!_ - fruit & vegetable juice and associated
-products. Except for the entirely overrated payment and delivery aspect
-of the e-commerce business, the Juice Shop is fully functional. But this
-is just the tip of the iceberg. The Juice Shop contains
-{{book.juiceShopNumberOfChallenges}} challenges of varying difficulty
-where you are supposed to exploit underlying security vulnerabilities.
-These vulnerabilities were intentionally planted in the application for
-exactly that purpose, but in a way that actually happens in "real-life"
-web development as well!
+Para el usuario despistado, Juice Shop es simplemente una pequeña tienda online que vende 
+_¡sorpresa!_ - jugo de fruta y verdura y otros productos asociados. Exceptuando por los
+elevados pagos y el aspecto de entrega del negocio e-commerce, Juice Shop es completamente
+funcional. Pero esto es solo la punta del iceberg. Juice Shop contiene {{book.juiceShopNumberOfChallenges}}
+desafíos de dificultad variada donde debes explotar fallos de seguridad. Estas vulnerabilidades 
+fueron implementadas de forma intencionada en la aplicación para este propósito, pero de una 
+manera que simula lo que ocurre en desarrollo de webs de la vida real.
 
-Your hacking progress is tracked by the application using immediate push
-notifications for successful exploits as well as a score board for
-progress overview. Finding this score board is actually one of the
-(easiest) challenges! The idea behind this is to utilize
-[gamification](https://en.wikipedia.org/wiki/Gamification) techniques to
-motivate you to get as many challenges solved as possible - similar to
-unlocking achievements in many modern video games.
+La aplicación realiza un seguimiento de tu progreso utilizando notificaciones cuando 
+logras explotaciones exitosas y contiene un tablero de puntuaciones para consultar tu
+progreso. ¡Encontrar el tablero de puntuaciones es uno de los retos más fáciles! La idea
+detrás de esto es utilizar técnicas de [gamificación](https://es.wikipedia.org/wiki/Ludificaci%C3%B3n)
+para motivarte a lograr la mayor cantidad de retos resueltos como sea posible - algo similar a desbloquear
+logros en los videojuegos modernos.
 
-Development of the Juice Shop started in September 2014 as the authors
-personal initiative, when a more modern exercise environment for an
-in-house web application security training for his employer was needed.
-The previously used exercise environment was still from the server-side
-rendered ASP/JSP/Servlet era and did not reflect the reality of current
-web technology any more. The Juice Shop was developed as open-source
-software without any corporate branding right from the beginning. Until
-end of 2014 most of the current e-commerce functionality was up and
-running - along with an initial number of planted vulnerabilities. Over
-the years more variants of vulnerabilities were added. In parallel the
-application was kept up-to-date with latest web technology (e.g.
-WebSockets and OAuth 2.0) and frontend frameworks (i.e. by migrating
-from AngularJS with Bootstrap to Angular with Material Design). Some of
-these additional capabilities then brought the chance to add
-corresponding vulnerabilities - and so the list of challenges kept
-growing ever since.
+El desarrollo de Juice Shop comenzó en septiembre de 2014 como una iniciativa personal de los
+autores, cuando un entorno de prácticas para aplicaciones web más moderno era necesario.
+Antes, los entornos de prácticas eran todavía  lado del servidor con tecnologías de la 
+era ASP/JSP/Servlet y no reflejaban la realidad de la tecnología web actual. Juice shop fue
+desarrollado como un software open source sin incorporar ninguna marca desde el inicio. 
+Hasta finales de 2014, la mayoría de la actual funcionalidad e-commerce ya estaba funcionando 
+junto a un número inicial de vulnerabilidades planteadas. Con los años, más variedad de 
+vulnerabilidades fueron añadidas. En paralelo, la aplicación se ha seguido manteniendo actualizada 
+con lo último de la tecnología web (p.e. WebSockets y OAuth 2.0) and frontend frameworks (es decir, 
+migrando desde AngularJS con Bootstrap a Angular con Material Design). Algunos de estas incorporaciones
+dieron la posibilidad de añadir nuevas vulnerabilidades - y así la lista de retos ha seguido creciendo 
+desde ese entonces.
 
-Apart from the hacker and awareness training use case, penetration
-testing tools and automated security scanners are invited to use Juice
-Shop as a sort of guinea pig-application to check how well their
-products cope with JavaScript-heavy application frontends and REST APIs.
+Aparte del hacker y la concienciación, las herramientas de penetración y los escáneres automatizados 
+de seguridad fueron invitados a usar Juice Shop como un tipo de aplicación de "conejillo de indias" 
+para comprobar cómo y cuánto de bien hacía frente sus producto a las aplicaciones pesadas de Javascript
+ y las API REST.
 
-### Why _OWASP_ Juice Shop?
 
-> Every vibrant technology marketplace needs an unbiased source of
-> information on best practices as well as an active body advocating
-> open standards. In the Application Security space, one of those groups
-> is the Open Web Application Security Project (or OWASP for short).
+### ¿Por qué _OWASP_ Juice Shop?
+
+> Cada tecnología necesita una fuente de información imparcial con 
+> las mejores prácticas, así como un cuerpo activo que abogue 
+> por los estándares abiertos. Dentro de la seguridad de aplicaciones, 
+> uno de estos grupos es the Open Web Application Security Project (o OWASP abreviado).
 >
-> The Open Web Application Security Project (OWASP) is a 501(c)(3)
-> worldwide not-for-profit charitable organization focused on improving
-> the security of software. Our mission is to make software security
-> visible, so that individuals and organizations are able to make
-> informed decisions. OWASP is in a unique position to provide
-> impartial, practical information about AppSec to individuals,
-> corporations, universities, government agencies and other
-> organizations worldwide. Operating as a community of like-minded
-> professionals, OWASP issues software tools and knowledge-based
-> documentation on application security.[^1]
+> The Open Web Application Security Project (OWASP) es una 501(c)(3)
+> organización mundial sin ánimo de lucro enfocada en mejorar 
+> la seguridad del software. Nuestra mision es hacer la seguridad 
+> del software visible, así personas y organizaciones pueden tomar decisiones informadas.
+> OWASP está en una posición única para proveer de información 
+> imparcial y práctica sobre la seguridad de aplicaciones a individuos, 
+> universidades, agencias gubernamentales y otras organizaciones 
+> del mundo entero.
+> Operando como una comunidad de profesionales con ideas afines, 
+> OWASP crea herramientas software y documentación basada en 
+> el conocimiento de la seguridad de aplicaciones.[^1]
 
-Two years after its inception the Juice Shop was submitted and accepted
-as an _OWASP Tool Project_ by the
-[Open Web Application Security Project](https://owasp.org) in September
-2016\. This move increased the overall visibility and outreach of the
-project significantly, as it exposed it to a large community of
-application security practitioners.
+Dos años después de su inicio, Juice Shop fue presentado y aceptado como un _OWASP Tool Project_
+(un proyecto de herramienta, por [Open Web Application Security Project](https://owasp.org) en septiembre
+de 2016\. Esto incrementó la visibilidad general del proyecto y mejoró significativamente su alcance, ya
+que se expuso ante una gran comunidad de personas dedicadas a la seguridad de las aplicaciones.
 
-Once in the OWASP project portfolio it took only eight months until
-Juice Shop was promoted from the initial _Incubator_ maturity level to
-_Lab Projects_ level. End of July 2018 the Juice Shop was promoted into
-the final _Flagship_ maturity stage for OWASP projects.
+Una vez en el portfolio de proyectos OWASP, solo llevó ocho meses hasta que Juice Shop fue ascendido 
+desde el nivel de madurez inicial _Incubadora_ hasta el nivel _Proyectos de laboratorio_. A finales 
+de julio de 2018, Juice Shop pasó al estado final de madurez _Flagship_ para los proyectos OWASP.
 
 ![OWASP Flagship Projects](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/introduction/img/Flagship_big.jpg)
 
-### Why the name "Juice Shop"?
+### ¿Por qué "Juice Shop" como nombre?
 
-In German there is a dedicated word for _dump_, i.e. a store that sells
-lousy wares and does not exactly have customer satisfaction as a
-priority: _Saftladen_. Reverse-translating this separately as _Saft_ and
-_Laden_ yields _juice_ and _shop_ in English. That is where the project
-name comes from. The fact that the initials _JS_ match with those
-commonly used for _JavaScript_ was purely coincidental and not related
-to the choice of implementation technology.
+En alemán, hay una palabra dedicada para _dump_: una tienda que vende 
+productos de mala calidad y no tiene en cuenta la satisfacción del cliente 
+como una prioridad: _Saftladen_. Traducciendo esto por separado, Saft y Laden 
+significan _juice_ (jugo) y _shop_ (tienda) en Inglés. De ahí es donde proviene 
+el nombre del proyecto. El hecho de que las iniciales JS coincidan, siendo 
+estas comunmente utilizadas para referenciar _JavaScript_, fue puramente una
+ coincidencia y no estaba relacionado con la elección de la tecnología a implementar.
 
-### Why the logo?
 
-Other than the name, the Juice Shop logo was designed explicitly with
-_JavaScript_ in mind:
+### ¿Por qué este logo?
+
+Aparte del nombre, el logo de Juice Shop fue diseñado explícitamente con _JavaScript_ en mente:
 
 ![Inofficial JS Shield](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/introduction/img/JS_Shield.png)
 
-The authors idea was to convert one of the (unofficial but popular)
-_JavaScript_ shield-logos into a **leaking juice box** because it had a
-quite matching shape for this shenanigans:
+La idea de los autores era convertir uno de los (no oficial, pero popular) logos de escudo 
+de _JavaScript_ en un **tetrabrik de jugo goteante** porque la forma coincidía bastante y
+daba mucho juego en el proyecto:
 
 ![Original JuiceShop logo](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/introduction/img/JuiceShop_RetroLogo.png)
 
-In 2017 the logo received a facelift and a spin-off when the Juice Shop
-introduced its Capture-the-flag extension (which is discussed in its own
-chapter [Hosting a CTF event](../part1/ctf.md)):
+En 2017, el logo recibió un lavado de cara y un spin-off cuando se le introdujo a Juice Shop 
+la extensión Capture-the-flag (que se comenta en el capítulo [Organizando un evento CTF](../part1/ctf.md)):
+
 
 ![OWASP Juice Shop logo](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/introduction/img/JuiceShop_Logo.png)
 ![OWASP Juice Shop CTF logo](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/introduction/img/JuiceShopCTF_Logo.png)
 
-### Why yet another vulnerable web application?
+### ¿Por qué otra aplicación web vulnerable?
 
-A considerable number of vulnerable web applications already existed
-before the Juice Shop was created. The
-[OWASP Vulnerable Web Applications Directory (VWAD)](https://www.owasp.org/index.php/OWASP_Vulnerable_Web_Applications_Directory_Project)
-maintains a list of these applications. When Juice Shop came to life
-there were only _server-side rendered_ applications in the VWAD. But
-_Rich Internet Application (RIA)_ or _Single Page Application (SPA)_
-style applications were already a commodity at that time. Juice Shop was
-meant to fill that gap.
+Un número considerable de aplicaciones web vulnerables ya
+existían antes de que Juice Shop fuera creada. [OWASP Vulnerable 
+Web Applications Directory (VWAD)](https://www.owasp.org/index.php/OWASP_Vulnerable_Web_Applications_Directory_Project) 
+mantiene una lista de estas aplicaciones. Cuando Juice Shop nació, había 
+solo una aplicación _redenrizada por el lado del servidor_ en la VWAD. 
+Pero aplicaciones del estilo  _Rich Internet Application (RIA)_ or
+_Single Page Application (SPA)_ ya eran un producto en ese momento. 
+Juice Shop estaba destinado a llenar ese vacío.
 
-Many of the existing vulnerable web applications were very rudimental in
-their functional scope. So the aim of the Juice Shop also was to give
-the impression of a functionally complete e-commerce application that
-could actually exist like this in the wild.
+Mucha de las existentes páginas webs vulnerables eran muy rudimentarias
+en su aspecto funcional. Así que el objetivo de Juice Shop era dar 
+una impresión de una funcionalidad completa de aplicación e-commerce 
+que pudiera existir en la actualidad en Internet.
 
 [^1]: https://www.owasp.org
