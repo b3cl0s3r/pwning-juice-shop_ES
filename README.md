@@ -2,7 +2,7 @@
 
 Escrito por [Björn Kimminich](https://twitter.com/bkimminich)
 
-Traducido al español por Carlos Alendes.
+Traducido al español por Carlos Alendes y Kevin Eliezer.
 
 ![Front Cover](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/cover.jpg)
 
