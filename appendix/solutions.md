@@ -67,8 +67,8 @@ situación de error y resolver este desafío de inmediato:
     `/redirect?to=https://gratipay.com/juice-shop`
 
    ![Gratipay commented out](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/gratipay-button-ngIf_false.png)
-6. Para resolver este desafío, abra
-   <http://localhost:3000/redirect?to=https://gratipay.com/juice-shop>
+   
+6. Para resolver este desafío, abra <http://localhost:3000/redirect?to=https://gratipay.com/juice-shop>
    
 
 ### Siga el principio DRY mientras registra un usuario.
@@ -105,47 +105,42 @@ situación de error y resolver este desafío de inmediato:
 
    ![XSS alert box](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/xss1_alert.png)
 
-### Give a devastating zero-star feedback to the store
+### Califica la tienda con un devastador _Cero estrellas_ .
 
-Place an order that makes you rich. Visit the _Contact Us_ form and put
-in a _Comment_ text. Also solve the CAPTCHA at the bottom of the form.
+Haz un pedido que te haga rico. Visite el formulario _Contáctenos_ y escriba un _Texto_de_Comentario_ . También resuelva el CAPTCHA en la parte inferior del formulario.
 
-1. The _Submit_ button is still **disabled** because you did not select
-   a _Rating_ yet.
-2. Inspect the _Submit_ button with your DevTools and note the
-   `disabled` attribute of the `<button>` HTML tag
-3. Double click on `disabled` attribute to select it and then delete it
-   from the tag.
+1. El botón _Enviar_ aún está **deshabilitado** porque todavía no seleccionó una Calificación.
+2. Inspeccione el botón _Enviar_ con su DevTools y observe el atributo `disabled` de la etiqueta HTML  `<button>`
+3. Haga doble clic en el  atributo `disabled`  para seleccionarlo y luego elimínelo de la etiqueta.
 
    ![Disabled Submit Button in Contact Us form](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/contact_disabled_submit-button.png)
-4. The _Submit_ button is now **enabled**.
-5. Click the _Submit_ button to solve the challenge.
-6. You can verify the feedback was saved by checking the _Customer
-   Feedback_ widget on the _About Us_ page.
+   
+4. El botón _Enviar_ ahora está **habilitado** 
+5. Haga clic en el botón _Enviar_ para resolver el desafío.
+6. Puede verificar que los comentarios se guardaron consultando el
+   _Customer_Feedback_ widget   del cliente en la página _Acerca de nosotros_
 
    ![Zero star feedback in carousel](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/zero_star_feedback-carousel.png)
 
-## Easy Challenges (  :star::star:  )
+## Desafíos fáciles  (  :star::star:  )
 
-### Access the administration section of the store
+### Accede a la sección de administración de la tienda.
 
-1. Open the `main.js` in your browser's developer tools and search for
-   "admin".
-2. One of the matches will be a route mapping to `path:
-   "administration"`.
+1. En la herramientas de desarrollo de su navegador, abra el archivo `main.js` y busque "admin".
+2. Uno de los hallazgos encontrados será un mapeo de ruta al path: "administration".
 
    ![Administration page route in main.js](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/minified_js-admin.png)
-3. Navigating to http://localhost:3000/#/administration will give a `403
-   Forbidden` error.
-4. Log in to an administrator's account by solving the challenge
+   
+3. Obtendrá un error `403 Forbidden`, al navegar en http://localhost:3000/#/administration  
+4. Inicia sesión en la cuenta de un administrador resolviendo el desafío.
    * [Log in with the administrator's user account](#log-in-with-the-administrators-user-account)
      or
    * [Log in with the administrator's user credentials without previously changing them or applying SQL Injection](#log-in-with-the-administrators-user-credentials-without-previously-changing-them-or-applying-sql-injection)
-     first and then navigate to http://localhost:3000/#/administration
-     will solve the challenge.
+     primero y entonces navegue al  http://localhost:3000/#/administration
+     esto resolverá el desafio.
 
 
-### View another user's shopping basket
+### View another user's shopping basket  cadcad
 
 1. Log in as any user.
 2. Put some products into your shopping basket.
