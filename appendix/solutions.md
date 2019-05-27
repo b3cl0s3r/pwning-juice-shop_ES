@@ -1,8 +1,8 @@
-# :godmode: Apendice A - Soluciones de un Desafio
+# :godmode: Apendice A - Soluciones de los Desafios
 
 Todas las URL en las soluciones de un desafío suponen que está ejecutando 
 la aplicación localmente y en el puerto predeterminado http://localhost:3000 
-Si va a utilizar una URL raíz diferente, Ajuste y cambie la URL.
+Si va a usar otra URL raíz, Ajuste y cambie la URL.
 
 A menudo hay múltiples formas de resolver un desafío. En la mayoría de los casos, 
 aquí solo se presenta una posible solución. Esta es típicamente la más fácil u obvia
@@ -39,7 +39,7 @@ situación de error y resolver este desafío de inmediato:
 
   ![500 Error](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/error_page-500.png)
   
-* Inicie sesión en la aplicación con '(comilla simple) como _Email_ y cualquier cosa como _contraseña_
+* Inicie sesión en la aplicación con un nombre de correo  '(comilla simple) como _Email_ y cualquier cosa como _contraseña_
 
   ![Object Error in Login form](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/login-error_js.png)
   ![SQL error in JS console](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/error_js-console.png)
@@ -52,7 +52,7 @@ situación de error y resolver este desafío de inmediato:
       <http://localhost:3000/#/privacy-security/privacy-policy>
    que resuelve instantáneamente este desafío para usted.
 
-### Permítanos redirigirlo a un sitio de donación que salió del negocio.
+### Permítanos redirigirlo a un sitio de donación por fuera del negocio.
 
 1. Inicie sesión en la aplicación con cualquier usuario.
 2. Visite la página _Su Cesta_ y expanda las secciones _Pago_ y 
