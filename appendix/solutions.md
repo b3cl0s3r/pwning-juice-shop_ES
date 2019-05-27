@@ -133,12 +133,14 @@ Haz un pedido que te haga rico. Visite el formulario _Contáctenos_ y escriba un
    
 3. Obtendrá un error `403 Forbidden`, al navegar en http://localhost:3000/#/administration  
 4. Inicia sesión en la cuenta de un administrador resolviendo el desafío.
-   * [Log in with the administrator's user account](#log-in-with-the-administrators-user-account)
+   * [Inicie sesión con la cuenta de usuario del administrador](#log-in-with-the-administrators-user-account)
      or
-   * [Log in with the administrator's user credentials without previously changing them or applying SQL Injection](#log-in-with-the-administrators-user-credentials-without-previously-changing-them-or-applying-sql-injection)
+   * [Inicie sesión con las credenciales de usuario del administrador sin cambiarlas previamente o aplicar la inyección SQL](#log-in-with-the-administrators-user-credentials-without-previously-changing-them-or-applying-sql-injection)
      primero y entonces navegue al  http://localhost:3000/#/administration
      esto resolverá el desafio.
 
+Inicie sesión con la cuenta de usuario del administrador o
+Inicie sesión con las credenciales de usuario del administrador sin cambiarlas previamente o aplicar la inyección SQL 
 
 ### View another user's shopping basket  cadcad
 
