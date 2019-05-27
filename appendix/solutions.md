@@ -1,84 +1,89 @@
-# :godmode: Apendice A - Soluciones del Desafio
+# :godmode: Apendice A - Soluciones de un Desafio
 
-All URLs in the challenge solutions assume you are running the
-application locally and on the default port http://localhost:3000.
-Change the URL accordingly if you use a different root URL.
+Todas las URL en las soluciones de un desafío suponen que está ejecutando 
+la aplicación localmente y en el puerto predeterminado http://localhost:3000 
+Si va a utilizar una URL raíz diferente, Ajuste y cambie la URL.
 
-Often there are multiple ways to solve a challenge. In most cases just
-one possible solution is presented here. This is typically the easiest
-or most obvious one from the author's perspective.
+A menudo hay múltiples formas de resolver un desafío. En la mayoría de los casos, 
+aquí solo se presenta una posible solución. Esta es típicamente la más fácil u obvia
+desde la perspectiva del autor.
 
-_The challenge solutions found in this release of the companion guide
-are compatible with {{book.juiceShopVersion}} of OWASP Juice Shop._
+_Las soluciones de desafío que se encuentran en esta versión de la guía complementaria 
+son compatibles con {{book.juiceShopVersion}} de OWASP Juice Shop._
 
-## Trivial Challenges (  :star:  )
+## Desafios Triviales (  :star:  )
 
-### Access a confidential document
+### Acceder a un documento confidencial
+   
+1. Siga el enlace titulado _Consulte nuestros aburridos términos de uso si está interesado en este tipo de cosas aburridas_   (<http://localhost:3000/ftp/legal.md?md_debug=true>) en la página Acerca de nosotros .
 
-1. Follow the link to titled _Check out our boring terms of use if you
-   are interested in such lame stuff_
-   (<http://localhost:3000/ftp/legal.md?md_debug=true>) on the _About
-   Us_ page.
-2. Successfully attempt to browse the directory by changing the URL into
-   <http://localhost:3000/ftp>
+2. Intente explorar todo el directorio cambiando la URL a <http://localhost:3000/ftp>
 
    ![FTP directory browser](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/ftp_directory.png)
-3. Open <http://localhost:3000/ftp/acquisitions.md> to solve the
-   challenge.
+   
+3. Abra <http://localhost:3000/ftp/acquisitions.md> para resolver el desafío.
 
-### Provoke an error that is not very gracefully handled.
+### Provoca un error que no se maneja con mucha gracia.
 
-Any request that cannot be properly handled by the server will
-eventually be passed to a global error handling component that sends an
-error page to the client that includes a stack trace and other sensitive
-information. The restful API behaves in a similar way, passing back a
-JSON error object with sensitive data, such as SQL query strings.
+Cualquier solicitud que no pueda ser manejada adecuadamente por el servidor 
+eventualmente se pasará a un componente de manejo de errores global que envía 
+una página de error al cliente que incluye un stack trace y otra información 
+confidencial. La API restful se comporta de forma similar, devolviendo un 
+objeto de error JSON con datos confidenciales, como textos de consulta SQL.
 
-Here are two examples (out of many different ways) to provoke such an
-error situation and solve this challenge immediately:
+Aquí hay dos ejemplos (de muchas maneras diferentes) para provocar tal 
+situación de error y resolver este desafío de inmediato:
 
-* Visit <http://localhost:3000/rest/qwertz>
+
+* Visite <http://localhost:3000/rest/qwertz>
 
   ![500 Error](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/error_page-500.png)
-* Log in to the application with `'` (single-quote) as _Email_ and
-  anything as _Password_
+  
+* Inicie sesión en la aplicación con '(comilla simple) como _Email_ y cualquier cosa como _contraseña_
 
   ![Object Error in Login form](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/login-error_js.png)
   ![SQL error in JS console](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/error_js-console.png)
 
-### Read our privacy policy
+### Lea nuestra política de privacidad.
 
-1. Log in to the application with any user.
-2. Open the dropdown menu on your profile picture and choose _Privacy &
-   Security_.
-3. You will find yourself on
-   <http://localhost:3000/#/privacy-security/privacy-policy> which
-   instantly solves this challenge for you.
+1. Inicie sesión en la aplicación con cualquier usuario.
+2. Abra el menú desplegable en su imagen de perfil y elija _Privacidad y seguridad_.
+3. Usted se encontrará en la ubicación
+      <http://localhost:3000/#/privacy-security/privacy-policy>
+   que resuelve instantáneamente este desafío para usted.
 
-### Let us redirect you to a donation site that went out of business
+### Permítanos redirigirlo a un sitio de donación que salió del negocio.
 
-1. Log in to the application with any user.
-2. Visit the _Your Basket_ page and expand the _Payment_ and
-   _Merchandise_ sections with the "credit card"-button.
-3. Perceive that all donation links are passed through the `to`
-   parameter of the route `/redirect`
-4. Open `main.js` in your browser's DevTools
-5. Searching for `/redirect?to=` and stepping through all matches you
-   will notice one that does not appear on any (visible) button on the
-   _Your Basket_ page: `/redirect?to=https://gratipay.com/juice-shop`
+1. Inicie sesión en la aplicación con cualquier usuario.
+2. Visite la página _Su Cesta_ y expanda las secciones _Pago_ y 
+   _Mercancía_ con el botón-"tarjeta de crédito".
+3. Observe que todos los enlaces de donación pasan a través del 
+   parámetro 'to' de la ruta  `/redirect`
+
+4. Abrir  `main.js` en la opción DevTools de tu navegador
+
+5. Al buscar `/redirect?to=`  y pasando a través de todas las coincidencias, 
+   verá una que no aparece en ningún botón (visible) en la página _Su Cesta_ 
+    `/redirect?to=https://gratipay.com/juice-shop`
 
    ![Gratipay commented out](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/gratipay-button-ngIf_false.png)
-6. Open
+6. Abra
    <http://localhost:3000/redirect?to=https://gratipay.com/juice-shop>
-   to solve the challenge.
+   para resolverel desafío.
 
-### Follow the DRY principle while registering a user
+### Siga el principio DRY mientras registra un usuario.
 
 :wrench: **TODO**
 
-### Find the carefully hidden 'Score Board' page
+### Encuentra la página oculta 'Score Board' que esta cuidadosamente escondida
 
-1. Go to the _Sources_ tab of your browsers DevTools and open the
+1. Vaya a la pestaña Fuentes de su navegador DevTools y abra el archivo `main.js` cadcad
+
+Si su navegador ofrece una impresión bonita de este código desordenado minificado, utilice mejor esta oferta. En Chrome esto se puede hacer con el botón "{}".
+
+Busque scoree itere a través de cada hallazgo para encontrar uno que se parece a una sección de mapeo de ruta:
+
+Go to the _Sources_ tab of your browsers DevTools and open the
    `main.js` file.
 2. If your browser offers pretty-printing of this minified messy code,
    best use this offer. In Chrome this can be done with the "{}"-button.
