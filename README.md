@@ -9,7 +9,7 @@ Traducido al español por Carlos Alendes y Kevin Eliezer.
 Esta es la guía oficial de __OWASP Juice Shop__. Partiendo de una aplicación web con una enorme cantidad de fallos de seguridad,
 OWASP Juice Shop se supone que es lo opuesto a _las buenas prácticas_ o a una _aplicación de plantilla_ para los desarrolladores web: 
 se trata de una herramienta de consciencia, aprendizaje, demostración y entrenamiento para fallos de seguridad en las aplicaciones 
-webs modernas. OWASP Juice Shop es un proyecto open-source alojado en[Open Web Application Security Project (OWASP)](https://owasp.org)
+webs modernas. OWASP Juice Shop es un proyecto open-source alojado en [Open Web Application Security Project (OWASP)](https://owasp.org)
 y se sigue desarrollando y manteniendo gracias al trabajo de voluntarios.
 El contenido de este libro fue escrito para la versión {{book.juiceShopVersion}} de OWASP Juice Shop.
 
