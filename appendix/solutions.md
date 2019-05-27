@@ -23,7 +23,7 @@ son compatibles con {{book.juiceShopVersion}} de OWASP Juice Shop._
    
 3. Abra <http://localhost:3000/ftp/acquisitions.md> para resolver el desafío.
 
-### Provoca un error que no se maneja con mucha gracia.
+### Al provocar un error, el manejo no es muy elegante.
 
 Cualquier solicitud que no pueda ser manejada adecuadamente por el servidor 
 eventualmente se pasará a un componente de manejo de errores global que envía 
@@ -67,52 +67,41 @@ situación de error y resolver este desafío de inmediato:
     `/redirect?to=https://gratipay.com/juice-shop`
 
    ![Gratipay commented out](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/gratipay-button-ngIf_false.png)
-6. Abra
+6. Para resolver este desafío, abra
    <http://localhost:3000/redirect?to=https://gratipay.com/juice-shop>
-   para resolverel desafío.
+   
 
 ### Siga el principio DRY mientras registra un usuario.
 
-:wrench: **TODO**
+:wrench: **TODO / QueHacer**
 
 ### Encuentra la página oculta 'Score Board' que esta cuidadosamente escondida
 
-1. Vaya a la pestaña Fuentes de su navegador DevTools y abra el archivo `main.js` cadcad
-
-Si su navegador ofrece una impresión bonita de este código desordenado minificado, utilice mejor esta oferta. En Chrome esto se puede hacer con el botón "{}".
-
-Busque scoree itere a través de cada hallazgo para encontrar uno que se parece a una sección de mapeo de ruta:
-
-Go to the _Sources_ tab of your browsers DevTools and open the
-   `main.js` file.
-2. If your browser offers pretty-printing of this minified messy code,
-   best use this offer. In Chrome this can be done with the "{}"-button.
-3. Search for `score` and iterate through each finding to come across
-   one that looks like a route mapping section:
+1. Vaya a la pestaña Fuentes de su navegador DevTools y abra el archivo `main.js`
+2. Si su navegador lo permite, prefiera una "vista bonita" de este código minificado 
+   que esta "compactado y aplastado". En Chrome esto se puede hacer con el botón "{}".
+3. Busque la palabra "score" avance a través de todos los hallazgo hasta encontrar 
+   uno que se parezca a una sección de mapeo de ruta:
 
    ![Route Mapping the the Score Board](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master//appendix/img/score-board_route.png)
-4. Navigate to http://localhost:3000/#/score-board to solve the
-   challenge.
-5. From now on you will see the additional menu item _Score Board_ in
-   the navigation bar.
+4. Para resolver este desafío, navegue hasta http://localhost:3000/#/score-board 
+5. A partir de ahora, verá el elemento de menu _Score Board_ como un adicional en la barra de navegación.
 
-### Perform a reflected XSS attack
+### Realizar un ataque XSS reflejado.
 
-1. Log in as any user.
-2. Click the _Track Orders_ button.
-3. Paste the attack string ``<iframe src="javascript:alert(`xss`)">``
-   into the _Order ID_ field.
-4. Click the _Track_ button.
-5. An alert box with the text "xss" should appear.
+1. Inicia sesión como cualquier usuario.
+2. Haga clic en el botón _Rastrear Pedidos_ 
+3. En el campo ID de pedido, pegue la cadena de ataque  ``<iframe src="javascript:alert(`xss`)">``
+4. Haga click en el botón _Rastrear_
+5. Debe aparecer un cuadro de alerta con el texto "xss"
 
    ![XSS alert box](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/xss0_alert.png)
 
-### Perform a DOM XSS attack
+### Realizar un ataque DOM XSS.
 
-1. Paste the attack string ``<iframe src="javascript:alert(`xss`)">``
-   into the _Search..._ field.
-2. Click the _Search_ button.
-3. An alert box with the text "xss" should appear.
+1. En el campo _Buscar_, pegue la cadena de ataque:  ``<iframe src="javascript:alert(`xss`)">``
+2. Haga clic en el botón Buscar .
+3. Debe aparecer un cuadro de alerta con el texto "xss".
 
    ![XSS alert box](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/xss1_alert.png)
 
