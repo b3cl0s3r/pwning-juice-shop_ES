@@ -62,7 +62,7 @@ Una vez en el portfolio de proyectos OWASP, solo llevó ocho meses hasta que Jui
 desde el nivel de madurez inicial _Incubadora_ hasta el nivel _Proyectos de laboratorio_. A finales 
 de julio de 2018, Juice Shop pasó al estado final de madurez _Flagship_ para los proyectos OWASP.
 
-![OWASP Flagship Projects](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/introduction/img/Flagship_big.jpg)
+![OWASP Flagship Projects](img/Flagship_big.jpg)
 
 ### ¿Por qué "Juice Shop" como nombre?
 
@@ -79,20 +79,20 @@ estas comunmente utilizadas para referenciar _JavaScript_, fue puramente una
 
 Aparte del nombre, el logo de Juice Shop fue diseñado explícitamente con _JavaScript_ en mente:
 
-![Inofficial JS Shield](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/introduction/img/JS_Shield.png)
+![Inofficial JS Shield](img/JS_Shield.png)
 
 La idea de los autores era convertir uno de los (no oficial, pero popular) logos de escudo 
 de _JavaScript_ en un **tetrabrik de jugo goteante** porque la forma coincidía bastante y
 daba mucho juego en el proyecto:
 
-![Original JuiceShop logo](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/introduction/img/JuiceShop_RetroLogo.png)
+![Original JuiceShop logo](img/JuiceShop_RetroLogo.png)
 
 En 2017, el logo recibió un lavado de cara y un spin-off cuando se le introdujo a Juice Shop 
 la extensión Capture-the-flag (que se comenta en el capítulo [Organizando un evento CTF](../part1/ctf.md)):
 
 
-![OWASP Juice Shop logo](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/introduction/img/JuiceShop_Logo.png)
-![OWASP Juice Shop CTF logo](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/introduction/img/JuiceShopCTF_Logo.png)
+![OWASP Juice Shop logo](img/JuiceShop_Logo.png)
+![OWASP Juice Shop CTF logo](img/JuiceShopCTF_Logo.png)
 
 ### ¿Por qué otra aplicación web vulnerable?
 

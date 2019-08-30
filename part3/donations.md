@@ -28,26 +28,17 @@ spend) money on:
 
 ## How can I donate?
 
-The project gratefully accepts donations via PayPal as well as BitCoin
-and other payment options:
+The project gratefully accepts donations via PayPal or Credit Card:
 
 | Provider             | Link                                                                                                                                                                                                                                                               |
 |:---------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **PayPal**           | [![PayPal Donate Button](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/paypal_donate.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40owasp%2eorg&lc=BM&item_name=OWASP%20Juice%20Shop%20Project&item_number=OWASP%20Foundation&no_note=0&currency_code=USD&bn=PP%2dDonationsBF) |
+| **PayPal**           | [![PayPal Donate Button](img/paypal_donate.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40owasp%2eorg&lc=BM&item_name=OWASP%20Juice%20Shop%20Project&item_number=OWASP%20Foundation&no_note=0&currency_code=USD&bn=PP%2dDonationsBF) |
 | **Credit Card**      | <https://www.regonline.com/Register/Checkin.aspx?EventID=1044369>                                                                                                                                                                                                  |
-| Patreon (:repeat:)   | <https://www.patreon.com/join/bkimminich?>                                                                                                                                                                                                                         |
-| Liberapay (:repeat:) | <https://liberapay.com/bkimminich/donate>                                                                                                                                                                                                                          |
-| Koh-fi               | <https://ko-fi.com/C0C7PLXP>                                                                                                                                                                                                                                       |
-| Tippin.me            | <https://tippin.me/@bkimminich>                                                                                                                                                                                                                                    |
-| BitCoin              | ![bitcoin:1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm.png)<br>[1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm](https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm)                                                              |
-| Dash                 | ![dash:Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW.png)<br>[Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW](https://explorer.dash.org/address/Xr556RzuwX6hg5EGpkybbv5RanJoZN17kW)                                                               |
-| Ethereum             | ![0x0f933ab9fCAAA782D0279C300D73750e1311EAE6](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/0x0f933ab9fCAAA782D0279C300D73750e1311EAE6.png)<br>[0x0f933ab9fCAAA782D0279C300D73750e1311EAE6](https://etherscan.io/address/0x0f933ab9fcaaa782d0279c300d73750e1311eae6)                                         |
 
-Donations via PayPal and Credit Card are received and managed by the
-OWASP Foundation. This is the only option where an official donation
-receipt can be handed out.
+All donations are received and managed by the
+OWASP Foundation and must be earmarked properly to end up in the Juice Shop budget. You will receive an official donation receipt.
 
-:information_source: _Independent of your selected method it is
+ℹ️ _Independent of your selected method it is
 recommended to forward your donation confirmation to
 bjoern.kimminich@owasp.org to allow verifying if the earmarking worked
 and the money is attributed to the Juice Shop budget. You should provide
@@ -64,7 +55,7 @@ choose to provide a logo to put on the page instead of your name. See
 2. Register with your email address and select `Project Supporter` from
    the _Donation Type_ dropdown list.
 
-   ![Registration step](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/regonline01.png)
+   ![Registration step](img/regonline01.png)
 3. _Continue_ to the _Personal Info_ step and fill at least all
    mandatory fields. Click _Continue_.
 4. In the _Agenda_ step select one of the available amounts or _Project
@@ -72,7 +63,7 @@ choose to provide a logo to put on the page instead of your name. See
 5. Enter `OWASP Juice Shop Project` into the mandatory field _Which
    Project would you like to support?_ and click _Continue_.
 
-   ![Registration step](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/regonline02.png)
+   ![Registration step](img/regonline02.png)
 6. In the final _Checkout_ step choose a _Password_ for your account and
    fill in your _Billing Information.
 7. Click _Finish_ to process your donation and be led to the
@@ -80,7 +71,7 @@ choose to provide a logo to put on the page instead of your name. See
 8. Here you can download your _Receipt_ under the _Documents_ section on
    the right.
 
-   ![Registration step](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/regonline03.png)
+   ![Registration step](img/regonline03.png)
 
 ## Sponsorship Rules
 

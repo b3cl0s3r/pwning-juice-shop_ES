@@ -1,10 +1,26 @@
+{% if book.ctf %}
+
+# Pwning OWASP Juice Shop (CTF Edition)
+
+{% else %}
+
 # Pwning OWASP Juice Shop
 
-Escrito por [Björn Kimminich](https://twitter.com/bkimminich)
+{% endif %}
+
+Written by [Björn Kimminich](https://twitter.com/bkimminich)
 
 Traducido al español por Carlos Alendes y Kevin Eliezer.
 
-![Front Cover](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/cover.jpg)
+{% if book.ctf %}
+
+![Front Cover](cover-ctf.jpg)
+
+{% else %}
+
+![Front Cover](cover.jpg)
+
+{% endif %}
 
 Esta es la guía oficial de __OWASP Juice Shop__. Partiendo de una aplicación web con una enorme cantidad de fallos de seguridad,
 OWASP Juice Shop se supone que es lo opuesto a _las buenas prácticas_ o a una _aplicación de plantilla_ para los desarrolladores web: 
@@ -25,8 +41,14 @@ La segunda parte da una visión general de las vulnerabilidades que se
 pueden encontrar en OWASP Juice Shop, incluso pistas de cómo localizarlas
 y explotarlas dentro de la aplicación.
 
-
 ### Part III - Involúcrate 
+
+{% if book.ctf %}
+
+Part three points you to the social media channels and tells you about
+donation options of the OWASP Juice Shop open source project.
+
+{% else %}
 
 La tercera parte te muestra varias formas de contribuir al proyecto open source
 OWASP Juice Shop.
@@ -43,23 +65,25 @@ referenciando el contenido ya existente sobre el tema dado._
 __Descarga el .pdf, .epub, o .mobi file en:__
 
 * https://leanpub.com/juice-shop (official release)
-* ~https://www.gitbook.com/book/owasp/pwning-owasp-juice-shop_ES~
+* https://www.gitbook.com/book/bkimminich/pwning-owasp-juice-shop
 
 __Lee el libro online en:__
 
-* https://app.gitbook.com/@owasp-org/s/pwning-owasp-juice-shop-es
+* https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content
 
 __Contribuye, sugiere y/o reporta errores en GitHub:__
 
-* https://github.com/OWASP/pwning-juice-shop_ES
+* https://github.com/bkimminich/pwning-juice-shop
 
 __Página oficial de OWASP Juice Shop:__
 
 * http://owasp-juice.shop
 
+{% endif %}
+
 ----
 
-[![CC BY-NC-ND 4.0](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/introduction/img/cc_by-nc-nd_4.0.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+[![CC BY-NC-ND 4.0](introduction/img/cc_by-nc-nd_4.0.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 Esta obra se encuentra bajo una licencia
 [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).

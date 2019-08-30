@@ -4,8 +4,8 @@ If you would like to contribute to OWASP Juice Shop but need some idea
 what task to address, the best place to look is in the GitHub issue
 lists at <https://github.com/bkimminich/juice-shop/issues>.
 
-!["help wanted" label on GitHub](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/help_wanted-label.png)
-!["good first issue" label on GitHub](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/good_first_issue-label.png)
+!["help wanted" label on GitHub](img/help_wanted-label.png)
+!["good first issue" label on GitHub](img/good_first_issue-label.png)
 
 * Issues labelled with **help wanted** indicate tasks where the project
   team would very much appreciate help from the community
@@ -84,18 +84,18 @@ branch for a PR afterwards some time ago.
 
 The minimum requirements for code contributions are:
 
-1. The code must be compliant with the
+1. The code _must_ be compliant with the
    [JS Standard Code Style rules](http://standardjs.com) or their
-   correspondingly configured TSLint rules
-2. All new and changed code should have a corresponding unit and/or
-   integration test
-3. New and changed challenges must have a corresponding e2e test
-4. Linting and all unit, integration and e2e tests should pass locally
-   before opening a Pull Request
+   correspondingly configured TSLint and Sass Lint rules.
+2. All new and changed code _should_ have a corresponding unit and/or
+   integration test.
+3. New and changed challenges _must_ have a corresponding e2e test.
+4. Linting, as well as all unit, integration and e2e tests _should_ pass
+   locally before opening a Pull Request.
 
 ### Linting
 
-![JavaScript Style Guide](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/badge.svg)
+![JavaScript Style Guide](img/badge.svg)
 
 ```bash
 npm run lint
@@ -104,14 +104,15 @@ npm run lint
 The `npm run lint` script verifies code compliance with
 
 * the `standard` code style (for all server-side JavaScript code)
-* the TSLint rules for the frontend TypeScript code (which are defined
+* the `tslint` rules for the frontend TypeScript code (which are defined
   to be equal to `standard` by deriving from `tslint-config-standard`)
+* the `sass-lint` rules (for all frontend SCSS code)
 
 If PRs deviate from this coding style, they will the build and will not
 be merged until made compliant.
 
 In case your PR is failing from style guide issues try running `npm run
-fix` over your code - this will fix all syntax or code style issues
+lint:fix` over your code - this will fix all syntax or code style issues
 automatically without breaking your code.
 
 ### Testing
@@ -173,7 +174,7 @@ useful to e.g. run the tests through tools like
 [OWASP ZAP](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project)
 or Burpsuite.
 
-### Testing packaged distrubutions
+### Testing packaged distributions
 
 During releases the application will be packaged into `.zip`/`.tgz`
 archives for another easy setup method. When you contribute a change
@@ -205,7 +206,7 @@ Pull Requests from other branches or forks as well. This helps the
 project team to assess if a PR can be safely merged into the codebase.
 For tag-builds (i.e. versions to be released) the some additional steps
 are necessary to package the
-[release-artifacts for Linux for each supported Node.js version](../part1/running.md#from-pre-packaged-distribution)
+[release-artifacts for Linux, MacOS and Windows for each supported Node.js version](../part1/running.md#from-pre-packaged-distribution)
 and attach these to the release page on GitHub. Lastly, not all stages
 are executed for all supported Node.js versions in order to shorten the
 feedback loop. The higher-level integration and e2e tests are only run
@@ -213,37 +214,19 @@ for the officially preferred Node.js version
 {{book.recommendedNodeVersion}}.
 
 
-| :arrow_right: Stage Trigger :arrow_down: | Lint                                                           | Test                                                                                                                                                 | Integration                                                                                                                                                                                                                        | E2e                                                                              | Deploy                                                          |
-|:-----------------------------------------|:---------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:----------------------------------------------------------------|
-|                                          | [Linting](#linting) on Node.js {{book.recommendedNodeVersion}} | [Unit tests](#unit-tests) on Node.js {{book.nodeVersions}}                                                                                           | [Integration tests](#integration-tests) and re-run [Unit tests](#unit-tests) on Node.js {{book.recommendedNodeVersion}} and publish combined coverage data to [Code Climate](https://codeclimate.com/github/bkimminich/juice-shop) | [End-to-end tests](#end-to-end-tests) on Node.js {{book.recommendedNodeVersion}} | Deploy Node.js {{book.herokuNodeVersion}} to Heroku             |
-| **Push to `develop`**                    | :heavy_check_mark:                                             | :heavy_check_mark:                                                                                                                                   | :heavy_check_mark:                                                                                                                                                                                                                 | :heavy_check_mark:                                                               | :heavy_check_mark: to <http://juice-shop-staging.herokuapp.com> |
-| **Push to `master`**                     | :heavy_check_mark:                                             | :heavy_check_mark:                                                                                                                                   | :heavy_check_mark:                                                                                                                                                                                                                 | :heavy_check_mark:                                                               | :heavy_check_mark: to <http://juice-shop.herokuapp.com>         |
-| **Pull Request**                         | :heavy_check_mark:                                             | :heavy_check_mark:                                                                                                                                   | :heavy_check_mark:                                                                                                                                                                                                                 | :heavy_check_mark:                                                               | :x:                                                             |
-| **Version tag**                          | :x:                                                            | :x: instead compile and release [pre-packaged distributions](#testing-packaged-distrubutions) for Linux with Node.js {{book.nodeVersions}} to GitHub | :x:                                                                                                                                                                                                                                | :x:                                                                              | :x:                                                             |
+| ➡️Stage Trigger⬇️  | Lint                                                           | Test                                                                                                                                                | Integration                                                                                                                                                                                                                        | E2e                                                                              | Deploy                                              |
+|:----------------------|:---------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:----------------------------------------------------|
+|                       | [Linting](#linting) on Node.js {{book.recommendedNodeVersion}} | [Unit tests](#unit-tests) on Node.js {{book.nodeVersions}}                                                                                          | [Integration tests](#integration-tests) and re-run [Unit tests](#unit-tests) on Node.js {{book.recommendedNodeVersion}} and publish combined coverage data to [Code Climate](https://codeclimate.com/github/bkimminich/juice-shop) | [End-to-end tests](#end-to-end-tests) on Node.js {{book.recommendedNodeVersion}} | Deploy Node.js {{book.herokuNodeVersion}} to Heroku |
+| **Push to `develop`** | ✔️                                                           | ✔️                                                                                                                                                | ✔️                                                                                                                                                                                                                                | ✔️                                                                              | ✔️ to <http://juice-shop-staging.herokuapp.com>    |
+| **Push to `master`**  | ✔️                                                           | ✔️                                                                                                                                                | ✔️                                                                                                                                                                                                                                | ✔️                                                                              | ✔️ to <http://juice-shop.herokuapp.com>            |
+| **Pull Request**      | ✔️                                                           | ✔️                                                                                                                                                | ✔️                                                                                                                                                                                                                                | ✔️                                                                              | ❌                                                   |
+| **Version tag**       | ❌                                                             | ❌ instead compile and release [pre-packaged distributions](#testing-packaged-distributions) for Linux with Node.js {{book.nodeVersions}} to GitHub | ❌                                                                                                                                                                                                                                  | ❌                                                                                | ❌                                                   |
 
-:information_source: The stages in the table above are executed
-sequentially from left to right. A failing job in any stage will break
-the build and all following stages will not be executed allowing a
-faster feedback loop.
-
-### AppVeyor
-
-AppVeyor is used as a secondary CI server to check if the application
-can be built on Windows:
-
-<https://ci.appveyor.com/project/bkimminich/juice-shop>
-
-No linters or test suites are executed. Instead AppVeyor packages and
-attaches
-[release-artifacts for Windows for each supported Node.js version](../part1/running.md#from-pre-packaged-distribution)
-to GitHub in case a tag-build is executed.
-
-| Trigger               | Build Tasks                                                                                                                      |
-|:----------------------|:---------------------------------------------------------------------------------------------------------------------------------|
-|                       | Compile and archive [pre-packaged distributions](#testing-packaged-distrubutions) for Windows with Node.js {{book.nodeVersions}} |
-| **Push to `develop`** | :heavy_check_mark:                                                                                                               |
-| **Push to `master`**  | :heavy_check_mark:                                                                                                               |
-| **Pull Request**      | :heavy_check_mark:                                                                                                               |
-| **Version tag**       | :heavy_check_mark: and release to GitHub                                                                                         |
+ℹ️ The stages in the table above are executed sequentially from left
+to right. A failing job in any stage will break the build and all
+following stages will not be executed allowing a faster feedback loop.
+The table only depicts the setup for Linux, as this is where all tests
+are executed. In the MacOS and Windows jobs only `npm install` is
+executed and release-artifacts are assembled in tag-builds.
 
 [^1]: <http://semver.org>

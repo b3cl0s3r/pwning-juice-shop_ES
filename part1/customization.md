@@ -71,10 +71,10 @@ find its syntax along with an excerpt of the default settings.
   * `favicon` filename in `/app/public/` _or_ a URL of an image in
     `.ico` format which will first be download to that folder and then
     used as a favicon. Defaults to `favicon_v2.ico`
-  * `numberOfRandomFakeUsers` represents the number of random user
-    accounts to be created on top of the pre-defined ones (which are
-    required for several challenges). Defaults to `0`, meaning no
-    additional users are created.
+  * `theme` the name of the color theme used to render the UI. Options
+    are `bluegrey-lightgreen`, `blue-lightblue`, `deeppurple-amber`,
+    `indigo-pink`, `pink-bluegrey`, `purple-green` and
+    `deeporange-indigo`. Defaults to `bluegrey-lightgreen`
   * `showChallengeSolvedNotifications` shows or hides all instant
     _"challenge solved"_-notifications. Recommended to set to `false`
     for awareness demos. Defaults to `true`.
@@ -83,12 +83,16 @@ find its syntax along with an excerpt of the default settings.
     Defaults to `true`.
   * `showVersionNumber` shows or hides the software version from the
     title. Defaults to `true`.
-  * `theme` the name of the color theme used to render the UI. Options
-    are `bluegrey-lightgreen`, `blue-lightblue`, `deeppurple-amber`,
-    `indigo-pink`, `pink-bluegrey`, `purple-green` and
-    `deeporange-indigo`. Defaults to `bluegrey-lightgreen`
-  * `gitHubRibbon` shows or hides the _"GitHub"_ button in the top-right
-    corner of the navigation bar. Defaults to `true`.
+  * `showHackingInstructor` shows or hides
+    [Hacking Instructor](challenges.md#hacking-instructor) buttons on
+    the Score Board and in the Welcome Banner. Defaults to `true`.
+  * `showGitHubLinks` shows or hides the _"GitHub"_ button in the
+    navigation and side bar as well as the info box about contributing
+    on the _Score Board_. Defaults to `true`.
+  * `numberOfRandomFakeUsers` represents the number of random user
+    accounts to be created on top of the pre-defined ones (which are
+    required for several challenges). Defaults to `0`, meaning no
+    additional users are created.
   * `twitterUrl` used as the Twitter link promising coupon codes on the
     _About Us_ and _Your Basket_ screen. Defaults to
     `'https://twitter.com/owasp_juiceshop'`
@@ -105,6 +109,11 @@ find its syntax along with an excerpt of the default settings.
     the 3D planet "easter egg". Defaults to `orangemap2k.jpg`
   * `planetName` of the 3D planet "easter egg" as shown in the page
     title. Defaults to `Orangeuze`
+  * `deluxePage` custom elements on the _Deluxe Membership_ page
+    * `deluxeDeliveryImage` filename in `app/public/images/deluxe` _or_
+      a URL of an image which will first be download to that folder and
+      then displayed on the _Deluxe Membership_ page. Defaults to
+      `delivery_juiceshop.png`.
   * `recyclePage` custom elements on the _Request Recycling Box_ page
     * `topProductImage` filename in `/app/public/images/products` to use
       as the image on the top of the info column on the page. Defaults
@@ -114,6 +123,25 @@ find its syntax along with an excerpt of the default settings.
       Defaults to `apple_pressings.jpg`
   * `altcoinName` defines the name of the (fake) crypto currency that is
     offered on the _Token Sale_ screen. Defaults to `Juicycoin`
+  * `welcomeBanner` defines a dismissable welcome banner that can be
+    shown when first visiting the application.
+    * `showOnFirstStart` shows or hides the banner. Defaults to `true`.
+    * `title` defines the headline of the banner. Defaults to `Welcome
+      to OWASP Juice Shop!`.
+    * `message` defines the body of the banner. Can contain arbitrary
+      HTML. Defaults to `<p>Being a web application with a vast number
+      of intended security vulnerabilities, the <strong>OWASP Juice
+      Shop</strong> is supposed to be the opposite of a best practice or
+      template application for web developers: It is an awareness,
+      training, demonstration and exercise tool for security risks in
+      modern web applications. The <strong>OWASP Juice Shop</strong> is
+      an open-source project hosted by the non-profit <a
+      href='https://owasp.org' target='_blank'>Open Web Application
+      Security Project (OWASP)</a> and is developed and maintained by
+      volunteers. Check out the link below for more information and
+      documentation on the project.</p><h1><a
+      href='http://owasp-juice.shop'
+      target='_blank'>http://owasp-juice.shop</a></h1>`.
   * `cookieConsent` defines the cookie consent dialog shown in the
     bottom right corner
     * `backgroundColor` of the cookie banner itself. Defaults to
@@ -148,7 +176,7 @@ find its syntax along with an excerpt of the default settings.
   * `promotion` defines the attributes required for the `/promotion`
     screen where a marketing video with subtitles is rendered that hosts
     the
-    [XSS Tier 6](../part2/xss.md#embed-an-xss-payload-into-one-of-our-marketing-collaterals)
+    [XSS Tier 6](../part2/xss.md#embed-an-xss-payload-into-our-promo-video)
     challenge
     * `video` name of a file with `video/mp4` content type in
       `/app/public/videos` _or_ URL of an image to download to that
@@ -156,8 +184,8 @@ find its syntax along with an excerpt of the default settings.
       `JuiceShopJingle.mp4`
     * `subtitles` name of a
       [Web Video Text Tracks Format](https://www.w3.org/TR/webvtt1/)
-      file in `/app/public/videos` _or_ URL of an image to download
-      to that folder and then use as the promotion video. Defaults to
+      file in `/app/public/videos` _or_ URL of an image to download to
+      that folder and then use as the promotion video. Defaults to
       `JuiceShopJingle.vtt`
 * `challenges`
   * `safetyOverride` enables all challenges regardless of any potential
@@ -192,28 +220,27 @@ find its syntax along with an excerpt of the default settings.
   * `fileForRetrieveBlueprintChallenge` (_must be `true` on exactly one
     product_) filename in `/app/public/images/products` _or_ URL of a
     file download to that folder and then use as the target for the
-    [Retrieve Blueprint](../part2/forgotten-content.md#deprive-the-shop-of-earnings-by-downloading-the-blueprint-for-one-of-its-products)
+    [Retrieve Blueprint](../part2/sensitive-data-exposure.md#deprive-the-shop-of-earnings-by-downloading-the-blueprint-for-one-of-its-products)
     challenge. If a filename is specified but the file does not exist in
     `/app/public/images/products` the challenge is still solvable by
-    just requesting it from the server. Defaults to `JuiceShop.stl`.
-    :information_source: _To make this challenge realistically solvable,
-    include some kind of hint to the blueprint file's name/type in the
-    product image (e.g. its `Exif` metadata) or in the product
-    description_
+    just requesting it from the server. Defaults to `JuiceShop.stl`. ℹ️
+    _To make this challenge realistically solvable, include some kind of
+    hint to the blueprint file's name/type in the product image (e.g.
+    its `Exif` metadata) or in the product description_
   * `keywordsForPastebinDataLeakChallenge` (_must be defined on exactly
     one product_) list of keywords which are all mandatory to mention in
     a feedback or complaint to solve the
     [DLP Tier 1](../part2/sensitive-data-exposure.md#identify-an-unsafe-product-that-was-removed-from-the-shop-and-inform-the-shop-which-ingredients-are-dangerous)
-    challenge. Overrides `deletedDate` with `2019-02-1`.
-    :information_source: _To make this challenge realistically solvable,
-    provide the keywords on e.g. PasteBin in an obscured way that works
-    well with the "dangerous ingredients of an unsafe product""
-    narrative_
+    challenge. Overrides `deletedDate` with `2019-02-1`. ℹ️ _To make
+    this challenge realistically solvable, provide the keywords on e.g.
+    PasteBin in an obscured way that works well with the "dangerous
+    ingredients of an unsafe product"" narrative_
   * `reviews` a sub-list which adds reviews to a product (_optional_)
     * `text` of the review (_mandatory_)
     * `author` of the review from the following list of pre-defined
       users in the database: `admin`, `jim`, `bender`, `ciso`,
-      `support`, `morty`, `amy` or `mc.safesearch` (_mandatory_)
+      `support`, `morty`, `amy`, `mc.safesearch`, `J12934`, `wurstbrot`
+      or `bjoern` (_mandatory_)
 * `ctf`
   * `showFlagsInNotifications` shows or hides the CTF flag codes in the
     _"challenge solved"_-notifications. Is ignored when
@@ -240,21 +267,28 @@ application:
   name: 'OWASP Juice Shop'
   logo: JuiceShop_Logo.png
   favicon: favicon_v2.ico
-  numberOfRandomFakeUsers: 0
+  theme: bluegrey-lightgreen
   showChallengeSolvedNotifications: true
   showChallengeHints: true
   showVersionNumber: true
-  theme: bluegrey-lightgreen
-  gitHubRibbon: true
+  showHackingInstructor: true
+  showGitHubLinks: true
+  numberOfRandomFakeUsers: 0
   twitterUrl: 'https://twitter.com/owasp_juiceshop'
   facebookUrl: 'https://www.facebook.com/owasp.juiceshop'
   slackUrl: 'http://owaspslack.com'
   planetOverlayMap: orangemap2k.jpg
   planetName: Orangeuze
+  deluxePage:
+    deluxeDeliveryImage: delivery_juiceshop.png
   recyclePage:
     topProductImage: fruit_press.jpg
     bottomProductImage: apple_pressings.jpg
   altcoinName: Juicycoin
+  welcomeBanner:
+    showOnFirstStart: true
+    title: 'Welcome to OWASP Juice Shop!'
+    message: "<p>Being a web application with a vast number of intended security vulnerabilities, the <strong>OWASP Juice Shop</strong> is supposed to be the opposite of a best practice or template application for web developers: It is an awareness, training, demonstration and exercise tool for security risks in modern web applications. The <strong>OWASP Juice Shop</strong> is an open-source project hosted by the non-profit <a href='https://owasp.org' target='_blank'>Open Web Application Security Project (OWASP)</a> and is developed and maintained by volunteers. Check out the link below for more information and documentation on the project.</p><h1><a href='http://owasp-juice.shop' target='_blank'>http://owasp-juice.shop</a></h1>"
   cookieConsent:
     backgroundColor: '#eb6c44'
     textColor: '#ffffff'
@@ -329,7 +363,12 @@ application:
   favicon: favicon_ctf.ico
   showChallengeHints: false
   showVersionNumber: false
-  gitHubRibbon: false
+  showHackingInstructor: false
+  showGitHubLinks: false
+  deluxePage:
+    deluxeDeliveryImage: delivery_ctf.png
+  welcomeBanner:
+    showOnFirstStart: false
 ctf:
   showFlagsInNotifications: true
 ```
@@ -346,33 +385,30 @@ The following three customizations are provided out of the box by OWASP
 Juice Shop:
 * [7 Minute Security](https://github.com/bkimminich/juice-shop/blob/master/config/7ms.yml):
   Full conversion <https://7ms.us>-theme for the first podcast that
-  picked up the Juice Shop way before it was famous! :sunglasses:
+  picked up the Juice Shop way before it was famous! 😎
 * [Mozilla-CTF](https://github.com/bkimminich/juice-shop/blob/master/config/mozilla.yml):
   Another full conversion theme harvested and refined from the
   [Mozilla Austin CTF-event](https://hacks.mozilla.org/2018/03/hands-on-web-security-capture-the-flag-with-owasp-juice-shop)!
-  :earth_americas:
+  🦊
 * [The BodgeIt Store](https://github.com/bkimminich/juice-shop/blob/master/config/bodgeit.yml):
   An homage to
   [our server-side rendered ancestor](https://github.com/psiinon/bodgeit).
-  May it rest in JSPs! :skull:
-* [Sick-Shop](https://github.com/bkimminich/juice-shop/blob/master/config/sickshop.yml):
-  A store that offers a variety of illnesses and the original PoC theme
-  for the customization feature. _Achoo!_ Bless you! :mask:
+  May it rest in JSPs! 💀
 * [CTF-mode](https://github.com/bkimminich/juice-shop/blob/master/config/ctf.yml):
   Keeps the Juice Shop in its default layout but disabled hints while
   enabling CTF flag codes in the _"challenge solved"_-notifications.
   Refer to [Hosting a CTF event](ctf.md) to learn more about running a
-  CTF-event with OWASP Juice Shop. :triangular_flag_on_post:
+  CTF-event with OWASP Juice Shop. 🚩
 * [Quiet mode](https://github.com/bkimminich/juice-shop/blob/master/config/quiet.yml):
   Keeps the Juice Shop in its default layout but hides all _"challenge
-  solved"_-notifications, GitHub ribbon and challenge hints. :mute:
+  solved"_-notifications, GitHub ribbon and challenge hints. 🔇
 * [OWASP Juice Box](https://github.com/bkimminich/juice-shop/blob/master/config/juicebox.yml):
   If you find _jo͞osbäks_ much easier to pronounce than _jo͞osSHäp_,
-  this customization is for you. :us:
+  this customization is for you. 🧃
 
-![Mozilla-CTF theme](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/theme_mozilla.png)
+![Mozilla-CTF theme](/part1/img/theme_mozilla.png)
 
-![BodgeIt Store theme](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/theme_bodgeit.png)
+![BodgeIt Store theme](/part1/img/theme_bodgeit.png)
 
 ## Additional Browser tweaks
 
@@ -384,12 +420,12 @@ for the audience.
 
 #### Coupon codes on social media
 
-If you changed the `twitterUrl`/`facebookUrl` to the company's own
+If you configured the `twitterUrl`/`facebookUrl` as the company's own
 account/page, you will most likely not find any coupon codes posted
 there. You will probably fail to convince the social media team to tweet
 or retweet some coupon code for an application that does not even exist!
 
-![Coupon Immersion Spoiler](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/coupon_immersion-spoiler.png)
+![Coupon Immersion Spoiler](/part1/img/coupon_immersion-spoiler.png)
 
 #### OAuth Login
 
@@ -399,7 +435,7 @@ registered on Google Cloud Platform: _OWASP Juice Shop_! There is no way
 to convince Google to show anything else for obvious trust and integrity
 reasons.
 
-![OAuth Immersion Spoiler](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/oauth_immersion-spoiler.png)
+![OAuth Immersion Spoiler](/part1/img/oauth_immersion-spoiler.png)
 
 ### On-the-fly text replacement
 
@@ -421,11 +457,11 @@ two text replacements:
    can get valid coupon codes from the OWASP Juice Shop Twitter feed:
    <https://twitter.com/owasp_juiceshop>.
 
-   ![Word Replacer II](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/word_replacer_ii.png)
+   ![Word Replacer II](/part1/img/word_replacer_ii.png)
 3. Enable the plugin and verify your replacements work:
 
-![Coupon Immersion Replacement](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/coupon_immersion-replacement.png)
+![Coupon Immersion Replacement](/part1/img/coupon_immersion-replacement.png)
 
-![OAuth Immersion Replacement](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/oauth_immersion-replacement.png)
+![OAuth Immersion Replacement](/part1/img/oauth_immersion-replacement.png)
 
 
