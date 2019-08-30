@@ -1,10 +1,24 @@
+{% if book.ctf %}
+
+# Pwning OWASP Juice Shop (CTF Edition)
+
+{% else %}
+
 # Pwning OWASP Juice Shop
 
-Escrito por [Björn Kimminich](https://twitter.com/bkimminich)
+{% endif %}
 
-Traducido al español por Carlos Alendes
+Written by [Björn Kimminich](https://twitter.com/bkimminich)
 
-![Front Cover](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/cover.jpg)
+{% if book.ctf %}
+
+![Front Cover](cover-ctf.jpg)
+
+{% else %}
+
+![Front Cover](cover.jpg)
+
+{% endif %}
 
 This is the official companion guide to the __OWASP Juice Shop__
 application. Being a web application with a vast number of intended
@@ -32,6 +46,13 @@ application.
 
 ### Part III - Getting involved
 
+{% if book.ctf %}
+
+Part three points you to the social media channels and tells you about
+donation options of the OWASP Juice Shop open source project.
+
+{% else %}
+
 Part three shows up various ways to contribute to the OWASP Juice Shop
 open source project.
 
@@ -48,23 +69,25 @@ on the given topic._
 __Download a .pdf, .epub, or .mobi file from:__
 
 * https://leanpub.com/juice-shop (official release)
-* ~https://www.gitbook.com/book/owasp/pwning-owasp-juice-shop_ES~
+* https://www.gitbook.com/book/bkimminich/pwning-owasp-juice-shop
 
 __Read the book online at:__
 
-* https://app.gitbook.com/@owasp-org/s/pwning-owasp-juice-shop-es
+* https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content
 
 __Contribute content, suggestions, and fixes on GitHub:__
 
-* https://github.com/OWASP/pwning-juice-shop_ES
+* https://github.com/bkimminich/pwning-juice-shop
 
 __Official OWASP Juice Shop project homepage:__
 
 * http://owasp-juice.shop
 
+{% endif %}
+
 ----
 
-[![CC BY-NC-ND 4.0](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/introduction/img/cc_by-nc-nd_4.0.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+[![CC BY-NC-ND 4.0](introduction/img/cc_by-nc-nd_4.0.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 This work is licensed under a
 [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).

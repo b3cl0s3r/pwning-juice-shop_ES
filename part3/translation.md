@@ -4,11 +4,11 @@ The user interface of OWASP Juice Shop is fully translated into several
 languages. For many more languages there is a partial translation
 available:
 
-![Language selection dropdown](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/languages.png)
+![Language selection dropdown](img/languages.png)
 
 As long as the original author is taking part in the project's
-maintenance, there will always be :uk::us: **English** and a complete
-:de: **German** translation available. Everything beyond that depends on
+maintenance, there will always be **English** and a complete
+**German** translation available. Everything beyond that depends on
 volunteer translators!
 
 ## Crowdin
@@ -29,7 +29,7 @@ related assets. It is free for open source projects.[^1]
    <https://crowdin.com/project/owasp-juice-shop/invite>
 3. Pick a language you would like to help translate the project into
 
-   ![Crowdin project page](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/crowdin_project.png)
+   ![Crowdin project page](img/crowdin_project.png)
 4. In the _Files_ tab select the listed source file `en.json`
 5. Pick an untranslated label (marked with a red box) and provide a
    translation

@@ -8,59 +8,58 @@
 
 ## Challenges covered in this chapter
 
-| Challenge                                           | Difficulty         |
-|:----------------------------------------------------|:-------------------|
-| Follow the DRY principle while registering a user.  | :star:             |
-| Give a devastating zero-star feedback to the store. | :star:             |
-| Get registered as admin user.                       | :star::star::star: |
-| Place an order that makes you rich.                 | :star::star::star: |
-| Upload a file larger than 100 kB.                   | :star::star::star: |
-| Upload a file that has no .pdf extension.           | :star::star::star: |
+| Name                    | Description                                          | Difficulty |
+|:------------------------|:-----------------------------------------------------|:-----------|
+| Admin Registration      | Register as a user with administrator privileges.    | ⭐⭐⭐       |
+| Expired Coupon          | Successfully redeem an expired campaign coupon code. | ⭐⭐⭐⭐     |
+| Payback Time            | Place an order that makes you rich.                  | ⭐⭐⭐       |
+| Repetitive Registration | Follow the DRY principle while registering a user.   | ⭐          |
+| Upload Size             | Upload a file larger than 100 kB.                    | ⭐⭐⭐       |
+| Upload Type             | Upload a file that has no .pdf or .zip extension.    | ⭐⭐⭐       |
+| Zero Stars              | Give a devastating zero-star feedback to the store.  | ⭐          |
 
-### Follow the DRY principle while registering a user
-
-:wrench: **TODO**
-
-#### Hints
-
-:wrench: **TODO**
-
-### Give a devastating zero-star feedback to the store
-
-You might have realized that it is not possible to submit customer
-feedback on the _Contact Us_ screen until you entered a comment and
-selected a star rating from 1 to 5. This challenge is about tricking the
-application into accepting a feedback with 0 stars.
-
-#### Hints
-
-* Before you invest time bypassing the API, you might want to play
-  around with the UI a bit
-
-### Get registered as admin user
+### Register as a user with administrator privileges
 
 The Juice Shop does not bother to separate administrative functionality
 into a deployment unit of its own. Instead, the cheapest solution was
 chosen by simply leaving then admin features in the web shop itself and
 (allegedly) demanding a higher level of access to use them.
 
-### Hints
-
 * Register as an ordinary user to learn what API endpoints are involved
   in this use case
 * Think of the simplest possible implementations of a distinction
   between regular users and administrators
+
+### Successfully redeem an expired campaign coupon code
+
+Apart from the monthly coupon codes found on Twitter the Juice Shop also
+offered some seasonal special campaign at least once.
+
+* Look for clues about the past campaign or holiday event somewhere in
+  the application
+* Solving this challenge does not require actual time traveling
 
 ### Place an order that makes you rich
 
 It is probably every web shop's nightmare that customers might figure
 out away to _receive_ money instead of _paying_ for their purchase.
 
-#### Hints
-
 * You literally need to make the shop owe you any amount of money
 * Investigate the shopping basket closely to understand how it prevents
   you from creating orders that would fulfil the challenge
+
+### Follow the DRY principle while registering a user
+
+> The DRY (Don't Repeat Yourself) Principle states:
+> > Every piece of knowledge must have a single, unambiguous,
+> > authoritative representation within a system.
+
+* The obvious repetition in the _User Registration_ form is the _Repeat
+  Password_ field
+* Try to register with either an empty or different value in _Repeat
+  Password_
+* You can solve this challenge by cleverly interacting with the UI or
+  bypassing it altogether
 
 ### Upload a file larger than 100 kB
 
@@ -72,22 +71,28 @@ confirmation document to the online complaint. To prevent abuse of this
 functionality, the application only allows file uploads of 100 kB or
 less.
 
-#### Hints
-
 * First you should try to understand how the file upload is actually
   handled on the client and server side
 * With this understanding you need to find a "weak spot" in the right
   place and have to craft an exploit for it
 
-### Upload a file that has no .pdf extension
+### Upload a file that has no .pdf or .zip extension
 
 In addition to the maximum file size, the Juice Shop also verifies that
 the uploaded file is actually a PDF. All other file types are rejected.
 
-#### Hints
-
 * If you solved the
   [Upload a file larger than 100 kB](#upload-a-file-larger-than-100-kb)
   challenge, you should try to apply the same solution here
+
+### Give a devastating zero-star feedback to the store
+
+You might have realized that it is not possible to submit customer
+feedback on the _Contact Us_ screen until you entered a comment and
+selected a star rating from 1 to 5. This challenge is about tricking the
+application into accepting a feedback with 0 stars.
+
+* Before you invest time bypassing the API, you might want to play
+  around with the UI a bit
 
 [^1]: https://cwe.mitre.org/data/definitions/20.html

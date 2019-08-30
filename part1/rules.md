@@ -1,6 +1,6 @@
 # Hacking exercise rules
 
-## :white_check_mark: Recommended hacking tools
+## ✔️ Recommended hacking tools
 
 ### Browser
 
@@ -21,34 +21,32 @@ is essential to your success to monitor the _JavaScript Console_
 permanently!** It might leak valuable information to you through error
 or debugging logs!
 
-![DevTools Console tab](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/devtools_console.png)
+![DevTools Console tab](img/devtools_console.png)
 
 Other useful features of browser DevTools are their network overview as
 well as insight into the client-side JavaScript code, cookies and other
 local storage being used by the application.
 
-![DevTools Network tab](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/devtools_network.png)
+![DevTools Network tab](img/devtools_network.png)
 
-![DevTools Sources tab](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/devtools_sources.png)
+![DevTools Sources tab](img/devtools_sources.png)
 
-![DevTools Application tab](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/devtools_cookies.png)
+![DevTools Application tab](img/devtools_cookies.png)
 
 #### Tools for HTTP request tampering
 
-On the _Network_ tab of Firefox's DevTools you have the option to _Edit
-and Resend_ every recorded HTTP request. This is extremely useful when
-probing for holes in the server-side validation logic.
-
-Request tampering plugins like
-[TamperData](https://addons.mozilla.org/de/firefox/addon/tamper-data/)
-for Firefox or
 [Tamper Chrome](https://chrome.google.com/webstore/detail/tamper-chrome-extension/hifhgpdkfodlpnlmlnmhchnkepplebkb)
-let you monitor and - more importantly - modify HTTP requests _before_
+lets you monitor and - more importantly - modify HTTP requests _before_
 they are submitted from the browser to the server.
 
-These can also be helpful when trying to bypass certain input validation
-or access restriction mechanisms, that are not properly checked _on the
-server_ once more.
+Mozilla Firefox has built-in tampering capabilities and does not need a
+plugin. On the _Network_ tab of Firefox's DevTools you have the option
+to _Edit and Resend_ every recorded HTTP request.
+
+Tampering is extremely useful when probing for holes in the server-side
+validation logic. It can also be helpful when trying to bypass certain
+input validation or access restriction mechanisms, that are not properly
+checked _on the server_ once more.
 
 An API testing plugin like
 [PostMan](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop)
@@ -65,7 +63,7 @@ just as fine as the recommended browser plugins.
 #### Scripting tools
 
 A small number of challenges is not realistically solvable manually
-unless you are cheating or are incredibly :four_leaf_clover:-lucky.
+unless you are cheating or are incredibly 🍀-lucky.
 
 For these challenges you will require to write some scripts that for
 example can submit requests with different parameter values
@@ -130,7 +128,7 @@ is such a software and offers many useful hacking tools for free:
 > testing. ZAP provides automated scanners as well as a set of tools
 > that allow you to find security vulnerabilities manually.[^2]
 
-![ZAP Logo](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/zap.png)
+![ZAP Logo](img/zap.png)
 
 #### Pentesting Linux distributions
 
@@ -160,7 +158,7 @@ Although there exist some more light-weight pentesting distributions,
 they basically still present a high hurdle for people new to the IT
 security field. If you still feel up to it, give Kali Linux a try!
 
-![Kali Logo](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/kali.jpg)
+![Kali Logo](img/kali.jpg)
 
 ### Internet
 
@@ -170,7 +168,7 @@ all over the place if you know where to look, but sometimes you simply
 need to extend your research to the Internet in order to gain some
 relevant piece of intel to beat a challenge.
 
-## :bulb: Getting hints
+## 💡 Getting hints
 
 Frankly speaking, you are reading the _premium source of hints_ right
 now! Congratulations! In case you want to hack more on your own than
@@ -187,16 +185,20 @@ you like it a bit more nostalgic, you can also join and post to the
 project mailing list at
 https://lists.owasp.org/mailman/listinfo/owasp_juice_shop_project.
 
-## :x: Things considered cheating
+## ❌ Things considered cheating
 
-### Reading a solution ( :godmode: ) before trying
+{% if book.ctf == false %}
 
-[Appendix A - Challenge solutions](../appendix/solutions.md) is
-there to help you in case you are stuck or have absolutely no idea how a
-specific challenge is solved. Simply going through the entire appendix
-back to back and follow the step-by-step instructions given there for
-each challenge, would deprive you of most of the fun and learning effect
-of the Juice Shop. You have been warned.
+### Reading a solution ( 📕 ) before trying
+
+The [Challenge solutions](../appendix/solutions.md) appendix is there to
+help you in case you are stuck or have absolutely no idea how a specific
+challenge is solved. Simply going through the entire appendix back to
+back and follow the step-by-step instructions given there for each
+challenge, would deprive you of most of the fun and learning effect of
+the Juice Shop. You have been warned.
+
+{% endif %}
 
 ### Source code
 
@@ -250,7 +252,7 @@ ever asks you to _demonstrate how_ you actually solved all the 4- and
 The Juice Shop offers a URL to retrieve configuration information which
 is required by the [Customization](customization.md) feature that allows
 redressing the UI and overwriting the product catalog:
-<https://juice-shop-staging.herokuapp.com/rest/admin/application-configuration>
+<http://localhost:3000/rest/admin/application-configuration>
 
 The returned JSON contains spoilers for all challenges that depend on a
 product from the inventory which might be customized. As not all

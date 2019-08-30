@@ -19,11 +19,11 @@ it adapt nicely to different screen sizes. The various icons used
 throughout the frontend are from the vast
 [Font Awesome 5](https://fontawesome.com/) collection.
 
-:information_source: Please note that **all client-side code is written
+ℹ️ Please note that **all client-side code is written
 in Typescript** which is compiled into regular JavaScript during the
 build process.
 
-![Client tier focus](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/architecture-client.png)
+![Client tier focus](img/architecture-client.png)
 
 ### Services
 
@@ -42,7 +42,7 @@ The client-side Angular services reside in the
 RESTful HTTP calls to the Node.js backend for a specific domain entity
 or functional aspect of the application.
 
-![Angular Services folder](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/servicesFolder.png)
+![Angular Services folder](img/servicesFolder.png)
 
 Service functions must **always** use Angular's own `HttpClient` to make
 any backend calls.
@@ -88,7 +88,7 @@ export class FeedbackService {
 }
 ```
 
-:rotating_light: Unit tests for all services can be found next to their
+🚨 Unit tests for all services can be found next to their
 `*.service.ts` files in the `frontend/src/app/Services` folder as
 `*.service.spec.ts` files. They are
 [Jasmine 2](https://jasmine.github.io) specifications which are executed
@@ -110,7 +110,7 @@ screen portion of the application. It consists of the component itself
 (`*.component.ts`) and the HTML [Template](#templates)
 (`*.component.html`) along with its styles (`*.component.scss`).
 
-![Angular Component folders](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/componentFolders.png)
+![Angular Component folders](img/componentFolders.png)
 
 Components must **always** go through one or more [Services](#services)
 when communicating with the application backend.
@@ -124,8 +124,8 @@ tasks:
   the `getCaptcha()` function
 * `FeedbackService` to eventually `save()` the user feedback
 
-:point_up: As a universal rule for the entire Juice Shop codebase,
-unnecessary code duplication as well as deeply nested :spaghetti:-code
+☝️ As a universal rule for the entire Juice Shop codebase,
+unnecessary code duplication as well as deeply nested 🍝-code
 should be avoided by using well-named & small helper functions. This is
 demonstrated by the very simple `getNewCaptcha()` and `resetForm()`
 functions in the code snippet below. Helper functions should always be
@@ -225,7 +225,7 @@ export class ContactComponent implements OnInit {
 }
 ```
 
-:rotating_light: Unit tests for all components can be found in their
+🚨 Unit tests for all components can be found in their
 subfolders within `frontend/src/app/` as `*.component.spec.ts` files.
 They are [Jasmine 2](https://jasmine.github.io) specifications which are
 executed by the [Karma](https://karma-runner.github.io) test runner.
@@ -249,7 +249,7 @@ along with its [Component](#components) in the subfolders beneath
 responsiveness. Furthermore most views incorporate icons from the
 [Font Awesome 5](https://fontawesome.com/) collection.
 
-:information_source: Understanding the
+ℹ️ Understanding the
 [Declarative HTML APIs of the Angular Layout](https://github.com/angular/flex-layout/wiki/API-Documentation#html-api-declarative)
 is crucial to be able to write UI elements or entire screens without
 breaking responsiveness!
@@ -319,7 +319,7 @@ _Contact Us_ screen.
 ```
 {% endraw %}
 
-:information_source: In the entire Juice Shop code base, inline
+ℹ️ In the entire Juice Shop code base, inline
 templates are **never** used. Templates must **always** be described in
 separate `.html` files.
 
@@ -358,7 +358,7 @@ process (launched with `npm install`) of the application. This creates
 an `frontend/dist/frontend` folder, which is the one actually delivered
 to the Browser to load all application-specific client-side code.
 
-:information_source: If you want to quickly test client-side code
+ℹ️ If you want to quickly test client-side code
 changes, it can be cumbersome and slow to launch `npm install` over and
 over again. Instead you can use `npm run serve` to keep let Angular
 watch for client-code changes and recompile the affected parts on the
@@ -370,9 +370,9 @@ fly. You usually not even have to manually refresh your browser with
 The backend of OWASP Juice Shop is a [Node.js](https://nodejs.org)
 application based on the [Express](http://expressjs.com) web framework.
 
-![Server tier focus](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/architecture-server.png)
+![Server tier focus](img/architecture-server.png)
 
-:information_source: On the server side all JavaScript code must be
+ℹ️ On the server side all JavaScript code must be
 compliant to javascript (ES6) syntax.
 
 ### Routes
@@ -401,7 +401,7 @@ and can be handled by any of the following middlewares:
   * catching unhandled exceptions and presenting a default error screen
     (via `errorhandler`)
 
-:rotating_light: Integration tests for all routes can be found in the
+🚨 Integration tests for all routes can be found in the
 `test/api` folder alongside all other API endpoint tests, from where
 [Frisby.js](https://www.frisbyjs.com/)/[Jest](https://facebook.github.io/jest/)
 assert the functionality of the entire backend on HTTP-request/response
@@ -409,7 +409,7 @@ level.
 
 #### Generated API endpoints
 
-Juice Shop uses the [Epilogue](https://github.com/dchester/epilogue)
+Juice Shop uses the [finale-rest](https://www.npmjs.com/package/finale-rest)
 middleware to automatically create REST endpoints for most of its
 Sequelize models. For e.g. the `User` model the generated endpoints are:
 
@@ -431,7 +431,7 @@ an authenticated user. This is described later in section
 [Access control on routes](#access-control-on-routes).
 
 ```javascript
-epilogue.initialize({
+finale.initialize({
   app,
   sequelize: models.sequelize
 })
@@ -441,12 +441,12 @@ const autoModels = ['User', 'Product', 'Feedback',
 'SecurityQuestion', 'SecurityAnswer']
 
 for (const modelName of autoModels) {
-  const resource = epilogue.resource({
+  const resource = finale.resource({
     model: models[modelName],
     endpoints: [`/api/${modelName}s`, `/api/${modelName}s/:id`]
   })
 
-  // fix the api difference between epilogue and previously
+  // fix the api difference between finale (fka epilogue) and previously
   // used sequlize-restful
   resource.all.send.before((req, res, context) => {
     context.instance = {
@@ -464,7 +464,7 @@ The business functionality in the application backend is separated into
 tightly scoped middleware components which are placed in the `routes`
 folder.
 
-![Express routes folder](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/routesFolder.png)
+![Express routes folder](img/routesFolder.png)
 
 These middleware components are directly mapped to
 [Express](http://expressjs.com) routes.
@@ -541,7 +541,7 @@ all hand-written endpoints can be used anonymously. The upcoming section
 [Access control on routes](#access-control-on-routes) explains the
 available authorization checks.
 
-:rotating_light: Unit tests for hand-written routes can be found in the
+🚨 Unit tests for hand-written routes can be found in the
 `test/server` folder. These tests are written using the
 [Chai](http://chaijs.com/) assertion library in conjunction with the
 [Mocha](https://mochajs.org/) test framework.
@@ -633,7 +633,7 @@ used during [Customization](../part1/customization.md).
 The `insecurity.js` module offers all security-relevant utilities of the
 application, but of course mostly in some broken or flawed way:
 
-* Hashing functions borh weak (`hash()`) and relatively strong
+* Hashing functions both weak (`hash()`) and relatively strong
   (`hmac()`)
 * [Route](#routes) authorization via JWT with `denyAll()` and
   `isAuthorized()` (see
@@ -661,7 +661,7 @@ runnable as a single "all-inclusive" server which
 [can be deployed in various ways](../part1/running.md#run-options) with
 ease.
 
-![DB tier focus](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/architecture-database.png)
+![DB tier focus](img/architecture-database.png)
 
 ### Database
 
@@ -703,7 +703,7 @@ features the following tables:
   same schema. This table stores all hacking challenges that the OWASP
   Juice Shop offers and persists if the user already solved them or not.
 
-![ERM Diagram](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/erm-diagram.png)
+![ERM Diagram](img/erm-diagram.png)
 
 ### Non-relational database
 
@@ -800,7 +800,7 @@ as the difficulty stars and progress bar slowly fill and ever more green
 [video recording of this on YouTube](https://www.youtube.com/watch?v=oiFUdZlS7zI)
 for the 7.0.0 release of the Juice Shop.
 
-[![OWASP Juice Shop 7.0.0 - Protractor test suite](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part3/img/protractor-youtube.png)](https://www.youtube.com/watch?v=oiFUdZlS7zI)
+[![OWASP Juice Shop 7.0.0 - Protractor test suite](img/protractor-youtube.png)](https://www.youtube.com/watch?v=oiFUdZlS7zI)
 
 These tests are written and executed with
 [Protractor](https://www.protractortest.org) which uses

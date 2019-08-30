@@ -2,34 +2,18 @@
 
 ## Challenges covered in this chapter
 
-| Challenge                                                                                                                                                | Difficulty                     |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------|
-| Log in with the administrator's user credentials without previously changing them or applying SQL Injection.                                             | :star::star:                   |
-| Reset the password of Bjoern's OWASP account via the Forgot Password mechanism with _the truthful answer_ to his security question.                      | :star::star::star:             |
-| Reset Jim's password via the Forgot Password mechanism with _the truthful answer_ to his security question.                                              | :star::star::star:             |
-| Change Bender's password into _slurmCl4ssic_ without using SQL Injection.                                                                                | :star::star::star::star:       |
-| Log in with Bjoern's Gmail account without previously changing his password, applying SQL Injection, or hacking his Google account.                      | :star::star::star::star:       |
-| Reset Bender's password via the Forgot Password mechanism with _the truthful answer_ to his security question.                                           | :star::star::star::star:       |
-| Exploit OAuth 2.0 to log in with the Chief Information Security Officer's user account.                                                                  | :star::star::star::star::star: |
-| Reset the password of Bjoern's internal account via the Forgot Password mechanism with _the truthful answer_ to his security question.                   | :star::star::star::star::star: |
-| Inform the development team about a danger to some of _their_ credentials. (Send them the URL of the _original report_ or the CVE of this vulnerability) | :star::star::star::star::star: |
-
-### Log in with the administrator's user credentials without previously changing them or applying SQL Injection
-
-You might have already solved this challenge along with
-[Log in with the administrator's user account](injection.md#log-in-with-the-administrators-user-account)
-if you chose not to use SQL Injection. This challenge can only be solved
-if you use the original password of the administrator. If you changed
-the password previously, do not despair: The original password will
-_always_ be accepted to make sure you can solve this challenge.
-
-#### Hints
-
-* Guessing might work just fine.
-* If you harvested the admin's password hash, you can try to attack
-  that.
-* In case you use some hacker tool, you can also go for a _brute force
-  attack_ using a generic _password list_
+| Name                      | Description                                                                                                                            | Difficulty |
+|:--------------------------|:---------------------------------------------------------------------------------------------------------------------------------------|:-----------|
+| Bjoern's Favorite Pet     | Reset the password of Bjoern's OWASP account via the Forgot Password mechanism with _the truthful answer_ to his security question.    | ⭐⭐⭐       |
+| Change Bender's Password  | Change Bender's password into _slurmCl4ssic_ without using SQL Injection or Forgot Password.                                           | ⭐⭐⭐⭐     |
+| GDPR Data Erasure         | Log in with Chris' erased user account.                                                                                                | ⭐⭐⭐       |
+| Login Bjoern              | Log in with Bjoern's Gmail account without previously changing his password, applying SQL Injection, or hacking his Google account.    | ⭐⭐⭐⭐     |
+| Login CISO                | Exploit OAuth 2.0 to log in with the Chief Information Security Officer's user account.                                                | ⭐⭐⭐⭐⭐    |
+| Password Strength         | Log in with the administrator's user credentials without previously changing them or applying SQL Injection.                           | ⭐⭐        |
+| Reset Bender's Password   | Reset Bender's password via the Forgot Password mechanism with _the truthful answer_ to his security question.                         | ⭐⭐⭐⭐     |
+| Reset Bjoern's Password   | Reset the password of Bjoern's internal account via the Forgot Password mechanism with _the truthful answer_ to his security question. | ⭐⭐⭐⭐⭐    |
+| Reset Jim's Password      | Reset Jim's password via the Forgot Password mechanism with _the truthful answer_ to his security question.                            | ⭐⭐⭐       |
+| Two Factor Authentication | Solve the 2FA challenge for user "wurstbrot". (Disabling, bypassing or overwriting his 2FA settings does not count as a solution)      | ⭐⭐⭐⭐⭐    |
 
 ### Reset the password of Bjoern's OWASP account via the Forgot Password mechanism
 
@@ -65,13 +49,11 @@ and use it to reset the password of his OWASP account.
 > example, what is your oldest child’s nickname – but you don’t have a
 > child.[^1]
 
-#### Hints
-
 * Hints to the answer to Bjoern's question can be found by looking him
   up on the Internet.
-* More precisely, Bjoern might have accidentally
-  (:stuck_out_tongue_winking_eye:) doxxed himself by mentioning his
-  security answer on at least one occasion where a camera was running.
+* More precisely, Bjoern might have accidentally (😜) doxxed himself by
+  mentioning his security answer on at least one occasion where a camera
+  was running.
 * Brute forcing the answer might be very well possible with a
   sufficiently extensive list of common pet names.
 
@@ -90,22 +72,6 @@ and use it to reset the password of his OWASP account.
 > inflicting harm, harassment, online shaming, and vigilante
 > justice.[^2]
 
-### Reset Jim's password via the Forgot Password mechanism
-
-This challenge is about finding the answer to user Jim's security
-question.
-
-#### Hints
-
-* The hardest part of this challenge is actually to find out who Jim
-  actually is
-* Jim picked one of the worst security questions and chose to answer it
-  truthfully
-* As Jim is a celebrity, the answer to his question is quite easy to
-  find in publicly available information on the internet
-* Even brute forcing the answer should be possible with the right kind
-  of word list
-
 ### Change Bender's password into slurmCl4ssic without using SQL Injection or Forgot Password
 
 This challenge can only be solved by changing the password of user
@@ -114,13 +80,11 @@ solve the challenge, even if the password is successfully changed in the
 process. Beating Bender's security question to change his password also
 does not suffice to solve this challenge!
 
-#### Hints
-
 * In previous releases of OWASP Juice Shop this challenge was wrongly
   accused of being based on
   [Cross-Site Request Forgery](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)).
 * It might also have been put into the
-  [Weak security mechanisms](roll-your-own-security.md) category.
+  [Improper Input Validation](improper-input-validation.md) category.
 * Bender's current password is so strong that brute force, rainbow table
   or guessing attacks will probably not work.
 
@@ -133,6 +97,21 @@ does not suffice to solve this challenge!
 > every attempt, but more processing time and less storage than a simple
 > lookup table with one entry per hash. Use of a key derivation function
 > that employs a salt makes this attack infeasible.[^3]
+
+### Log in with Chris' erased user account
+
+This challenge is about loggin in with the account of a user who
+previously insisted on his "right to be forgotten" in accordance with
+Art. 17 GDPR.
+
+* Trying out the _Request Data Erasure_ functionality might be
+  interesting, but cannot help you solve this challenge in real time.
+* If you have solved the challenge
+  [Retrieve a list of all user credentials via SQL Injection](injection.md#retrieve-a-list-of-all-user-credentials-via-sql-injection)
+  you might have already retrieved some information about how the Juice
+  Shop "deletes" users upon their request.
+* What the Juice Shop does here is totally incompliant with GDPR.
+  Luckily a 4% fine on a gross income of 0$ is still 0$.
 
 ### Log in with Bjoern's Gmail account
 
@@ -151,8 +130,6 @@ You can always use the official demo instance at
 <http://demo.owasp-juice.shop> to play with Google login and learn how
 it works there, then apply what you learned on your local instance.
 
-#### Hints
-
 * There are essentially two ways to light up this challenge in green on
   the score board:
   * In case you, dear reader, happen to be Bjoern Kimminich, just log in
@@ -170,12 +147,39 @@ the challenge description is _not a joke_. Please do not try to break
 into Bjoern's (or anyone else's) Google account. This would be a
 criminal act.
 
+### Exploit OAuth 2.0 to log in with the CISO's user account
+
+You should expect a Chief Information Security Officer knows everything
+there is to know about password policies and best practices. The Juice
+Shop CISO took it even one step further and chose an incredibly long
+random password with all kinds of regular and special characters. Good
+luck brute forcing that!
+
+* The challenge description already suggests that the flaw is to be
+  found somewhere in the OAuth 2.0 login process.
+* While it is also possible to use SQL Injection to log in as the CISO,
+  this will not solve the challenge.
+* Try to utilize a broken convenience feature in your attack.
+
+### Log in with the administrator's user credentials without previously changing them or applying SQL Injection
+
+You might have already solved this challenge along with
+[Log in with the administrator's user account](injection.md#log-in-with-the-administrators-user-account)
+if you chose not to use SQL Injection. This challenge can only be solved
+if you use the original password of the administrator. If you changed
+the password previously, do not despair: The original password will
+_always_ be accepted to make sure you can solve this challenge.
+
+* Guessing might work just fine.
+* If you harvested the admin's password hash, you can try to attack
+  that.
+* In case you use some hacker tool, you can also go for a _brute force
+  attack_ using a generic _password list_
+
 ### Reset Bender's password via the Forgot Password mechanism
 
 This challenge is about finding the answer to user Bender's security
 question. It is probably slightly harder to find out than Jim's answer.
-
-#### Hints
 
 * If you have no idea who Bender is, please put down this book _right
   now_ and watch the first episodes of
@@ -188,28 +192,10 @@ question. It is probably slightly harder to find out than Jim's answer.
   to try some alternative spelling.
 * Brute forcing the answer should be next to impossible.
 
-### Exploit OAuth 2.0 to log in with the CISO's user account
-
-You should expect a Chief Information Security Officer knows everything
-there is to know about password policies and best practices. The Juice
-Shop CISO took it even one step further and chose an incredibly long
-random password with all kinds of regular and special characters. Good
-luck brute forcing that!
-
-#### Hints
-
-* The challenge description already suggests that the flaw is to be
-  found somewhere in the OAuth 2.0 login process.
-* While it is also possible to use SQL Injection to log in as the CISO,
-  this will not solve the challenge.
-* Try to utilize a broken convenience feature in your attack.
-
 ### Reset the password of Bjoern's internal account via the Forgot Password mechanism
 
 This challenge is about finding the answer to the security question of
 Bjoern's internal user account `bjoern@juice-sh.op`.
-
-#### Hints
 
 * Other than with
   [his OWASP account](#reset-the-password-of-bjoerns-owasp-account-via-the-forgot-password-mechanism),
@@ -221,36 +207,59 @@ Bjoern's internal user account `bjoern@juice-sh.op`.
   looking him up on the Internet.
 * Brute forcing the answer should be next to impossible.
 
-### Inform the development team about a danger to some of their credentials
+### Reset Jim's password via the Forgot Password mechanism
 
-> A software supply chain attack is when an attacker gains access to a
-> legitimate software vendor and then compromises either the software or
-> update repository. This is done with the intention of installing a
-> backdoor, or other malicious code, into the legitimate software update
-> provided by the vendor. As users update their software, unwittingly
-> falling victim to the Trojanized update, they also install the
-> embedded malicious code.[^4]
+This challenge is about finding the answer to user Jim's security
+question.
 
-:information_source: Please note that having the OWASP Juice Shop
-installed on your computer _does not_ put you at any actual risk! This
-challenge does _neither_ install a backdoor or Trojan nor does it bring
-any other harmful code to your system!
+* The hardest part of this challenge is actually to find out who Jim
+  actually is
+* Jim picked one of the worst security questions and chose to answer it
+  truthfully
+* As Jim is a celebrity, the answer to his question is quite easy to
+  find in publicly available information on the internet
+* Even brute forcing the answer should be possible with the right kind
+  of word list
 
-#### Hints
+### Solve the 2FA challenge for user "wurstbrot"
 
-* The shop's end users are not the targets here. The developers of the
-  shop are!
-* This is a research-heavy challenge which does not involve any actual
-  hacking.
-* Solving
-  [Access a developer's forgotten backup file](roll-your-own-security.md#access-a-developers-forgotten-backup-file)
-  before attempting this challenge will save you from a lot of
-  frustration.
+> **Multi-factor authentication (MFA)** is an authentication method in
+> which a computer user is granted access only after successfully
+> presenting two or more pieces of evidence (or factors) to an
+> authentication mechanism: knowledge (something the user and only the
+> user knows), possession (something the user and only the user has),
+> and inherence (something the user and only the user is).
+>
+> **Two-factor authentication** (also known as **2FA**) is a type, or
+> subset, of multi-factor authentication. It is a method of confirming
+> users' claimed identities by using a combination of two different
+> factors: 1) something they know, 2) something they have, or 3)
+> something they are.
+>
+> A good example of two-factor authentication is the withdrawing of
+> money from an ATM; only the correct combination of a bank card
+> (something the user possesses) and a PIN (something the user knows)
+> allows the transaction to be carried out.
+>
+> Two other examples are to supplement a user-controlled password with a
+> one-time password (OTP) or code generated or received by an
+> authenticator (e.g. a security token or smartphone) that only the user
+> possesses.[^4]
+
+In the Juice Shop one customer was very security-aware and set up 2FA
+for his account. He goes by the hilarious username _wurstbrot_.[^5]
+
+* As always, first learn how the feature under attack is used and
+  behaves under normal conditions.
+* Make sure you understand how 2FA with TOTP (time-based one-time
+  password) works and which part of it is the critically sensitive one.
+* Solving the challenge
+  [Retrieve a list of all user credentials via SQL Injection](injection.md#retrieve-a-list-of-all-user-credentials-via-sql-injection)
+  before tackling this one will definitely help. But it will not carry
+  you all the way.
 
 [^1]: http://goodsecurityquestions.com
-
 [^2]: https://en.wikipedia.org/wiki/Doxing
-
 [^3]: https://en.wikipedia.org/wiki/Rainbow_table
-
-[^4]: https://www.rsa.com/en-us/blog/2017-02/are-software-supply-chain-attacks-the-new-norm
+[^4]: https://en.wikipedia.org/wiki/Multi-factor_authentication
+[^5]: https://www.dict.cc/?s=wurstbrot

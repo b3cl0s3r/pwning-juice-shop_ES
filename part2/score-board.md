@@ -8,9 +8,9 @@ Board, did you?
 
 ## Challenges covered in this chapter
 
-| Challenge                                     | Difficulty |
-|:----------------------------------------------|:-----------|
-| Find the carefully hidden 'Score Board' page. | :star:     |
+| Name        | Description                                   | Difficulty |
+|:------------|:----------------------------------------------|:-----------|
+| Score Board | Find the carefully hidden 'Score Board' page. | ⭐          |
 
 ### Find the carefully hidden 'Score Board' page
 
@@ -22,8 +22,6 @@ possible explanations:
 1. You missed the link during the initial mapping of the application
 2. There is a URL that leads to the Score Board but it is not
    hyperlinked to
-
-#### Hints
 
 * Knowing it exists, you can simply _guess_ what URL the Score Board
   might have.

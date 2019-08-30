@@ -29,7 +29,7 @@
 > play encourages taking time to approach challenges and prioritizes
 > quantity of correct submissions over the timing.[^1]
 
-![OWASP Juice Shop CTF logo](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/introduction/img/JuiceShopCTF_Logo.png)
+![OWASP Juice Shop CTF logo](../introduction/img/JuiceShopCTF_Logo.png)
 
 OWASP Juice Shop can be run in a special configuration that allows to
 use it in Capture-the-flag (CTF) events. This can add some extra
@@ -41,7 +41,7 @@ training or workshop.
 Juice Shop supports _Jeopardy-style CTFs_ by generating a unique _CTF
 flag code_ for each solved challenge.
 
-!["Challenge solved!" notification with flag code](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/notification_with_flag.png)
+!["Challenge solved!" notification with flag code](img/notification_with_flag.png)
 
 These codes are not displayed by default, but can be made visible by
 running the application with the `config/ctf.yml` configuration:
@@ -74,7 +74,7 @@ solved!"_-notification being repeated. This can be useful in case you
 forgot to copy a flag code before closing the corresponding
 notification.
 
-![Repeat notification via Score Board](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/repeat_notification.png)
+![Repeat notification via Score Board](img/repeat_notification.png)
 
 ### Overriding the `ctf.key`
 
@@ -129,7 +129,7 @@ dependency to the score server_ either, as participants simply enter the
 flag code they see upon solving a challenge manually somewhere on the
 score server's user interface, typically via their browser:
 
-![CTF Infrastructure Example](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master//part1/img/CTF_Infrastructure.png)
+![CTF Infrastructure Example](/part1/img/CTF_Infrastructure.png)
 
 
 ## Setting up CTF score servers for Juice Shop
@@ -168,7 +168,7 @@ juice-shop-ctf
 The tool will now ask a series of questions. All questions have default
 answers available which you can choose by simply hitting `ENTER`.
 
-![juice-shop-ctf CLI in action](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/cli_usage_screenshot.png)
+![juice-shop-ctf CLI in action](img/cli_usage_screenshot.png)
 
 1. **CTF framework to generate data for?** Offers a selectable choice
    between the supported CTF frameworks, which for
@@ -176,8 +176,7 @@ answers available which you can choose by simply hitting `ENTER`.
    * `CTFd 2.x` which is a very well-written and stable piece of Open
      Source Software. This is the default choice.
    * `CTFd 1.x` requiring a slightly different data format than the
-     newer 2.x version. (:zap: _This option will be removed in a future
-     major release!_)
+     newer 2.x version.
    * `FBCTF` from Facebook which is visually more advanced though not as
      frequently updated at CTFd.
 2. **Juice Shop URL to retrieve challenges?** URL of a _running_ Juice
@@ -218,16 +217,18 @@ answers available which you can choose by simply hitting `ENTER`.
      value.
 
 The category of each challenge is identical to its
-[category in the Juice Shop](categories.md) database. The score value of
-each challenge is calculated by the `juice-shop-ctf-cli` program as
-follows:
+[category in the Juice Shop](categories.md) database. The score value
+and optional costs for hints of each challenge are calculated by the
+`juice-shop-ctf-cli` program as follows:
 
-* 1-:star: challenge = 100 points
-* 2-:star: challenge = 250 points
-* 3-:star: challenge = 450 points
-* 4-:star: challenge = 700 points
-* 5-:star: challenge = 1000 points
-* 6-:star: challenge = 1350 points
+| Difficulty                           | Score value | Paid hint costs (Text / URL) |
+|:-------------------------------------|:------------|:-----------------------------|
+| ⭐                               | 100 points  | (10 points / 20 points)      |
+| ⭐⭐                         | 250 points  | (25 points / 50 points)      |
+| ⭐⭐⭐                   | 450 points  | (45 points / 90 points)      |
+| ⭐⭐⭐⭐             | 700 points  | (70 points / 140 points)     |
+| ⭐⭐⭐⭐⭐       | 1000 points | (100 points / 200 points)    |
+| ⭐⭐⭐⭐⭐⭐ | 1350 points | (135 points / 260 points)    |
 
 The generated output of the tool will finally be written into in the
 folder the program was started in. By default the output files are named
@@ -274,7 +275,7 @@ juice-shop-ctf --config myconfig.yml --output challenges.out
 
 ### Running CTFd
 
-![CTFd logo](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/ctfd_logo.png)
+![CTFd logo](img/ctfd_logo.png)
 
 This setup guide assumes that you use CTFd {{book.ctfdVersion}}. To
 apply the generated `.zip`, follow the steps describing your preferred
@@ -292,10 +293,11 @@ CTFd run-mode below.
 5. Go to the section _Admin_ > _Config_ > _Backup_ and choose _Import_
 6. Select the generated `.zip` file and make sure only the _Challenges_
    box is ticket. Press _Import_.
-7. _(Only for CTFd 2.x)_ Dismiss the potential `Internal Server Error`
+7. _(Only for CTFd 2.0.x)_ Dismiss any occurring `Internal Server Error`
    alert popup after import and restart your CTFd server.
-8. _(Only for CTFd 2.x)_ Repeat the initial setup from step 4. to regain
-   access to the CTF now pre-populated with the Juice Shop challenges.
+8. _(Only for CTFd 2.x)_ Repeat the initial admin and CTF setup from
+   step 4. to regain access to the CTF game. It is now pre-populated
+   with the Juice Shop challenges.
 
 #### Docker container setup
 
@@ -308,7 +310,7 @@ CTFd run-mode below.
 3. After running `docker-compose up` from previous step, you should be
    able to browse to your CTFd instance UI (`<<docker host IP>>:8000` by
    default) and create an admin user and CTF name.
-4. Follow the steps 5-8 from the [Default setup](#local-server-setup)
+4. Follow the steps 5-8 from the [Local server setup](#local-server-setup)
    described above.
 
 ##### Non-production Docker image
@@ -318,21 +320,23 @@ CTFd run-mode below.
    {{book.ctfdVersion}}
 3. Execute `docker run --rm -p 8000:8000 ctfd/ctfd:<version>` to run
    {{book.ctfdVersion}}
-4. Follow the steps 5-8 from the [Default setup](#local-server-setup)
+4. Follow the steps 5-8 from the [Local server setup](#local-server-setup)
    described above
 
 Once you have CTFd up and running, you should see all the created data
 in the _Challenges_ tab:
 
-![CTFd Challenge view](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/ctfd_1.png)
+![CTFd Challenge view](img/ctfd_1.png)
 
-![CTFd Scoreboard view](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/ctfd_2.png)
+![CTFd Scoreboard view](img/ctfd_2.png)
 
-![CTFd Statistics view](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/ctfd_3.png)
+![CTFd Statistics view](img/ctfd_3.png)
 
-![CTFd Team view](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/ctfd_4.png)
+![CTFd Team view](img/ctfd_4.png)
 
 ### Running FBCTF
+
+![FBCTF logo](img/fbctf_logo.jpg)
 
 Please note that Facebook does not publish any versioned releases of
 FBCTF. They recommend to use the `master`-branch content from GitHub
@@ -349,13 +353,13 @@ The following screenshots were taken during a CTF event where Facebook's
 game server was used. Juice Shop instances were running in a Docker
 cluster and individually assigned to a participant via a load balancer.
 
-![FBCTF World Map](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/FBCTF-Iteratec-00.png)
+![FBCTF World Map](img/fbctf_1.png)
 
-![FBCTF Highlighted target country](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/FBCTF-Iteratec-01.png)
+![FBCTF Highlighted target country](img/fbctf_2.png)
 
-![FBCTF Hacking Challenge](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/FBCTF-Iteratec-02.png)
+![FBCTF Hacking Challenge](img/fbctf_3.png)
 
-![FBCTF Score Board](https://raw.githubusercontent.com/bkimminich/pwning-juice-shop/master/part1/img/FBCTF-Iteratec-03.png)
+![FBCTF Score Board](img/fbctf_4.png)
 
 ## Using other CTF frameworks
 
@@ -368,7 +372,7 @@ nicely curated list of CTF platforms and related tools & resources in
 [Awesome CTF](https://github.com/apsdehal/awesome-ctf) on GitHub.
 
 All these platforms have one thing in common: Unless you write a
-dedicated `lib/generators/`-file :wink:, you have to set up the
+dedicated `lib/generators/`-file 😉, you have to set up the
 challenges inside them manually on your own. Of course you can choose
 aspects like score per challenge, description etc. like you want. For
 the CTF to _actually work_ there is only one mandatory prerequisite:
